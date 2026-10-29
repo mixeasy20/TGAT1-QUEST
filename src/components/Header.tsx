@@ -19,13 +19,18 @@ import {
   LineChart,
   LayoutDashboard,
   Sword,
+  Cloud,
 } from 'lucide-react';
 import { useUser } from '@/context/UserContext';
+import { useAuth } from '@/context/AuthContext';
+import { AuthModal } from '@/components/AuthModal';
 
 export function Header() {
   const { profile, levelInfo, claimQuest, dueCount } = useUser();
+  const { user } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [questModalOpen, setQuestModalOpen] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
   const pathname = usePathname();
 
   const completedUnclaimedCount =
@@ -68,9 +73,9 @@ export function Header() {
           </div>
         </div>
 
-        {/* Right Side: Level, XP Bar, Coins, Daily Quests Button */}
+        {/* Right Side: Level, XP Bar, Coins, Daily Quests & Firebase Cloud Button */}
         {profile && levelInfo && (
-          <div className="flex items-center gap-3 md:gap-5">
+          <div className="flex items-center gap-2.5 sm:gap-4">
             {/* Level & XP Mini Bar */}
             <div className="flex items-center gap-2.5 bg-slate-800/90 px-3 py-1.5 rounded-xl border border-slate-700/80">
               <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 text-white font-extrabold text-xs shadow-inner">
@@ -110,12 +115,28 @@ export function Header() {
               className="relative flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1.5 rounded-xl text-xs font-semibold shadow-md shadow-indigo-600/20 transition-transform active:scale-95"
             >
               <Target className="w-4 h-4" />
-              <span className="hidden sm:inline">Daily Quests</span>
+              <span className="hidden sm:inline">Quests</span>
               {completedUnclaimedCount > 0 && (
                 <span className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-emerald-500 text-slate-950 rounded-full text-[10px] font-extrabold flex items-center justify-center animate-bounce">
                   {completedUnclaimedCount}
                 </span>
               )}
+            </button>
+
+            {/* Firebase Cloud Sync Button */}
+            <button
+              onClick={() => setAuthModalOpen(true)}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all active:scale-95 ${
+                user
+                  ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/25'
+                  : 'bg-slate-800 hover:bg-slate-700 border-slate-700 text-slate-300 hover:text-white'
+              }`}
+              title={user ? `Firebase: ${user.email || 'Guest'}` : 'เชื่อมต่อ Firebase Cloud'}
+            >
+              <Cloud className="w-4 h-4 text-amber-400" />
+              <span className="hidden sm:inline">
+                {user ? (user.displayName || 'Firebase Sync') : 'Firebase'}
+              </span>
             </button>
           </div>
         )}
@@ -171,8 +192,20 @@ export function Header() {
               </div>
             </div>
 
-            <div className="pt-4 border-t border-slate-800 text-xs text-slate-400 text-center">
-              Level {profile?.level} • {profile?.rankTitle}
+            <div className="pt-4 border-t border-slate-800 space-y-2">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setAuthModalOpen(true);
+                }}
+                className="w-full py-2 px-3 rounded-xl bg-slate-800 text-slate-300 font-semibold text-xs flex items-center justify-center gap-2"
+              >
+                <Cloud className="w-4 h-4 text-amber-400" />
+                <span>{user ? 'จัดการ Firebase Cloud' : 'เชื่อมต่อ Firebase'}</span>
+              </button>
+              <div className="text-xs text-slate-400 text-center">
+                Level {profile?.level} • {profile?.rankTitle}
+              </div>
             </div>
           </div>
           <div className="flex-1" onClick={() => setMobileMenuOpen(false)} />
@@ -276,7 +309,9 @@ export function Header() {
           </div>
         </div>
       )}
+
+      {/* Firebase Cloud Sync Modal */}
+      <AuthModal isOpen={authModalOpen} onClose={() => setAuthModalOpen(false)} />
     </>
   );
 }
-
