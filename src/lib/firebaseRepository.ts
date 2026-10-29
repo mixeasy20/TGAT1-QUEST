@@ -196,3 +196,4 @@ export async function saveCloudPracticeSessions(
     console.error('Error saving practice sessions to Firestore:', error);
   }
 }
+

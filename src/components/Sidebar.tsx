@@ -13,8 +13,11 @@ import {
   Sword,
   Flame,
   Award,
+  ChevronRight,
+  UserCheck,
 } from 'lucide-react';
 import { useUser } from '@/context/UserContext';
+import { useAuth } from '@/context/AuthContext';
 
 const NAV_ITEMS = [
   {
@@ -59,6 +62,7 @@ const NAV_ITEMS = [
 export function Sidebar() {
   const pathname = usePathname();
   const { dueCount, profile } = useUser();
+  const { user } = useAuth();
 
   return (
     <aside className="hidden lg:flex lg:flex-col w-64 bg-slate-900 border-r border-slate-800 text-slate-200 select-none shrink-0 h-screen sticky top-0">
@@ -120,8 +124,8 @@ export function Sidebar() {
 
       {/* Gamification Mini Widget */}
       {profile && (
-        <div className="p-3 mx-3 mb-4 rounded-xl bg-slate-800/80 border border-slate-700/60 text-xs">
-          <div className="flex items-center justify-between mb-2">
+        <div className="p-3 mx-3 mb-2 rounded-xl bg-slate-800/80 border border-slate-700/60 text-xs">
+          <div className="flex items-center justify-between mb-1.5">
             <span className="text-[11px] text-slate-400 font-medium flex items-center gap-1">
               <Flame className="w-3.5 h-3.5 text-amber-500" /> สตรีคต่อเนื่อง
             </span>
@@ -138,6 +142,33 @@ export function Sidebar() {
         </div>
       )}
 
+      {/* User Account / Cloud Sync Link */}
+      <div className="px-3 pb-3">
+        <Link
+          href="/login"
+          className={`w-full p-2.5 rounded-xl border flex items-center justify-between text-xs transition-colors ${
+            user
+              ? 'bg-emerald-500/10 border-emerald-500/25 text-emerald-300 hover:bg-emerald-500/20'
+              : 'bg-slate-800/60 border-slate-700/60 text-slate-300 hover:bg-slate-800 hover:text-white'
+          }`}
+        >
+          <div className="flex items-center gap-2 overflow-hidden">
+            <div className="w-6 h-6 rounded-lg bg-indigo-600 flex items-center justify-center text-white shrink-0">
+              <UserCheck className="w-3.5 h-3.5" />
+            </div>
+            <div className="truncate text-left">
+              <div className="font-bold text-[11px] truncate">
+                {user ? (user.displayName || user.email || 'ผู้ใช้งาน') : 'เข้าสู่ระบบ Cloud'}
+              </div>
+              <div className="text-[10px] text-slate-400">
+                {user ? 'Firebase Synced' : 'Google / Email'}
+              </div>
+            </div>
+          </div>
+          <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+        </Link>
+      </div>
+
       {/* Footer Info */}
       <div className="p-3 border-t border-slate-800 text-[11px] text-slate-400 text-center">
         เตรียมสอบ TGAT1 การสื่อสารภาษาอังกฤษ
@@ -145,4 +176,3 @@ export function Sidebar() {
     </aside>
   );
 }
-

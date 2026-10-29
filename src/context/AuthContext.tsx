@@ -9,6 +9,8 @@ import {
   signInAnonymously,
   signOut,
   updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from 'firebase/auth';
 import { auth, isFirebaseConfigured } from '@/lib/firebase';
 import {
@@ -48,6 +50,7 @@ interface AuthContextType {
   lastSyncTime: Date | null;
   loginWithEmail: (e: string, p: string) => Promise<{ success: boolean; error?: string }>;
   registerWithEmail: (e: string, p: string, name: string) => Promise<{ success: boolean; error?: string }>;
+  loginWithGoogle: () => Promise<{ success: boolean; error?: string }>;
   loginAsGuest: () => Promise<{ success: boolean; error?: string }>;
   logout: () => Promise<void>;
   syncData: () => Promise<void>;
@@ -180,6 +183,29 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const loginWithGoogle = async () => {
+    if (!auth) {
+      return { success: false, error: 'Firebase ยังไม่ได้กำหนดค่าใน .env.local' };
+    }
+    try {
+      const provider = new GoogleAuthProvider();
+      provider.setCustomParameters({ prompt: 'select_account' });
+      const res = await signInWithPopup(auth, provider);
+      if (res.user) {
+        const initial = getUserProfile();
+        if (res.user.displayName) {
+          initial.name = res.user.displayName;
+          saveUserProfile(initial);
+        }
+        await saveCloudUserProfile(res.user.uid, initial);
+      }
+      return { success: true };
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : 'Google sign-in failed';
+      return { success: false, error: msg };
+    }
+  };
+
   const loginAsGuest = async () => {
     if (!auth) {
       return { success: false, error: 'Firebase is not configured in .env.local' };
@@ -215,6 +241,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         lastSyncTime,
         loginWithEmail,
         registerWithEmail,
+        loginWithGoogle,
         loginAsGuest,
         logout,
         syncData,
@@ -232,3 +259,4 @@ export function useAuth(): AuthContextType {
   }
   return context;
 }
+
