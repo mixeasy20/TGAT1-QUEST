@@ -18,7 +18,8 @@ export interface VocabItem {
   category: 'Academic' | 'Daily Life' | 'Business' | 'Travel' | 'Social' | 'Emotions';
   difficulty: CEFRLevel;
   mnemonic?: string;
-  source: 'Official TGAT Sample' | 'Practice Bank' | 'My Collection';
+  source: string;
+  examReference?: string; // e.g. "TGAT1 Blueprint 66-68 / CEFR B2 / CU-TEP / IELTS 6.0"
   isCustom?: boolean;
   createdAt: string;
 }
@@ -63,6 +64,14 @@ export interface ConversationItem {
   situation: string;
   difficulty: CEFRLevel;
   source: 'Official Mock' | 'Practice Bank';
+  examReference?: string; // e.g. "TGAT1 Blueprint พาร์ท Situational Dialogue • CEFR B1-B2"
+  keyVocab?: Array<{
+    word: string;
+    meaningTh: string;
+    pos?: string;
+    cefrLevel?: string;
+    examRef?: string;
+  }>;
   dialogue: Array<{
     speaker: string;
     text: string;

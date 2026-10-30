@@ -85,14 +85,14 @@ export default function DashboardPage() {
           <div className="flex flex-wrap items-center gap-3">
             <Link
               href="/vocab"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-lg shadow-indigo-600/30 transition-all hover:scale-105 active:scale-95"
+              className="btn-flourish shine-sweep inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-lg shadow-indigo-600/30 transition-all hover:scale-105 active:scale-95"
             >
               <Brain className="w-4 h-4" />
               <span>ทบทวนคำศัพท์ทันที ({dueCount})</span>
             </Link>
             <Link
               href="/conversation"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold text-xs transition-all hover:scale-105 active:scale-95"
+              className="btn-flourish inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold text-xs transition-all hover:scale-105 active:scale-95"
             >
               <MessageSquareText className="w-4 h-4 text-emerald-400" />
               <span>ทำข้อสอบ Exam Mode</span>
@@ -107,7 +107,7 @@ export default function DashboardPage() {
       {/* Stats Cards Row */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Card 1: Due Review */}
-        <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-between">
+        <div className="card-hover-lift p-4 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-between">
           <div>
             <div className="text-xs text-slate-400 font-medium">คำศัพท์ที่ต้องทบทวนวันนี้</div>
             <div className="text-2xl font-extrabold text-amber-400 mt-1">{dueCount}</div>
@@ -119,7 +119,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Card 2: Mastered Words */}
-        <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-between">
+        <div className="card-hover-lift p-4 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-between">
           <div>
             <div className="text-xs text-slate-400 font-medium">คำศัพท์ที่จำได้แม่นยำ</div>
             <div className="text-2xl font-extrabold text-emerald-400 mt-1">
@@ -133,7 +133,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Card 3: Overall Accuracy */}
-        <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-between">
+        <div className="card-hover-lift p-4 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-between">
           <div>
             <div className="text-xs text-slate-400 font-medium">ความแม่นยำรวม</div>
             <div className="text-2xl font-extrabold text-indigo-400 mt-1">
@@ -147,7 +147,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Card 4: Mistakes to review */}
-        <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-between">
+        <div className="card-hover-lift p-4 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-between">
           <div>
             <div className="text-xs text-slate-400 font-medium">จุดผิดพลาดค้างทบทวน</div>
             <div className="text-2xl font-extrabold text-rose-400 mt-1">

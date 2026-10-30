@@ -9,6 +9,30 @@ export const SEED_CONVERSATIONS: ConversationItem[] = [
     situation: 'At the Faculty Office, a student approaches an academic advisor due to an unavoidable clash.',
     difficulty: 'B1',
     source: 'Practice Bank',
+    examReference: 'TGAT1 Blueprint พาร์ท Situational Dialogue (Academic Advisory) • CEFR B1',
+    keyVocab: [
+      {
+            word: "laboratory",
+            meaningTh: "ห้องปฏิบัติการ / การทดลองวิทยาศาสตร์",
+            pos: "noun",
+            cefrLevel: "B1",
+            examRef: "TGAT1 / O-NET"
+      },
+      {
+            word: "reschedule",
+            meaningTh: "เปลี่ยนวันเวลานัดหมายใหม่",
+            pos: "verb",
+            cefrLevel: "B1",
+            examRef: "TGAT1 Business & Campus"
+      },
+      {
+            word: "flexibility",
+            meaningTh: "ความยืดหยุ่น / การปรับเปลี่ยนได้ตามสถานการณ์",
+            pos: "noun",
+            cefrLevel: "B2",
+            examRef: "CU-TEP / TGAT1"
+      }
+],
     dialogue: [
       {
         speaker: 'Student (Manee)',
@@ -55,6 +79,30 @@ export const SEED_CONVERSATIONS: ConversationItem[] = [
     situation: 'In a campus coffee shop, a customer checks about a delayed takeout order.',
     difficulty: 'A2',
     source: 'Practice Bank',
+    examReference: 'TGAT1 Blueprint พาร์ท Customer Service & Daily Life • CEFR A2',
+    keyVocab: [
+      {
+            word: "expedite",
+            meaningTh: "เร่งกระบวนการให้เร็วขึ้น",
+            pos: "verb",
+            cefrLevel: "B2",
+            examRef: "TGAT1 / IELTS 6.0"
+      },
+      {
+            word: "apologize",
+            meaningTh: "กล่าวขออภัย / แสดงความเสียใจต่อข้อผิดพลาด",
+            pos: "verb",
+            cefrLevel: "A2",
+            examRef: "TGAT1 Standard"
+      },
+      {
+            word: "inquire",
+            meaningTh: "สอบถามข้อมูล / ตรวจสอบ",
+            pos: "verb",
+            cefrLevel: "B1",
+            examRef: "TGAT1 Travel"
+      }
+],
     dialogue: [
       {
         speaker: 'Customer',
@@ -96,6 +144,30 @@ export const SEED_CONVERSATIONS: ConversationItem[] = [
     situation: 'Two classmates meet at the campus library stairwell.',
     difficulty: 'B1',
     source: 'Practice Bank',
+    examReference: 'TGAT1 Blueprint พาร์ท Peer Support & Intention • CEFR B1',
+    keyVocab: [
+      {
+            word: "sympathy",
+            meaningTh: "ความเห็นอกเห็นใจ",
+            pos: "noun",
+            cefrLevel: "B1",
+            examRef: "TGAT1 Emotions"
+      },
+      {
+            word: "external",
+            meaningTh: "ภายนอก / ที่ต่อพ่วงจากภายนอก",
+            pos: "adjective",
+            cefrLevel: "B1",
+            examRef: "TGAT1 Tech"
+      },
+      {
+            word: "extract",
+            meaningTh: "ดึงข้อมูล / สกัดข้อมูลออกมา",
+            pos: "verb",
+            cefrLevel: "B2",
+            examRef: "CU-TEP / TGAT1"
+      }
+],
     dialogue: [
       {
         speaker: 'Ploy',
@@ -137,6 +209,30 @@ export const SEED_CONVERSATIONS: ConversationItem[] = [
     situation: 'During an online group call via Zoom, the leader gives complex instructions.',
     difficulty: 'B1',
     source: 'Practice Bank',
+    examReference: 'TGAT1 Blueprint พาร์ท Clarification & Academic Terminology • CEFR B1',
+    keyVocab: [
+      {
+            word: "elaborate",
+            meaningTh: "อธิบายขยายความเพิ่มเติมอย่างละเอียด",
+            pos: "verb",
+            cefrLevel: "B2",
+            examRef: "TGAT1 / IELTS"
+      },
+      {
+            word: "demographic",
+            meaningTh: "ข้อมูลทางประชากรศาสตร์ (เพศ อายุ)",
+            pos: "adjective",
+            cefrLevel: "B2",
+            examRef: "A-Level / TGAT1"
+      },
+      {
+            word: "layman",
+            meaningTh: "บุคคลทั่วไป / ภาษาชาวบ้านเข้าใจง่าย",
+            pos: "noun",
+            cefrLevel: "B2",
+            examRef: "TGAT1 High Score"
+      }
+],
     dialogue: [
       {
         speaker: 'Team Leader',
@@ -185,6 +281,37 @@ export const SEED_CONVERSATIONS: ConversationItem[] = [
     situation: 'Karn and David, two university exchange students sharing an apartment off-campus, are discussing the unusually high electricity bill and household duties.',
     difficulty: 'B2',
     source: 'Official Mock',
+    examReference: 'TGAT1 Long Conversation (Apartment Living & Conflict Resolution) • CEFR B2',
+    keyVocab: [
+      {
+            word: "staggering",
+            meaningTh: "น่าตกใจ / พุ่งสูงจนน่าตกตะลึง",
+            pos: "adjective",
+            cefrLevel: "B2",
+            examRef: "TGAT1 / IELTS 6.5"
+      },
+      {
+            word: "refrigerant",
+            meaningTh: "สารทำความเย็น / น้ำยาแอร์",
+            pos: "noun",
+            cefrLevel: "B2",
+            examRef: "TGAT1 Science & Home"
+      },
+      {
+            word: "in check",
+            meaningTh: "ควบคุมให้อยู่ในเกณฑ์ที่เหมาะสม",
+            pos: "phrase",
+            cefrLevel: "B1",
+            examRef: "TGAT1 Idiom"
+      },
+      {
+            word: "thermostat",
+            meaningTh: "อุปกรณ์ควบคุมอุณหภูมิ",
+            pos: "noun",
+            cefrLevel: "B1",
+            examRef: "TGAT1 Daily Life"
+      }
+],
     dialogue: [
       {
         speaker: 'David',
@@ -303,6 +430,37 @@ export const SEED_CONVERSATIONS: ConversationItem[] = [
     situation: 'At the International Graduate Career Fair, Lin, a senior undergraduate in Information Systems, seeks guidance from an HR director about entry-level openings.',
     difficulty: 'B2',
     source: 'Official Mock',
+    examReference: 'TGAT1 Long Conversation (Career Fair & Professional Interview) • CEFR B2',
+    keyVocab: [
+      {
+            word: "liaison",
+            meaningTh: "ตัวกลางผู้ประสานงานระหว่างฝ่าย",
+            pos: "noun",
+            cefrLevel: "B2",
+            examRef: "CU-TEP / TGAT1"
+      },
+      {
+            word: "seamlessly",
+            meaningTh: "อย่างราบรื่นไร้รอยต่อ",
+            pos: "adverb",
+            cefrLevel: "B2",
+            examRef: "IELTS 6.5 / TGAT1"
+      },
+      {
+            word: "articulate",
+            meaningTh: "อธิบายความได้อย่างชัดเจนมีแบบแผน",
+            pos: "verb",
+            cefrLevel: "B2",
+            examRef: "TGAT1 Professional"
+      },
+      {
+            word: "cross-functional",
+            meaningTh: "ข้ามสายงาน / สหวิทยาการ",
+            pos: "adjective",
+            cefrLevel: "B2",
+            examRef: "Business English"
+      }
+],
     dialogue: [
       {
         speaker: 'Lin',
@@ -423,6 +581,30 @@ export const SEED_CONVERSATIONS: ConversationItem[] = [
     situation: 'A customer purchased wireless headphones yesterday, but the left earbud produces no sound.',
     difficulty: 'B1',
     source: 'Practice Bank',
+    examReference: 'TGAT1 Blueprint พาร์ท Customer Return & Warranty • CEFR B1',
+    keyVocab: [
+      {
+            word: "defective",
+            meaningTh: "ที่มีข้อบกพร่อง / ชำรุดเสียหายจากโรงงาน",
+            pos: "adjective",
+            cefrLevel: "B2",
+            examRef: "TGAT1 / TOEIC"
+      },
+      {
+            word: "warranty",
+            meaningTh: "การรับประกันสินค้า",
+            pos: "noun",
+            cefrLevel: "B1",
+            examRef: "TGAT1 Business"
+      },
+      {
+            word: "inconvenience",
+            meaningTh: "ความไม่สะดวกสบาย",
+            pos: "noun",
+            cefrLevel: "B1",
+            examRef: "TGAT1 Polite Service"
+      }
+],
     dialogue: [
       {
         speaker: 'Customer',
@@ -469,6 +651,30 @@ export const SEED_CONVERSATIONS: ConversationItem[] = [
     situation: 'A high school senior visits the campus clinic complaining about chronic sleeplessness before the national exam.',
     difficulty: 'B1',
     source: 'Practice Bank',
+    examReference: 'TGAT1 Blueprint พาร์ท Health Consultation & Empathy • CEFR B1',
+    keyVocab: [
+      {
+            word: "insomnia",
+            meaningTh: "ภาวะนอนไม่หลับเรื้อรัง",
+            pos: "noun",
+            cefrLevel: "B2",
+            examRef: "TGAT1 Health"
+      },
+      {
+            word: "wind-down",
+            meaningTh: "การผ่อนคลายลดความตึงเครียดก่อนนอน",
+            pos: "noun",
+            cefrLevel: "B1",
+            examRef: "TGAT1 Daily Life"
+      },
+      {
+            word: "medically sound",
+            meaningTh: "ถูกต้องตามหลักการแพทย์",
+            pos: "phrase",
+            cefrLevel: "B2",
+            examRef: "CU-TEP / IELTS"
+      }
+],
     dialogue: [
       {
         speaker: 'Student (Ben)',
@@ -510,6 +716,30 @@ export const SEED_CONVERSATIONS: ConversationItem[] = [
     situation: 'A hotel guest whose return flight is in the evening calls front desk for an extended stay.',
     difficulty: 'A2',
     source: 'Practice Bank',
+    examReference: 'TGAT1 Blueprint พาร์ท Hotel Hospitality & Negotiation • CEFR A2',
+    keyVocab: [
+      {
+            word: "complimentary",
+            meaningTh: "ให้บริการฟรีโดยไม่คิดค่าใช้จ่าย",
+            pos: "adjective",
+            cefrLevel: "B2",
+            examRef: "TGAT1 / TOEIC"
+      },
+      {
+            word: "feasible",
+            meaningTh: "เป็นไปได้ในทางปฏิบัติ",
+            pos: "adjective",
+            cefrLevel: "B2",
+            examRef: "CU-TEP / TGAT1"
+      },
+      {
+            word: "vacate",
+            meaningTh: "ออกจากห้อง / คืนห้องพัก",
+            pos: "verb",
+            cefrLevel: "B2",
+            examRef: "TGAT1 Travel"
+      }
+],
     dialogue: [
       {
         speaker: 'Hotel Guest',
@@ -551,6 +781,30 @@ export const SEED_CONVERSATIONS: ConversationItem[] = [
     situation: 'A tourist looks bewildered looking at the metro line map in Bangkok.',
     difficulty: 'A2',
     source: 'Practice Bank',
+    examReference: 'TGAT1 Blueprint พาร์ท Public Transport & Direction • CEFR A2',
+    keyVocab: [
+      {
+            word: "interchange",
+            meaningTh: "จุดเชื่อมต่อเปลี่ยนสายรถไฟฟ้า",
+            pos: "noun",
+            cefrLevel: "B1",
+            examRef: "TGAT1 Travel"
+      },
+      {
+            word: "bewildered",
+            meaningTh: "สับสนงุนงงอย่างยิ่ง",
+            pos: "adjective",
+            cefrLevel: "B2",
+            examRef: "TGAT1 Reading"
+      },
+      {
+            word: "commuter",
+            meaningTh: "ผู้เดินทางไปกลับประจำวัน",
+            pos: "noun",
+            cefrLevel: "B1",
+            examRef: "TGAT1 Social"
+      }
+],
     dialogue: [
       {
         speaker: 'Local Passenger',
@@ -597,6 +851,30 @@ export const SEED_CONVERSATIONS: ConversationItem[] = [
     situation: 'Two friends meet at the university student union lounge on Friday afternoon.',
     difficulty: 'B1',
     source: 'Practice Bank',
+    examReference: 'TGAT1 Blueprint พาร์ท Polite Refusal & Social Etiquette • CEFR B1',
+    keyVocab: [
+      {
+            word: "gracious",
+            meaningTh: "มีมารยาทดี / สุภาพอ่อนโยน",
+            pos: "adjective",
+            cefrLevel: "B2",
+            examRef: "TGAT1 Manners"
+      },
+      {
+            word: "count someone out",
+            meaningTh: "ไม่ต้องนับรวม / ขอไม่เข้าร่วม",
+            pos: "phrase",
+            cefrLevel: "B1",
+            examRef: "TGAT1 Idiom"
+      },
+      {
+            word: "have a blast",
+            meaningTh: "สนุกสนานอย่างเต็มที่",
+            pos: "idiom",
+            cefrLevel: "B1",
+            examRef: "TGAT1 Casual"
+      }
+],
     dialogue: [
       {
         speaker: 'Mark',
@@ -638,6 +916,30 @@ export const SEED_CONVERSATIONS: ConversationItem[] = [
     situation: 'A student approaches a course instructor during office hours.',
     difficulty: 'B2',
     source: 'Official Mock',
+    examReference: 'TGAT1 Blueprint พาร์ท Academic Negotiation & Deadlines • CEFR B2',
+    keyVocab: [
+      {
+            word: "extension",
+            meaningTh: "การขยายเวลา / การผ่อนผันกำหนดส่ง",
+            pos: "noun",
+            cefrLevel: "B1",
+            examRef: "TGAT1 Campus"
+      },
+      {
+            word: "interim",
+            meaningTh: "ชั่วคราว / ระหว่างกาล (เช่น ข้อมูลเบื้องต้น)",
+            pos: "adjective",
+            cefrLevel: "B2",
+            examRef: "CU-TEP / TGAT1"
+      },
+      {
+            word: "fieldwork",
+            meaningTh: "การลงพื้นที่เก็บข้อมูลภาคสนาม",
+            pos: "noun",
+            cefrLevel: "B1",
+            examRef: "TGAT1 Academic"
+      }
+],
     dialogue: [
       {
         speaker: 'Student (Grace)',
@@ -681,6 +983,37 @@ export const SEED_CONVERSATIONS: ConversationItem[] = [
     situation: 'At the University International Relations Office, Pim consults an exchange coordinator about studying abroad in Melbourne next semester.',
     difficulty: 'B2',
     source: 'Official Mock',
+    examReference: 'TGAT1 Long Conversation (Study Abroad & Credit Equivalency) • CEFR B2',
+    keyVocab: [
+      {
+            word: "apprehensive",
+            meaningTh: "กังวลใจ / หวาดหวั่นต่อความไม่แน่นอน",
+            pos: "adjective",
+            cefrLevel: "B2",
+            examRef: "TGAT1 / TU-GET"
+      },
+      {
+            word: "equivalency",
+            meaningTh: "ความเทียบเท่า / ความเท่าเทียมกันของหน่วยกิต",
+            pos: "noun",
+            cefrLevel: "B2",
+            examRef: "TGAT1 Academic"
+      },
+      {
+            word: "stipend",
+            meaningTh: "เบี้ยเลี้ยง / เงินอุดหนุนค่าครองชีพ",
+            pos: "noun",
+            cefrLevel: "B2",
+            examRef: "CU-TEP / IELTS"
+      },
+      {
+            word: "straightforward",
+            meaningTh: "ตรงไปตรงมา / เข้าใจง่ายไม่ซับซ้อน",
+            pos: "adjective",
+            cefrLevel: "B1",
+            examRef: "TGAT1 Standard"
+      }
+],
     dialogue: [
       {
         speaker: 'Pim',
@@ -780,6 +1113,37 @@ export const SEED_CONVERSATIONS: ConversationItem[] = [
     situation: 'Two executive committee members of the English Club, Dan and Meena, are troubleshooting logistical roadblocks for their weekend charity festival.',
     difficulty: 'B2',
     source: 'Practice Bank',
+    examReference: 'TGAT1 Long Conversation (Event Management & Weather Contingency) • CEFR B2',
+    keyVocab: [
+      {
+            word: "no-brainer",
+            meaningTh: "การตัดสินใจที่ง่ายและชัดเจนจนไม่ต้องคิด",
+            pos: "idiom",
+            cefrLevel: "B2",
+            examRef: "TGAT1 Idiom"
+      },
+      {
+            word: "renovation",
+            meaningTh: "การปรับปรุงซ่อมแซมอาคารสถานที่",
+            pos: "noun",
+            cefrLevel: "B1",
+            examRef: "TGAT1 Campus"
+      },
+      {
+            word: "paramount",
+            meaningTh: "สำคัญที่สุด / มีความสำคัญยิ่งยวด",
+            pos: "adjective",
+            cefrLevel: "B2",
+            examRef: "CU-TEP / IELTS 7.0"
+      },
+      {
+            word: "contingency",
+            meaningTh: "แผนสำรองฉุกเฉินกรณีเกิดเหตุไม่คาดคิด",
+            pos: "noun",
+            cefrLevel: "B2",
+            examRef: "TGAT1 Business"
+      }
+],
     dialogue: [
       {
         speaker: 'Meena',
@@ -879,6 +1243,37 @@ export const SEED_CONVERSATIONS: ConversationItem[] = [
     situation: 'Two high school friends, Fah and Ohm, meet at a quiet coffee corner to evaluate their diagnostic mock test scores and redesign their study schedule.',
     difficulty: 'B2',
     source: 'Official Mock',
+    examReference: 'TGAT1 Long Conversation (Diagnostic Exam Review & Peer Strategy) • CEFR B2',
+    keyVocab: [
+      {
+            word: "reciprocal",
+            meaningTh: "ซึ่งกันและกัน / ตอบแทนซึ่งกันและกัน",
+            pos: "adjective",
+            cefrLevel: "B2",
+            examRef: "CU-TEP / TGAT1"
+      },
+      {
+            word: "accountable",
+            meaningTh: "มีความรับผิดชอบ / คอยเตือนสติให้ทำตามเป้า",
+            pos: "adjective",
+            cefrLevel: "B2",
+            examRef: "TGAT1 Social"
+      },
+      {
+            word: "distractor",
+            meaningTh: "ตัวเลือกหลอกในข้อสอบ",
+            pos: "noun",
+            cefrLevel: "B2",
+            examRef: "TGAT1 Exam Prep"
+      },
+      {
+            word: "plunge",
+            meaningTh: "ลดลงอย่างรวดเร็ว / ร่วงฮวบ",
+            pos: "verb",
+            cefrLevel: "B2",
+            examRef: "A-Level / IELTS"
+      }
+],
     dialogue: [
       {
         speaker: 'Fah',

@@ -14,7 +14,7 @@ body {
 
 /* Custom 3D Flip Card Utilities */
 .perspective-1000 {
-  perspective: 1000px;
+  perspective: 1200px;
 }
 
 .transform-style-3d {
@@ -28,4 +28,109 @@ body {
 
 .rotate-y-180 {
   transform: rotateY(180deg);
+}
+
+/* Flashcard Specific 3D Transition & Glow */
+.flashcard-inner {
+  transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+}
+
+.flashcard-glow-front {
+  box-shadow: 0 20px 50px -10px rgba(99, 102, 241, 0.25), 0 0 0 1px rgba(99, 102, 241, 0.2);
+}
+
+.flashcard-glow-back {
+  box-shadow: 0 20px 50px -10px rgba(16, 185, 129, 0.25), 0 0 0 1px rgba(16, 185, 129, 0.2);
+}
+
+/* Button Flourishes & Micro-interactions */
+.btn-flourish {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-flourish:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.btn-flourish:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+/* Shimmer Light Sweep on Buttons & Cards */
+.shine-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-sweep::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+  transition: none;
+}
+
+.shine-sweep:hover::after {
+  left: 120%;
+  transition: all 0.75s ease-in-out;
+}
+
+/* Pulsing Badge & Accent Glows */
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Floating animation */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-float {
+  animation: float-slow 4s ease-in-out infinite;
+}
+
+/* Smooth Card Hover Lift */
+.card-hover-lift {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px -5px rgba(99, 102, 241, 0.15);
+}
+
+/* Glassmorphism Panel */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }

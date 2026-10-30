@@ -16,6 +16,7 @@ import {
   X,
   AlertTriangle,
   Lightbulb,
+  GraduationCap,
 } from 'lucide-react';
 import { useUser } from '@/context/UserContext';
 import {
@@ -376,75 +377,97 @@ export default function VocabPage() {
               {/* 3D Flip Card Container */}
               <div
                 onClick={handleFlip}
-                className="w-full h-80 cursor-pointer select-none perspective-1000 group"
+                className="w-full h-88 cursor-pointer select-none perspective-1000 group"
               >
                 <div
-                  className={`relative w-full h-full rounded-3xl transition-transform duration-500 transform-style-3d shadow-2xl ${
-                    isFlipped ? 'rotate-y-180' : ''
+                  className={`relative w-full h-full rounded-3xl flashcard-inner transform-style-3d shadow-2xl ${
+                    isFlipped ? 'rotate-y-180 flashcard-glow-back' : 'flashcard-glow-front'
                   }`}
                 >
                   {/* FRONT SIDE (English) */}
-                  <div className="absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-950/60 border-2 border-slate-800 group-hover:border-indigo-500/50 p-8 flex flex-col justify-between backface-hidden">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <span className="px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-                          {currentCard.category}
-                        </span>
-                        <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-400 border border-slate-700">
-                          {currentCard.difficulty}
-                        </span>
+                  <div className="absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-950/70 border-2 border-slate-800 group-hover:border-indigo-500/50 p-7 flex flex-col justify-between backface-hidden">
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                            {currentCard.category}
+                          </span>
+                          <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-400 border border-slate-700">
+                            {currentCard.difficulty}
+                          </span>
+                        </div>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            speakEnglish(currentCard.word);
+                          }}
+                          className="btn-flourish p-2.5 rounded-xl bg-slate-800 hover:bg-indigo-600 text-indigo-400 hover:text-white transition-colors shadow"
+                          title="ฟังการออกเสียง"
+                        >
+                          <Volume2 className="w-5 h-5" />
+                        </button>
                       </div>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          speakEnglish(currentCard.word);
-                        }}
-                        className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-indigo-400 hover:text-indigo-300 transition-colors shadow"
-                        title="ฟังการออกเสียง"
-                      >
-                        <Volume2 className="w-5 h-5" />
-                      </button>
+
+                      {/* Official Exam Reference Badge */}
+                      {currentCard.examReference && (
+                        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-[10px] font-medium">
+                          <GraduationCap className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+                          <span className="line-clamp-1">{currentCard.examReference}</span>
+                        </div>
+                      )}
                     </div>
 
-                    <div className="text-center my-auto">
-                      <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight">
+                    <div className="text-center my-auto py-2">
+                      <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight drop-shadow-md">
                         {currentCard.word}
                       </h2>
-                      <p className="text-sm text-slate-400 font-mono mt-2">
+                      <p className="text-sm text-slate-400 font-mono mt-2 tracking-wide">
                         {currentCard.phonetic}
                       </p>
-                      <span className="inline-block mt-3 px-3 py-1 rounded-full text-xs font-semibold bg-slate-800/80 text-indigo-300 italic">
+                      <span className="inline-block mt-3 px-3.5 py-1 rounded-full text-xs font-semibold bg-slate-800/90 text-indigo-300 border border-slate-700/60 italic">
                         {currentCard.partOfSpeech}
                       </span>
                     </div>
 
                     <div className="flex items-center justify-between text-[11px] text-slate-400 border-t border-slate-800/80 pt-3">
-                      <span>กด Spacebar หรือคลิกเพื่อพลิกดูความหมาย</span>
-                      <RotateCw className="w-3.5 h-3.5 group-hover:rotate-180 transition-transform duration-500" />
+                      <span className="flex items-center gap-1.5">
+                        <Sparkles className="w-3.5 h-3.5 text-indigo-400 animate-pulse" />
+                        <span>กด Spacebar หรือคลิกการ์ดเพื่อดูความหมาย</span>
+                      </span>
+                      <RotateCw className="w-4 h-4 group-hover:rotate-180 transition-transform duration-500 text-slate-400 group-hover:text-indigo-400" />
                     </div>
                   </div>
 
                   {/* BACK SIDE (Thai Meaning & Details) */}
-                  <div className="absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border-2 border-indigo-500/40 p-8 flex flex-col justify-between backface-hidden rotate-y-180">
+                  <div className="absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border-2 border-emerald-500/40 p-7 flex flex-col justify-between backface-hidden rotate-y-180">
                     <div className="flex items-center justify-between">
-                      <div className="font-extrabold text-sm text-indigo-400">
-                        {currentCard.word}
+                      <div className="flex items-center gap-2">
+                        <span className="font-extrabold text-sm text-indigo-400">
+                          {currentCard.word}
+                        </span>
+                        <span className="text-[10px] text-slate-400">({currentCard.partOfSpeech})</span>
                       </div>
-                      <span className="text-[10px] font-medium text-slate-400">
-                        {currentCard.source}
-                      </span>
+                      {currentCard.examReference ? (
+                        <span className="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                          {currentCard.examReference.split('•')[0].trim()}
+                        </span>
+                      ) : (
+                        <span className="text-[10px] font-medium text-slate-400">
+                          {currentCard.source}
+                        </span>
+                      )}
                     </div>
 
-                    <div className="space-y-4 my-auto">
+                    <div className="space-y-3 my-auto py-1">
                       <div>
-                        <div className="text-xs text-slate-400 font-medium">ความหมายภาษาไทย:</div>
-                        <div className="text-2xl font-black text-emerald-400 mt-0.5">
+                        <div className="text-[11px] text-slate-400 font-medium">ความหมายภาษาไทย:</div>
+                        <div className="text-2xl md:text-3xl font-black text-emerald-400 mt-0.5 tracking-tight">
                           {currentCard.meaningTh}
                         </div>
                       </div>
 
-                      <div className="p-3 rounded-xl bg-slate-800/60 border border-slate-700/60 text-xs">
-                        <div className="text-slate-200 font-medium italic">
+                      <div className="p-3 rounded-2xl bg-slate-800/70 border border-slate-700/60 text-xs">
+                        <div className="text-slate-100 font-medium italic">
                           &quot;{currentCard.exampleEn}&quot;
                         </div>
                         <div className="text-slate-400 text-[11px] mt-1">
@@ -463,8 +486,8 @@ export default function VocabPage() {
                       )}
                     </div>
 
-                    <div className="text-center text-[11px] text-slate-400 border-t border-slate-800 pt-2">
-                      เลือกระดับความจำด้านล่างเพื่อบันทึกลงระบบ SRS
+                    <div className="text-center text-[11px] text-slate-400 border-t border-slate-800 pt-2 flex items-center justify-center gap-1.5">
+                      <span>เลือกระดับความจำด้านล่างเพื่อบันทึกลงระบบ SRS</span>
                     </div>
                   </div>
                 </div>
@@ -477,7 +500,7 @@ export default function VocabPage() {
                   <div className="grid grid-cols-3 gap-3 animate-in fade-in duration-200">
                     <button
                       onClick={() => handleRating(1)}
-                      className="flex flex-col items-center justify-center py-3 px-2 rounded-2xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-300 transition-all hover:scale-102 active:scale-98"
+                      className="btn-flourish flex flex-col items-center justify-center py-3 px-2 rounded-2xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-300 transition-all hover:scale-102 active:scale-98 shadow-sm"
                     >
                       <span className="text-xs font-bold">จำไม่ได้ (Hard)</span>
                       <span className="text-[10px] text-rose-400 mt-0.5">ทบทวนพรุ่งนี้ (+5 XP)</span>
@@ -486,7 +509,7 @@ export default function VocabPage() {
 
                     <button
                       onClick={() => handleRating(3)}
-                      className="flex flex-col items-center justify-center py-3 px-2 rounded-2xl bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 transition-all hover:scale-102 active:scale-98"
+                      className="btn-flourish flex flex-col items-center justify-center py-3 px-2 rounded-2xl bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 transition-all hover:scale-102 active:scale-98 shadow-sm"
                     >
                       <span className="text-xs font-bold">จำได้ (Good)</span>
                       <span className="text-[10px] text-indigo-400 mt-0.5">เว้นระยะตามรอบ (+15 XP)</span>
@@ -495,7 +518,7 @@ export default function VocabPage() {
 
                     <button
                       onClick={() => handleRating(5)}
-                      className="flex flex-col items-center justify-center py-3 px-2 rounded-2xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 transition-all hover:scale-102 active:scale-98"
+                      className="btn-flourish flex flex-col items-center justify-center py-3 px-2 rounded-2xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 transition-all hover:scale-102 active:scale-98 shadow-sm"
                     >
                       <span className="text-xs font-bold">จำได้แม่น (Easy)</span>
                       <span className="text-[10px] text-emerald-400 mt-0.5">เว้นระยะยาวขึ้น (+25 XP)</span>
@@ -508,7 +531,7 @@ export default function VocabPage() {
                     <button
                       onClick={handlePrev}
                       disabled={currentIndex === 0}
-                      className="flex-1 py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none text-slate-200 font-semibold text-xs flex items-center justify-center gap-1.5 border border-slate-700 transition-all"
+                      className="btn-flourish flex-1 py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none text-slate-200 font-semibold text-xs flex items-center justify-center gap-1.5 border border-slate-700 transition-all"
                     >
                       <ChevronLeft className="w-4 h-4" />
                       <span>คำก่อนหน้า (←)</span>
@@ -516,7 +539,7 @@ export default function VocabPage() {
 
                     <button
                       onClick={handleFlip}
-                      className="flex-1 py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-indigo-600/20 transition-all"
+                      className="btn-flourish shine-sweep flex-1 py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-indigo-600/20 transition-all"
                     >
                       <RotateCw className="w-4 h-4" />
                       <span>ดูเฉลย (Space)</span>
@@ -525,7 +548,7 @@ export default function VocabPage() {
                     <button
                       onClick={handleNext}
                       disabled={currentIndex === filteredVocabs.length - 1}
-                      className="flex-1 py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none text-slate-200 font-semibold text-xs flex items-center justify-center gap-1.5 border border-slate-700 transition-all"
+                      className="btn-flourish flex-1 py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none text-slate-200 font-semibold text-xs flex items-center justify-center gap-1.5 border border-slate-700 transition-all"
                     >
                       <span>คำถัดไป (→)</span>
                       <ChevronRight className="w-4 h-4" />
@@ -574,7 +597,7 @@ export default function VocabPage() {
               return (
                 <div
                   key={vocab.id}
-                  className="p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all flex flex-col justify-between"
+                  className="p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 card-hover-lift transition-all flex flex-col justify-between"
                 >
                   <div>
                     {/* Top Row: Category & Badges */}
@@ -596,7 +619,7 @@ export default function VocabPage() {
                       <div className="flex items-center gap-1">
                         <button
                           onClick={() => speakEnglish(vocab.word)}
-                          className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+                          className="btn-flourish p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
                           title="ฟังเสียงอ่าน"
                         >
                           <Volume2 className="w-4 h-4" />
@@ -605,14 +628,14 @@ export default function VocabPage() {
                           <>
                             <button
                               onClick={() => openEditModal(vocab)}
-                              className="p-1 rounded-lg text-slate-400 hover:text-indigo-400 hover:bg-slate-800"
+                              className="btn-flourish p-1.5 rounded-lg text-slate-400 hover:text-indigo-400 hover:bg-slate-800"
                               title="แก้ไขคำศัพท์"
                             >
                               <Edit2 className="w-4 h-4" />
                             </button>
                             <button
                               onClick={() => setDeleteConfirmId(vocab.id)}
-                              className="p-1 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-slate-800"
+                              className="btn-flourish p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-slate-800"
                               title="ลบคำศัพท์"
                             >
                               <Trash2 className="w-4 h-4" />
@@ -630,6 +653,14 @@ export default function VocabPage() {
                     <div className="text-sm font-semibold text-emerald-400 mt-1">
                       {vocab.meaningTh}
                     </div>
+
+                    {/* Exam Reference */}
+                    {vocab.examReference && (
+                      <div className="mt-2 text-[10px] text-indigo-300 flex items-center gap-1">
+                        <GraduationCap className="w-3 h-3 text-indigo-400 shrink-0" />
+                        <span className="line-clamp-1">{vocab.examReference}</span>
+                      </div>
+                    )}
 
                     {/* Example */}
                     <div className="mt-3 p-2.5 rounded-xl bg-slate-800/60 border border-slate-700/50 text-[11px] text-slate-300">

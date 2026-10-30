@@ -15,6 +15,11 @@ import {
   Compass,
   ArrowRight,
   BookOpen,
+  Eye,
+  EyeOff,
+  Languages,
+  BookOpenCheck,
+  GraduationCap,
 } from 'lucide-react';
 import { useUser } from '@/context/UserContext';
 import {
@@ -49,6 +54,11 @@ export default function ConversationPage() {
   const [secondsLeft, setSecondsLeft] = useState(180); // 3 minutes per set
   const [timerRunning, setTimerRunning] = useState(false);
   const [timeSpent, setTimeSpent] = useState(0);
+
+  // Translation & Key Vocab Controls
+  const [showTranslations, setShowTranslations] = useState<boolean>(true);
+  const [revealedLines, setRevealedLines] = useState<Record<number, boolean>>({});
+  const [showKeyVocab, setShowKeyVocab] = useState<boolean>(true);
 
   // ---------------- STORY MODE STATE ----------------
   const [stories, setStories] = useState<StoryScenario[]>([]);
@@ -102,6 +112,11 @@ export default function ConversationPage() {
     setTimeSpent(0);
     setSecondsLeft(conv.type === 'long' ? 300 : 120);
     setTimerRunning(true);
+    setRevealedLines({});
+  };
+
+  const toggleLineTranslation = (idx: number) => {
+    setRevealedLines((prev) => ({ ...prev, [idx]: !prev[idx] }));
   };
 
   const handleSelectOption = (questionId: string, option: 'A' | 'B' | 'C' | 'D') => {
@@ -339,10 +354,10 @@ export default function ConversationPage() {
                 {filteredConversations.map((conv) => (
                   <div
                     key={conv.id}
-                    className="p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-indigo-500/40 transition-all flex flex-col justify-between"
+                    className="p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-indigo-500/50 card-hover-lift transition-all flex flex-col justify-between"
                   >
                     <div>
-                      <div className="flex items-center justify-between gap-2 mb-3">
+                      <div className="flex items-center justify-between gap-2 mb-2">
                         <span
                           className={`px-2.5 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider ${
                             conv.type === 'long'
@@ -362,16 +377,41 @@ export default function ConversationPage() {
                       <h3 className="text-base font-bold text-white tracking-tight">{conv.title}</h3>
                       <p className="text-xs text-slate-400 mt-1 line-clamp-2">{conv.situation}</p>
 
-                      <div className="mt-4 p-3 rounded-xl bg-slate-800/60 border border-slate-700/50 text-xs text-slate-300 italic line-clamp-2">
+                      {/* Exam Reference Citation */}
+                      {conv.examReference && (
+                        <div className="mt-2.5 flex items-center gap-1.5 text-[10px] text-indigo-300 bg-indigo-500/10 border border-indigo-500/20 px-2.5 py-1 rounded-lg">
+                          <GraduationCap className="w-3.5 h-3.5 shrink-0 text-indigo-400" />
+                          <span className="line-clamp-1">{conv.examReference}</span>
+                        </div>
+                      )}
+
+                      <div className="mt-3 p-3 rounded-xl bg-slate-800/60 border border-slate-700/50 text-xs text-slate-300 italic line-clamp-2">
                         &quot;{conv.dialogue[0]?.speaker}: {conv.dialogue[0]?.text}&quot;
                       </div>
+
+                      {/* Key Vocab pills preview */}
+                      {conv.keyVocab && conv.keyVocab.length > 0 && (
+                        <div className="mt-2.5 flex flex-wrap gap-1.5">
+                          <span className="text-[10px] text-slate-400 font-medium self-center">
+                            คำศัพท์น่ารู้ ({conv.keyVocab.length}):
+                          </span>
+                          {conv.keyVocab.slice(0, 3).map((kv, i) => (
+                            <span
+                              key={i}
+                              className="text-[10px] px-2 py-0.5 rounded-md bg-slate-800 text-slate-300 border border-slate-700"
+                            >
+                              {kv.word} ({kv.meaningTh.split('/')[0].trim()})
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
 
-                    <div className="mt-5 pt-3 border-t border-slate-800/80 flex items-center justify-between">
+                    <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between">
                       <span className="text-[11px] text-slate-400">แหล่งที่มา: {conv.source}</span>
                       <button
                         onClick={() => startExam(conv)}
-                        className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-md shadow-indigo-600/20 flex items-center gap-1.5 active:scale-95 transition-all"
+                        className="btn-flourish shine-sweep px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs shadow-md shadow-indigo-600/20 flex items-center gap-1.5 active:scale-95 transition-all"
                       >
                         <span>เริ่มทำชุดนี้</span>
                         <ArrowRight className="w-3.5 h-3.5" />
@@ -388,18 +428,32 @@ export default function ConversationPage() {
               <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex flex-wrap items-center justify-between gap-4">
                 <button
                   onClick={() => setSelectedConv(null)}
-                  className="text-xs text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1"
+                  className="btn-flourish text-xs text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1.5"
                 >
-                  ← กลับไปเลือกชุดข้อสอบ
+                  <span>← กลับไปเลือกชุดข้อสอบ</span>
                 </button>
 
-                <div className="flex items-center gap-4">
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                  {/* Global Translation Toggle Button */}
+                  <button
+                    onClick={() => setShowTranslations(!showTranslations)}
+                    className={`btn-flourish flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
+                      showTranslations
+                        ? 'bg-indigo-600/20 text-indigo-300 border-indigo-500/40'
+                        : 'bg-slate-800 text-slate-300 border-slate-700 hover:text-white'
+                    }`}
+                    title="สลับโหมดเปิด/ปิดคำแปลภาษาไทยทั้งหมด"
+                  >
+                    {showTranslations ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
+                    <span>{showTranslations ? 'คำแปล: เปิดอยู่' : 'คำแปล: ซ่อน (เสมือนสอบจริง)'}</span>
+                  </button>
+
                   {/* Timer Toggle */}
                   <div className="flex items-center gap-2 text-xs text-slate-300">
                     <span>ตัวจับเวลา:</span>
                     <button
                       onClick={() => setTimerEnabled(!timerEnabled)}
-                      className={`px-2.5 py-1 rounded-lg font-semibold text-[11px] border transition-colors ${
+                      className={`btn-flourish px-2.5 py-1 rounded-lg font-semibold text-[11px] border transition-colors ${
                         timerEnabled
                           ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/40'
                           : 'bg-slate-800 text-slate-400 border-slate-700'
@@ -426,47 +480,146 @@ export default function ConversationPage() {
               </div>
 
               {/* Dialogue Script Box */}
-              <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-4">
-                <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+              <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-4 shadow-xl">
+                {/* Header of Dialogue Box */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-800">
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-400">
-                      สถานการณ์ (Context)
-                    </span>
-                    <h2 className="text-lg font-bold text-white mt-0.5">{selectedConv.title}</h2>
-                    <p className="text-xs text-slate-300 mt-1">{selectedConv.situation}</p>
+                    <div className="flex items-center gap-2">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-400">
+                        สถานการณ์ (Context)
+                      </span>
+                      {selectedConv.examReference && (
+                        <span className="text-[10px] font-medium text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-md flex items-center gap-1">
+                          <GraduationCap className="w-3 h-3 text-emerald-400" />
+                          <span>{selectedConv.examReference}</span>
+                        </span>
+                      )}
+                    </div>
+                    <h2 className="text-lg font-bold text-white mt-1">{selectedConv.title}</h2>
+                    <p className="text-xs text-slate-300 mt-0.5">{selectedConv.situation}</p>
                   </div>
-                  <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-800 text-slate-300">
-                    {selectedConv.questions.length} ข้อ
-                  </span>
+
+                  <div className="flex items-center gap-2 self-start sm:self-center">
+                    {/* Toggle Key Vocab Drawer Button */}
+                    {selectedConv.keyVocab && selectedConv.keyVocab.length > 0 && (
+                      <button
+                        onClick={() => setShowKeyVocab(!showKeyVocab)}
+                        className={`btn-flourish text-xs font-semibold px-3 py-1.5 rounded-xl border flex items-center gap-1.5 transition-all ${
+                          showKeyVocab
+                            ? 'bg-amber-500/15 border-amber-500/30 text-amber-300'
+                            : 'bg-slate-800 border-slate-700 text-slate-400 hover:text-slate-200'
+                        }`}
+                      >
+                        <BookOpenCheck className="w-3.5 h-3.5 text-amber-400" />
+                        <span>คำศัพท์สำคัญ ({selectedConv.keyVocab.length})</span>
+                      </button>
+                    )}
+
+                    <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-800 text-slate-300">
+                      {selectedConv.questions.length} ข้อ
+                    </span>
+                  </div>
                 </div>
+
+                {/* Key Vocabulary Drawer (Collapsible) */}
+                {showKeyVocab && selectedConv.keyVocab && selectedConv.keyVocab.length > 0 && (
+                  <div className="p-4 rounded-2xl bg-amber-500/5 border border-amber-500/20 space-y-2.5 animate-in fade-in duration-200">
+                    <div className="flex items-center justify-between">
+                      <div className="text-xs font-bold text-amber-300 flex items-center gap-1.5">
+                        <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                        <span>คลังคำศัพท์และสำนวนสำคัญประจำบทสนทนา (อิงข้อสอบ TGAT & ระดับภาษา)</span>
+                      </div>
+                      <span className="text-[10px] text-slate-400">คลิกลำโพงเพื่อฟังการออกเสียง</span>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                      {selectedConv.keyVocab.map((kv, i) => (
+                        <div
+                          key={i}
+                          className="p-3 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-amber-500/40 card-hover-lift transition-all flex items-start justify-between gap-2"
+                        >
+                          <div>
+                            <div className="flex items-center gap-1.5">
+                              <span className="font-bold text-xs text-white">{kv.word}</span>
+                              {kv.pos && (
+                                <span className="text-[9px] px-1.5 py-0.2 rounded bg-slate-800 text-indigo-300 border border-slate-700">
+                                  {kv.pos}
+                                </span>
+                              )}
+                              {kv.cefrLevel && (
+                                <span className="text-[9px] px-1.5 py-0.2 rounded bg-slate-800 text-slate-300 border border-slate-700">
+                                  {kv.cefrLevel}
+                                </span>
+                              )}
+                            </div>
+                            <div className="text-xs text-emerald-400 font-medium mt-1">
+                              {kv.meaningTh}
+                            </div>
+                            {kv.examRef && (
+                              <div className="text-[9px] text-slate-400 mt-1 flex items-center gap-1">
+                                <span className="text-indigo-400">🎯</span>
+                                <span>{kv.examRef}</span>
+                              </div>
+                            )}
+                          </div>
+                          <button
+                            onClick={() => speakEnglish(kv.word)}
+                            className="btn-flourish p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-amber-300 transition-colors shrink-0"
+                            title="ฟังเสียงอ่านคำศัพท์"
+                          >
+                            <Volume2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 {/* Dialogue Turn by Turn */}
                 <div className="space-y-3 pt-2">
-                  {selectedConv.dialogue.map((line, idx) => (
-                    <div
-                      key={idx}
-                      className="p-3.5 rounded-2xl bg-slate-800/60 border border-slate-700/50 flex flex-col gap-1"
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="font-bold text-xs text-indigo-300">
-                          {line.speaker}:
-                        </span>
-                        <button
-                          onClick={() => speakEnglish(line.text)}
-                          className="p-1 rounded text-slate-400 hover:text-white"
-                          title="ฟังเสียงสนทนา"
-                        >
-                          <Volume2 className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
-                      <div className="text-sm text-slate-100 font-medium">{line.text}</div>
-                      {line.translationTh && (
-                        <div className="text-[11px] text-slate-400 border-t border-slate-700/40 pt-1 mt-1">
-                          {line.translationTh}
+                  {selectedConv.dialogue.map((line, idx) => {
+                    const isLineRevealed = showTranslations || revealedLines[idx];
+                    return (
+                      <div
+                        key={idx}
+                        className="p-3.5 rounded-2xl bg-slate-800/60 border border-slate-700/50 flex flex-col gap-1 transition-all hover:bg-slate-800/80"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="font-bold text-xs text-indigo-300">
+                            {line.speaker}:
+                          </span>
+                          <div className="flex items-center gap-1.5">
+                            {!showTranslations && line.translationTh && (
+                              <button
+                                onClick={() => toggleLineTranslation(idx)}
+                                className="btn-flourish px-2 py-0.5 rounded text-[10px] font-medium bg-slate-700/80 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center gap-1 transition-colors"
+                                title="สลับแสดง/ซ่อนคำแปลเฉพาะประโยคนี้"
+                              >
+                                {isLineRevealed ? <EyeOff className="w-3 h-3" /> : <Eye className="w-3 h-3" />}
+                                <span>{isLineRevealed ? 'ซ่อนคำแปล' : 'ดูคำแปล'}</span>
+                              </button>
+                            )}
+                            <button
+                              onClick={() => speakEnglish(line.text)}
+                              className="btn-flourish p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-700"
+                              title="ฟังเสียงสนทนา"
+                            >
+                              <Volume2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
                         </div>
-                      )}
-                    </div>
-                  ))}
+
+                        <div className="text-sm text-slate-100 font-medium">{line.text}</div>
+
+                        {/* Thai Translation conditional rendering */}
+                        {line.translationTh && isLineRevealed && (
+                          <div className="text-[11px] text-slate-400 border-t border-slate-700/40 pt-1.5 mt-1 animate-in fade-in duration-150">
+                            {line.translationTh}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -517,7 +670,7 @@ export default function ConversationPage() {
                               key={opt}
                               disabled={examSubmitted}
                               onClick={() => handleSelectOption(q.id, opt)}
-                              className={`p-3.5 rounded-2xl border text-left text-xs transition-all flex items-start gap-3 ${btnStyle}`}
+                              className={`btn-flourish p-3.5 rounded-2xl border text-left text-xs transition-all flex items-start gap-3 ${btnStyle}`}
                             >
                               <span className="font-mono font-bold text-xs uppercase px-2 py-0.5 rounded bg-slate-700/80 shrink-0">
                                 {opt}
@@ -576,7 +729,7 @@ export default function ConversationPage() {
                   <button
                     onClick={handleSubmitExam}
                     disabled={Object.keys(userAnswers).length === 0}
-                    className="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 disabled:pointer-events-none text-white font-bold text-xs shadow-lg shadow-emerald-600/30 transition-all active:scale-95"
+                    className="btn-flourish shine-sweep px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 disabled:pointer-events-none text-white font-bold text-xs shadow-lg shadow-emerald-600/30 transition-all active:scale-95"
                   >
                     ส่งคำตอบและดูเฉลยละเอียด
                   </button>
