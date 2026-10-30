@@ -12,7 +12,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from 'firebase/auth';
-import { auth, isFirebaseConfigured } from '@/lib/firebase';
+import { auth, isFirebaseConfigured, formatFirebaseError } from '@/lib/firebase';
 import {
   fetchCloudUserProfile,
   saveCloudUserProfile,
@@ -157,8 +157,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       await signInWithEmailAndPassword(auth, email, pass);
       return { success: true };
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Login failed';
-      return { success: false, error: msg };
+      return { success: false, error: formatFirebaseError(err) };
     }
   };
 
@@ -178,8 +177,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
       return { success: true };
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Registration failed';
-      return { success: false, error: msg };
+      return { success: false, error: formatFirebaseError(err) };
     }
   };
 
@@ -201,8 +199,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
       return { success: true };
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Google sign-in failed';
-      return { success: false, error: msg };
+      return { success: false, error: formatFirebaseError(err) };
     }
   };
 
@@ -214,8 +211,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       await signInAnonymously(auth);
       return { success: true };
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Guest login failed';
-      return { success: false, error: msg };
+      return { success: false, error: formatFirebaseError(err) };
     }
   };
 

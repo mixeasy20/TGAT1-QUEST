@@ -26,7 +26,7 @@ import { useAuth } from '@/context/AuthContext';
 import { AuthModal } from '@/components/AuthModal';
 
 export function Header() {
-  const { profile, levelInfo, claimQuest, dueCount } = useUser();
+  const { profile, levelInfo, claimQuest, dueCount, isCloudSynced } = useUser();
   const { user } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [questModalOpen, setQuestModalOpen] = useState(false);
@@ -131,12 +131,24 @@ export function Header() {
                   ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/25'
                   : 'bg-slate-800 hover:bg-slate-700 border-slate-700 text-slate-300 hover:text-white'
               }`}
-              title={user ? `Firebase: ${user.email || 'Guest'}` : 'เชื่อมต่อ Firebase Cloud'}
+              title={
+                user
+                  ? `Firebase: ${user.email || 'Guest'} (${isCloudSynced ? 'ซิงค์ Firestore แล้ว' : 'กำลังซิงค์...'})`
+                  : 'เชื่อมต่อ Firebase Cloud'
+              }
             >
-              <Cloud className="w-4 h-4 text-amber-400" />
+              <Cloud className={`w-4 h-4 ${isCloudSynced ? 'text-emerald-400' : 'text-amber-400'}`} />
               <span className="hidden sm:inline">
-                {user ? (user.displayName || 'Firebase Sync') : 'Firebase'}
+                {user ? (user.displayName || 'Online') : 'Firebase'}
               </span>
+              {user && (
+                <span
+                  className={`w-2 h-2 rounded-full ${
+                    isCloudSynced ? 'bg-emerald-400' : 'bg-amber-400 animate-pulse'
+                  }`}
+                  title={isCloudSynced ? 'ซิงค์บนคลาวด์แล้ว' : 'กำลังซิงค์'}
+                />
+              )}
             </button>
           </div>
         )}
