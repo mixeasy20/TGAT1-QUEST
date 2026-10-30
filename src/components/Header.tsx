@@ -59,8 +59,8 @@ export function Header() {
           </button>
 
           <div className="lg:hidden flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white">
-              <Sword className="w-4 h-4" />
+            <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center bg-indigo-900/40 border border-indigo-500/30">
+              <img src="/app-logo.jpg" alt="TGAT1 Logo" className="w-full h-full object-cover" />
             </div>
             <span className="font-bold text-sm tracking-tight">TGAT1 Quest</span>
           </div>
@@ -161,8 +161,8 @@ export function Header() {
             <div>
               <div className="flex items-center justify-between pb-4 border-b border-slate-800">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white">
-                    <Sword className="w-4 h-4" />
+                  <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center bg-indigo-900/40 border border-indigo-500/30">
+                    <img src="/app-logo.jpg" alt="TGAT1 Logo" className="w-full h-full object-cover" />
                   </div>
                   <span className="font-bold text-sm text-white">TGAT1 Quest</span>
                 </div>

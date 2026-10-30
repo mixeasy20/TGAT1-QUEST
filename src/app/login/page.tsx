@@ -134,8 +134,8 @@ export default function LoginPage() {
         <div className="bg-gradient-to-br from-indigo-950/80 via-slate-900 to-slate-950 p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-800">
           <div>
             <Link href="/" className="inline-flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/25 group-hover:scale-105 transition-transform">
-                <Sword className="w-5 h-5" />
+              <div className="w-12 h-12 rounded-2xl overflow-hidden flex items-center justify-center shadow-lg shadow-indigo-500/25 group-hover:scale-105 transition-transform bg-indigo-900/40 border border-indigo-500/30">
+                <img src="/app-logo.jpg" alt="TGAT1 Logo" className="w-full h-full object-cover" />
               </div>
               <div>
                 <div className="font-extrabold text-lg text-white tracking-tight flex items-center gap-1.5">
@@ -199,9 +199,13 @@ export default function LoginPage() {
 
           <div className="mt-8 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
             <span>Powered by Firebase & Next.js</span>
-            <Link href="/" className="text-indigo-400 hover:text-indigo-300 font-semibold">
-              ← ข้ามไปหน้าหลัก
-            </Link>
+            <button
+              type="button"
+              onClick={handleGuestSignIn}
+              className="text-indigo-400 hover:text-indigo-300 font-semibold"
+            >
+              ทดลองใช้แบบผู้เยี่ยมชม →
+            </button>
           </div>
         </div>
 

@@ -65,18 +65,41 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [lastSyncTime, setLastSyncTime] = useState<Date | null>(null);
 
   useEffect(() => {
+    // Check if there is a local guest session
+    if (typeof window !== 'undefined') {
+      const storedGuest = sessionStorage.getItem('tgat1_guest_session');
+      if (storedGuest) {
+        try {
+          setUser(JSON.parse(storedGuest));
+          setLoading(false);
+          return;
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    }
+
     if (!auth) {
       setLoading(false);
       return;
     }
 
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
-
       if (currentUser) {
-        // Automatically sync on initial sign-in
+        if (typeof window !== 'undefined') {
+          sessionStorage.removeItem('tgat1_guest_session');
+        }
+        setUser(currentUser);
+        setLoading(false);
         await syncUserData(currentUser.uid);
+      } else {
+        if (typeof window !== 'undefined' && sessionStorage.getItem('tgat1_guest_session')) {
+          // Keep active guest session
+          setLoading(false);
+        } else {
+          setUser(null);
+          setLoading(false);
+        }
       }
     });
 
@@ -204,20 +227,41 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const loginAsGuest = async () => {
-    if (!auth) {
-      return { success: false, error: 'Firebase is not configured in .env.local' };
-    }
     try {
-      await signInAnonymously(auth);
-      return { success: true };
+      if (auth) {
+        await signInAnonymously(auth);
+        return { success: true };
+      }
     } catch (err: unknown) {
-      return { success: false, error: formatFirebaseError(err) };
+      console.warn('Firebase anonymous sign in note:', err);
     }
+
+    // Local guest session fallback
+    const guestUser = {
+      uid: 'guest_' + Date.now(),
+      isAnonymous: true,
+      displayName: 'ผู้เรียนทดลอง (Guest)',
+      email: null,
+    } as unknown as User;
+
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('tgat1_guest_session', JSON.stringify(guestUser));
+    }
+    setUser(guestUser);
+    return { success: true };
   };
 
   const logout = async () => {
-    if (!auth) return;
-    await signOut(auth);
+    if (typeof window !== 'undefined') {
+      sessionStorage.removeItem('tgat1_guest_session');
+    }
+    if (auth) {
+      try {
+        await signOut(auth);
+      } catch (e) {
+        console.warn(e);
+      }
+    }
     setUser(null);
   };
 
