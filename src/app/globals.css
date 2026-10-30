@@ -1,15 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --font-sans: 'Kanit', var(--font-kanit), system-ui, sans-serif;
+}
 
 :root {
   --background: #020617;
   --foreground: #f8fafc;
 }
 
+/* Enforce Kanit font globally across every single page and element */
+html,
+body,
+*,
+*::before,
+*::after,
+input,
+button,
+select,
+textarea,
+optgroup {
+  font-family: 'Kanit', var(--font-kanit), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-kanit), 'Kanit', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   overflow-x: hidden;
+}
+
+.font-sans {
+  font-family: 'Kanit', var(--font-kanit), sans-serif !important;
 }
 
 /* Custom 3D Flip Card Utilities */
