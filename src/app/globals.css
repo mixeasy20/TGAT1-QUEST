@@ -139,6 +139,56 @@ body {
   animation: float-slow 4s ease-in-out infinite;
 }
 
+@keyframes float-left {
+  0%, 100% {
+    transform: translateY(0px) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(-2deg);
+  }
+}
+
+@keyframes float-right {
+  0%, 100% {
+    transform: translateY(0px) rotate(3deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(2deg);
+  }
+}
+
+@keyframes float-center {
+  0%, 100% {
+    transform: translate(-50%, 0px) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -7px) scale(1.01);
+  }
+}
+
+.animate-float-left {
+  animation: float-left 4.5s ease-in-out infinite;
+}
+
+.animate-float-right {
+  animation: float-right 4.8s ease-in-out infinite;
+}
+
+.animate-float-center {
+  animation: float-center 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-float-left,
+  .animate-float-right,
+  .animate-float-center,
+  .animate-pulse-subtle {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 /* Smooth Card Hover Lift */
 .card-hover-lift {
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;

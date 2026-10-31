@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { useUser } from '@/context/UserContext';
+import StackedFeatureCards from '@/components/StackedFeatureCards';
 
 // Official Google Multi-color Icon
 function GoogleIcon({ className = 'w-5 h-5' }: { className?: string }) {
@@ -157,43 +158,9 @@ export default function LoginPage() {
               </p>
             </div>
 
-            {/* Feature Bullet Points */}
-            <div className="mt-6 space-y-3">
-              <div className="flex items-start gap-3 p-3 rounded-2xl bg-slate-900/80 border border-slate-800/80 text-xs">
-                <div className="w-7 h-7 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center shrink-0">
-                  <Brain className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="font-bold text-white">Spaced Repetition (SM-2)</div>
-                  <div className="text-[11px] text-slate-400">
-                    ซิงก์รอบทบทวนคำศัพท์อัตโนมัติ ไม่ต้องกลัวข้อมูลหาย
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3 p-3 rounded-2xl bg-slate-900/80 border border-slate-800/80 text-xs">
-                <div className="w-7 h-7 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
-                  <MessageSquareText className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="font-bold text-white">Conversation Exam & Story Mode</div>
-                  <div className="text-[11px] text-slate-400">
-                    บันทึกประวัติการทำโจทย์และคะแนนสะสมต่อเนื่อง
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3 p-3 rounded-2xl bg-slate-900/80 border border-slate-800/80 text-xs">
-                <div className="w-7 h-7 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center shrink-0">
-                  <LineChart className="w-4 h-4" />
-                </div>
-                <div>
-                  <div className="font-bold text-white">Mistake Notebook</div>
-                  <div className="text-[11px] text-slate-400">
-                    สมุดจดข้อผิดพลาดพร้อมกลับมาฝึกซ้ำจนมั่นใจ
-                  </div>
-                </div>
-              </div>
+            {/* Stacked Floating Feature Showcase */}
+            <div className="mt-4">
+              <StackedFeatureCards />
             </div>
           </div>
 
