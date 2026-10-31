@@ -124,9 +124,9 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-[85vh] flex items-center justify-center py-6 px-4">
-      <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-2 rounded-3xl overflow-hidden bg-white border border-slate-200/80 shadow-[0_12px_40px_rgb(0,0,0,0.06)]">
+      <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-2 rounded-3xl overflow-hidden bg-white border border-slate-200 shadow-[0_12px_40px_rgb(0,0,0,0.06)]">
         {/* Left Side: Brand & Feature Showcase */}
-        <div className="bg-gradient-to-br from-indigo-50/50 via-purple-50/30 to-white p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-100">
+        <div className="bg-gradient-to-br from-indigo-50/50 via-purple-50/30 to-white p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-200">
           <div>
             <Link href="/" className="inline-flex items-center gap-3 group">
               <div className="w-12 h-12 rounded-2xl overflow-hidden flex items-center justify-center shadow-sm shadow-indigo-500/10 group-hover:scale-105 transition-transform bg-white border border-indigo-100">
@@ -144,7 +144,7 @@ export default function LoginPage() {
             </Link>
 
             <div className="mt-8 space-y-2">
-              <h2 className="text-xl md:text-2xl font-black text-slate-800 tracking-tight">
+              <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight">
                 เข้าสู่ระบบเพื่อซิงก์ข้อมูลบน Cloud
               </h2>
               <p className="text-xs text-slate-500 leading-relaxed font-medium">
@@ -158,7 +158,7 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+          <div className="mt-8 pt-4 border-t border-slate-200 flex items-center justify-between text-xs text-slate-400">
             <span>Powered by Firebase & Next.js</span>
             <button
               type="button"
@@ -179,7 +179,7 @@ export default function LoginPage() {
                 <ShieldCheck className="w-8 h-8" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-slate-800">คุณเข้าสู่ระบบอยู่แล้ว</h3>
+                <h3 className="text-xl font-bold text-slate-900">คุณเข้าสู่ระบบอยู่แล้ว</h3>
                 <p className="text-xs text-slate-500 mt-1">
                   กำลังใช้งานในชื่อ:{' '}
                   <strong className="text-emerald-600 font-semibold">
@@ -215,7 +215,7 @@ export default function LoginPage() {
             /* USER NOT LOGGED IN: SIGN IN OR REGISTER */
             <div className="space-y-5">
               <div>
-                <h3 className="text-2xl font-black text-slate-800 tracking-tight">
+                <h3 className="text-2xl font-black text-slate-900 tracking-tight">
                   {mode === 'login' ? 'ยินดีต้อนรับกลับมา!' : 'สร้างบัญชีผู้เรียนใหม่'}
                 </h3>
                 <p className="text-xs text-slate-500 mt-1">
@@ -243,14 +243,14 @@ export default function LoginPage() {
                 type="button"
                 onClick={handleGoogleSignIn}
                 disabled={loading || !isConfigured}
-                className="w-full py-3 px-4 rounded-full bg-white hover:bg-slate-50 disabled:opacity-50 text-slate-700 font-bold text-xs border border-slate-200/80 shadow-xs transition-all flex items-center justify-center gap-3 active:scale-98 cursor-pointer"
+                className="w-full py-3 px-4 rounded-full bg-white hover:bg-slate-50 disabled:opacity-50 text-slate-700 font-bold text-xs border border-slate-200 shadow-xs transition-all flex items-center justify-center gap-3 active:scale-98 cursor-pointer"
               >
                 <GoogleIcon className="w-5 h-5 shrink-0" />
                 <span>เข้าสู่ระบบด้วย Google (Google Sign-In)</span>
               </button>
 
               <div className="relative flex items-center justify-center">
-                <div className="border-t border-slate-100 w-full" />
+                <div className="border-t border-slate-200 w-full" />
                 <span className="bg-white px-3 text-[11px] text-slate-400 absolute font-semibold">
                   หรือใช้อีเมล
                 </span>
@@ -265,7 +265,7 @@ export default function LoginPage() {
                     setErrorMessage('');
                   }}
                   className={`flex-1 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
-                    mode === 'login' ? 'bg-white text-indigo-600 shadow-xs' : 'text-slate-500 hover:text-slate-800'
+                    mode === 'login' ? 'bg-white text-indigo-600 shadow-xs' : 'text-slate-500 hover:text-slate-900'
                   }`}
                 >
                   เข้าสู่ระบบ
@@ -277,7 +277,7 @@ export default function LoginPage() {
                     setErrorMessage('');
                   }}
                   className={`flex-1 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
-                    mode === 'register' ? 'bg-white text-indigo-600 shadow-xs' : 'text-slate-500 hover:text-slate-800'
+                    mode === 'register' ? 'bg-white text-indigo-600 shadow-xs' : 'text-slate-500 hover:text-slate-900'
                   }`}
                 >
                   สมัครสมาชิก
@@ -307,7 +307,7 @@ export default function LoginPage() {
                         value={displayName}
                         onChange={(e) => setDisplayName(e.target.value)}
                         placeholder="เช่น มณี มีใจ"
-                        className="w-full pl-10 pr-3 py-2 bg-slate-50/70 border border-slate-200/80 rounded-full text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-400 focus:bg-white transition-all"
+                        className="w-full pl-10 pr-3 py-2 bg-slate-50/70 border border-slate-200 rounded-full text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-400 focus:bg-white transition-all"
                       />
                     </div>
                   </div>
@@ -325,7 +325,7 @@ export default function LoginPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="student@example.com"
-                      className="w-full pl-10 pr-3 py-2 bg-slate-50/70 border border-slate-200/80 rounded-full text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-400 focus:bg-white transition-all"
+                      className="w-full pl-10 pr-3 py-2 bg-slate-50/70 border border-slate-200 rounded-full text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-400 focus:bg-white transition-all"
                     />
                   </div>
                 </div>
@@ -353,7 +353,7 @@ export default function LoginPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="อย่างน้อย 6 ตัวอักษร"
-                      className="w-full pl-10 pr-3 py-2 bg-slate-50/70 border border-slate-200/80 rounded-full text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-400 focus:bg-white transition-all"
+                      className="w-full pl-10 pr-3 py-2 bg-slate-50/70 border border-slate-200 rounded-full text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-400 focus:bg-white transition-all"
                     />
                   </div>
                 </div>
@@ -376,7 +376,7 @@ export default function LoginPage() {
                 type="button"
                 onClick={handleGuestSignIn}
                 disabled={loading || !isConfigured}
-                className="w-full py-2 rounded-full bg-slate-50 hover:bg-slate-100 disabled:opacity-50 text-slate-600 font-semibold text-xs border border-slate-200/60 transition-colors cursor-pointer"
+                className="w-full py-2 rounded-full bg-slate-50 hover:bg-slate-100 disabled:opacity-50 text-slate-600 font-semibold text-xs border border-slate-200 transition-colors cursor-pointer"
               >
                 เข้าใช้งานแบบผู้เยี่ยมชม (Guest Anonymous)
               </button>

@@ -7,7 +7,7 @@
 
 :root {
   --background: #f8fafc;
-  --foreground: #1e293b;
+  --foreground: #0f172a;
 }
 
 /* Enforce Kanit font globally across every single page and element */
@@ -38,23 +38,36 @@ body {
   font-family: 'Kanit', var(--font-kanit), sans-serif !important;
 }
 
+/* High Contrast Override for Subtext and Muted Labels */
+.text-slate-400 {
+  color: #475569 !important; /* Change faint slate-400 to bold readable slate-600 */
+}
+
+.text-slate-500 {
+  color: #334155 !important; /* Change slate-500 to deeper slate-700 */
+}
+
+.text-slate-600 {
+  color: #1e293b !important; /* Deep slate-800 */
+}
+
 /* Enhanced typography scale for easier reading with Kanit */
 .text-\[9px\] {
-  font-size: 0.72rem !important; /* ~11.5px */
+  font-size: 0.76rem !important; /* ~12px */
 }
 .text-\[10px\] {
-  font-size: 0.8rem !important; /* ~13px */
+  font-size: 0.84rem !important; /* ~13.5px */
 }
 .text-\[11px\] {
-  font-size: 0.875rem !important; /* ~14px */
+  font-size: 0.9rem !important; /* ~14.4px */
 }
 .text-xs {
-  font-size: 0.925rem !important; /* ~14.8px */
-  line-height: 1.5 !important;
+  font-size: 0.95rem !important; /* ~15.2px */
+  line-height: 1.55 !important;
 }
 .text-sm {
-  font-size: 1.025rem !important; /* ~16.4px */
-  line-height: 1.6 !important;
+  font-size: 1.05rem !important; /* ~16.8px */
+  line-height: 1.65 !important;
 }
 
 /* Custom 3D Flip Card Utilities */
@@ -81,11 +94,11 @@ body {
 }
 
 .flashcard-glow-front {
-  box-shadow: 0 15px 35px -10px rgba(99, 102, 241, 0.15), 0 0 0 1px rgba(99, 102, 241, 0.08);
+  box-shadow: 0 15px 35px -10px rgba(99, 102, 241, 0.18), 0 0 0 1px rgba(99, 102, 241, 0.12);
 }
 
 .flashcard-glow-back {
-  box-shadow: 0 15px 35px -10px rgba(16, 185, 129, 0.15), 0 0 0 1px rgba(16, 185, 129, 0.08);
+  box-shadow: 0 15px 35px -10px rgba(16, 185, 129, 0.18), 0 0 0 1px rgba(16, 185, 129, 0.12);
 }
 
 /* Button Flourishes & Micro-interactions */
@@ -219,13 +232,13 @@ body {
 
 .card-hover-lift:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 28px -6px rgba(100, 116, 139, 0.12), 0 4px 10px -2px rgba(100, 116, 139, 0.04);
+  box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.12), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
 }
 
 /* Glassmorphism Soft Light Panel */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  border: 1px solid rgba(203, 213, 225, 0.8);
 }

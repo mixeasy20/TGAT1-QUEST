@@ -15,7 +15,7 @@ export function GuestRestrictionNotice({
 }: GuestRestrictionNoticeProps) {
   return (
     <div className="min-h-[60vh] flex items-center justify-center p-4">
-      <div className="max-w-md w-full bg-white/90 border border-slate-200/80 rounded-3xl p-6 sm:p-8 text-center backdrop-blur-xl shadow-xl shadow-slate-200/50 relative overflow-hidden">
+      <div className="max-w-md w-full bg-white/90 border border-slate-200 rounded-3xl p-6 sm:p-8 text-center backdrop-blur-xl shadow-xl shadow-slate-200/50 relative overflow-hidden">
         {/* Ambient subtle glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-24 bg-indigo-500/10 blur-3xl pointer-events-none" />
 
@@ -28,7 +28,7 @@ export function GuestRestrictionNotice({
           Guest Mode Restriction
         </span>
 
-        <h3 className="text-xl font-black text-slate-800 tracking-tight">
+        <h3 className="text-xl font-black text-slate-900 tracking-tight">
           ปลดล็อก {featureName}
         </h3>
 
@@ -36,8 +36,8 @@ export function GuestRestrictionNotice({
           {description}
         </p>
 
-        <div className="mt-5 p-4 rounded-2xl bg-slate-50/80 border border-slate-100 text-[11px] text-slate-600 text-left space-y-1.5">
-          <div className="font-semibold text-slate-800 flex items-center gap-1.5">
+        <div className="mt-5 p-4 rounded-2xl bg-slate-50/80 border border-slate-200 text-[11px] text-slate-600 text-left space-y-1.5">
+          <div className="font-semibold text-slate-900 flex items-center gap-1.5">
             <Sparkles className="w-3.5 h-3.5 text-amber-500" /> สิทธิประโยชน์เมื่อเข้าสู่ระบบ:
           </div>
           <p>• ทำข้อสอบ Conversation Exam & Story Quest ครบทุกด่าน</p>

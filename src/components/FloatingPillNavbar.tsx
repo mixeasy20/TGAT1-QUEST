@@ -57,7 +57,7 @@ export function FloatingPillNavbar() {
 
   return (
     <nav className="lg:hidden fixed bottom-4 left-3 right-3 z-50 flex justify-center pointer-events-none">
-      <div className="pointer-events-auto bg-white/90 backdrop-blur-xl border border-slate-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-full px-2 py-2 flex items-center justify-around gap-1 max-w-md w-full">
+      <div className="pointer-events-auto bg-white/90 backdrop-blur-xl border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-full px-2 py-2 flex items-center justify-around gap-1 max-w-md w-full">
         {NAV_ITEMS.map((item) => {
           const isActive = pathname === item.href;
           const isRestrictedForGuest = isGuest && item.href !== '/vocab';
@@ -86,7 +86,7 @@ export function FloatingPillNavbar() {
               className={`relative flex flex-col items-center justify-center py-1.5 px-2.5 rounded-full transition-all duration-200 ${
                 isActive
                   ? 'bg-indigo-50 text-indigo-600 font-bold shadow-xs'
-                  : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50 font-medium'
+                  : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50 font-medium'
               }`}
             >
               <div className="relative">
@@ -111,3 +111,4 @@ export function FloatingPillNavbar() {
     </nav>
   );
 }
+

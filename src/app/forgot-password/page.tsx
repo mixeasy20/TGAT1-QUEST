@@ -63,7 +63,7 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50/60 text-slate-800 flex flex-col justify-center items-center p-4 relative overflow-hidden font-kanit">
+    <div className="min-h-screen bg-slate-50/60 text-slate-900 flex flex-col justify-center items-center p-4 relative overflow-hidden font-kanit">
       {/* Ambient Pastel Background Glows */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[350px] bg-indigo-100/60 rounded-full blur-[110px] pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-72 h-72 bg-purple-100/50 rounded-full blur-[90px] pointer-events-none" />
@@ -84,7 +84,7 @@ export default function ForgotPasswordPage() {
               />
             </div>
             <div className="text-left">
-              <span className="font-black text-xl tracking-tight text-slate-800 block">
+              <span className="font-black text-xl tracking-tight text-slate-900 block">
                 TGAT1 <span className="text-indigo-600">QUEST</span>
               </span>
               <span className="text-[11px] text-slate-400 block -mt-1 font-medium">
@@ -95,11 +95,11 @@ export default function ForgotPasswordPage() {
         </div>
 
         {/* Card Box */}
-        <div className="bg-white/90 border border-slate-200/80 rounded-3xl p-6 sm:p-8 backdrop-blur-xl shadow-[0_12px_40px_rgb(0,0,0,0.06)]">
+        <div className="bg-white/90 border border-slate-200 rounded-3xl p-6 sm:p-8 backdrop-blur-xl shadow-[0_12px_40px_rgb(0,0,0,0.06)]">
           {!isSubmitted ? (
             <>
               <div className="mb-6">
-                <h1 className="text-xl sm:text-2xl font-black text-slate-800 tracking-tight flex items-center gap-2">
+                <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight flex items-center gap-2">
                   <span>รีเซ็ตรหัสผ่าน</span>
                   <Sparkles className="w-4 h-4 text-indigo-500" />
                 </h1>
@@ -150,7 +150,7 @@ export default function ForgotPasswordPage() {
                       }}
                       placeholder="student@example.com"
                       disabled={isSubmitting}
-                      className="w-full pl-10 pr-4 py-2.5 bg-slate-50/70 border border-slate-200/80 rounded-full text-xs sm:text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-400 focus:bg-white disabled:opacity-60 transition-all"
+                      className="w-full pl-10 pr-4 py-2.5 bg-slate-50/70 border border-slate-200 rounded-full text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-indigo-400 focus:bg-white disabled:opacity-60 transition-all"
                     />
                   </div>
                 </div>
@@ -180,14 +180,14 @@ export default function ForgotPasswordPage() {
               <div className="w-14 h-14 rounded-3xl bg-emerald-50 border border-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4 shadow-xs">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
-              <h2 className="text-lg sm:text-xl font-bold text-slate-800 tracking-tight">
+              <h2 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">
                 ส่งคำขอเรียบร้อยแล้ว
               </h2>
               <p className="text-xs text-slate-500 mt-2.5 leading-relaxed px-2">
                 หากอีเมล <span className="font-semibold text-indigo-600">{submittedEmail}</span> มีอยู่ในระบบของเรา ระบบได้ส่งลิงก์สำหรับตั้งรหัสผ่านใหม่ไปแล้ว โปรดตรวจสอบในกล่องข้อความหรือกล่องจดหมายขยะ (Spam)
               </p>
 
-              <div className="mt-5 p-3.5 rounded-2xl bg-slate-50 border border-slate-100 text-[11px] text-slate-500 text-left space-y-1">
+              <div className="mt-5 p-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-[11px] text-slate-500 text-left space-y-1">
                 <div className="font-semibold text-slate-700">💡 คำแนะนำเพิ่มเติม:</div>
                 <p>• ลิงก์ในอีเมลมีอายุจำกัดเพื่อความปลอดภัย</p>
                 <p>• หากไม่ได้รับอีเมลภายใน 5 นาที โปรดตรวจสอบการสะกดอีเมลแล้วลองใหม่อีกครั้ง</p>
@@ -215,7 +215,7 @@ export default function ForgotPasswordPage() {
           )}
 
           {/* Account Types Note */}
-          <div className="mt-6 pt-5 border-t border-slate-100 space-y-2 text-[11px] text-slate-400">
+          <div className="mt-6 pt-5 border-t border-slate-200 space-y-2 text-[11px] text-slate-400">
             <div className="flex items-start gap-2">
               <HelpCircle className="w-3.5 h-3.5 text-indigo-500 shrink-0 mt-0.5" />
               <div>
@@ -237,7 +237,7 @@ export default function ForgotPasswordPage() {
         <div className="text-center mt-6">
           <Link
             href="/login"
-            className="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 hover:text-slate-800 transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 hover:text-slate-900 transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>ย้อนกลับไปหน้าเข้าสู่ระบบ (Back to Login)</span>

@@ -142,7 +142,7 @@ export default function ExpressionsPage() {
             <Sparkles className="w-4 h-4" />
             <span>Expression Bank</span>
           </div>
-          <h1 className="text-2xl font-black text-slate-800 tracking-tight mt-0.5">
+          <h1 className="text-2xl font-black text-slate-900 tracking-tight mt-0.5">
             คลังสำนวน & วลีออกสอบบ่อย
           </h1>
           <p className="text-xs text-slate-400 mt-1">
@@ -152,7 +152,7 @@ export default function ExpressionsPage() {
 
         <button
           onClick={() => setAddModalOpen(true)}
-          className="self-start md:self-auto flex items-center gap-2 px-4 py-2 rounded-2xl bg-amber-600 hover:bg-amber-500 text-slate-800 text-xs font-semibold shadow-md shadow-amber-600/20 transition-transform active:scale-95"
+          className="self-start md:self-auto flex items-center gap-2 px-4 py-2 rounded-2xl bg-amber-600 hover:bg-amber-500 text-slate-900 text-xs font-semibold shadow-md shadow-amber-600/20 transition-transform active:scale-95"
         >
           <Plus className="w-4 h-4" />
           <span>เพิ่มสำนวนส่วนตัว</span>
@@ -160,7 +160,7 @@ export default function ExpressionsPage() {
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="p-4 rounded-3xl bg-white border border-slate-200/70 flex flex-wrap items-center gap-3">
+      <div className="p-4 rounded-3xl bg-white border border-slate-200 flex flex-wrap items-center gap-3">
         <div className="relative flex-1 min-w-[200px]">
           <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
@@ -168,7 +168,7 @@ export default function ExpressionsPage() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="ค้นหาสำนวน ความหมาย หรือเจตนาผู้พูด..."
-            className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-2xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-amber-500"
+            className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-2xl text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-amber-500"
           />
         </div>
 
@@ -189,7 +189,7 @@ export default function ExpressionsPage() {
           className={`flex items-center gap-1.5 px-3 py-2 rounded-2xl text-xs font-semibold border transition-all ${
             bookmarkedOnly
               ? 'bg-amber-500/20 text-amber-300 border-amber-500/40 shadow-sm'
-              : 'bg-slate-100 text-slate-400 border-slate-200 hover:text-slate-800'
+              : 'bg-slate-100 text-slate-400 border-slate-200 hover:text-slate-900'
           }`}
         >
           <Star className="w-3.5 h-3.5 fill-current" />
@@ -202,7 +202,7 @@ export default function ExpressionsPage() {
         {filtered.map((item) => (
           <div
             key={item.id}
-            className="p-5 rounded-3xl bg-white border border-slate-200/70 hover:border-slate-200 transition-all flex flex-col justify-between"
+            className="p-5 rounded-3xl bg-white border border-slate-200 hover:border-slate-200 transition-all flex flex-col justify-between"
           >
             <div>
               {/* Card Top: Badges & Bookmark */}
@@ -231,7 +231,7 @@ export default function ExpressionsPage() {
                 <div className="flex items-center gap-1">
                   <button
                     onClick={() => speakEnglish(item.expression)}
-                    className="p-1.5 rounded-lg text-slate-400 hover:text-slate-800 hover:bg-slate-100"
+                    className="p-1.5 rounded-lg text-slate-400 hover:text-slate-900 hover:bg-slate-100"
                     title="ฟังเสียงอ่าน"
                   >
                     <Volume2 className="w-4 h-4" />
@@ -260,7 +260,7 @@ export default function ExpressionsPage() {
               </div>
 
               {/* Expression Text & Meaning */}
-              <h3 className="text-lg font-bold text-slate-800 tracking-tight">&quot;{item.expression}&quot;</h3>
+              <h3 className="text-lg font-bold text-slate-900 tracking-tight">&quot;{item.expression}&quot;</h3>
               <div className="text-sm font-semibold text-emerald-400 mt-1">{item.meaningTh}</div>
 
               {/* Intention Pill */}
@@ -270,7 +270,7 @@ export default function ExpressionsPage() {
               </div>
 
               {/* Dialogue snippet */}
-              <div className="mt-3 p-3 rounded-2xl bg-slate-50 border border-slate-100 space-y-1.5 text-xs">
+              <div className="mt-3 p-3 rounded-2xl bg-slate-50 border border-slate-200 space-y-1.5 text-xs">
                 {item.exampleDialogue.map((d, i) => (
                   <div key={i} className="text-slate-600">
                     <span className="font-bold text-slate-400">{d.speaker}:</span> {d.text}
@@ -286,7 +286,7 @@ export default function ExpressionsPage() {
             </div>
 
             {/* Bottom: Related links */}
-            <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+            <div className="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between text-xs">
               <span className="text-[11px] text-slate-400">แหล่งข้อมูล: {item.source}</span>
               {item.relatedConversationId && (
                 <Link
@@ -307,7 +307,7 @@ export default function ExpressionsPage() {
           <div className="w-16 h-16 rounded-3xl bg-amber-500/10 text-amber-400 flex items-center justify-center mx-auto mb-3 border border-amber-500/20">
             <Sparkles className="w-8 h-8" />
           </div>
-          <h3 className="text-base font-bold text-slate-800">ไม่พบสำนวนที่ตรงกับการค้นหา</h3>
+          <h3 className="text-base font-bold text-slate-900">ไม่พบสำนวนที่ตรงกับการค้นหา</h3>
           <p className="text-xs text-slate-400 mt-1">
             ลองปรับเปลี่ยนคำค้นหา หรือกดล้างตัวกรอง
           </p>
@@ -317,15 +317,15 @@ export default function ExpressionsPage() {
       {/* ADD CUSTOM EXPRESSION MODAL */}
       {addModalOpen && (
         <div className="fixed inset-0 z-50 bg-white/30 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white border border-slate-200/70 rounded-3xl max-w-lg w-full p-6 text-slate-800 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+          <div className="bg-white border border-slate-200 rounded-3xl max-w-lg w-full p-6 text-slate-900 shadow-2xl relative max-h-[90vh] overflow-y-auto">
             <button
               onClick={() => setAddModalOpen(false)}
-              className="absolute top-5 right-5 p-1.5 rounded-lg text-slate-400 hover:text-slate-800 hover:bg-slate-100"
+              className="absolute top-5 right-5 p-1.5 rounded-lg text-slate-400 hover:text-slate-900 hover:bg-slate-100"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <h3 className="text-lg font-bold text-slate-800 mb-1">เพิ่มสำนวนส่วนตัว (Custom Expression)</h3>
+            <h3 className="text-lg font-bold text-slate-900 mb-1">เพิ่มสำนวนส่วนตัว (Custom Expression)</h3>
             <p className="text-xs text-slate-400 mb-5">
               บันทึกสำนวนใหม่พร้อมบริบทและเจตนาผู้พูดเพื่อใช้ทบทวนเตรียมสอบ
             </p>
@@ -341,7 +341,7 @@ export default function ExpressionsPage() {
                   value={formData.expression}
                   onChange={(e) => setFormData({ ...formData, expression: e.target.value })}
                   placeholder="เช่น Could you please elaborate on that?"
-                  className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-2xl text-xs text-slate-800 focus:outline-none focus:border-amber-500"
+                  className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-2xl text-xs text-slate-900 focus:outline-none focus:border-amber-500"
                 />
               </div>
 
@@ -355,7 +355,7 @@ export default function ExpressionsPage() {
                   value={formData.meaningTh}
                   onChange={(e) => setFormData({ ...formData, meaningTh: e.target.value })}
                   placeholder="เช่น รบกวนช่วยอธิบายเพิ่มเติมให้หน่อยได้ไหม"
-                  className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-2xl text-xs text-slate-800 focus:outline-none focus:border-amber-500"
+                  className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-2xl text-xs text-slate-900 focus:outline-none focus:border-amber-500"
                 />
               </div>
 
@@ -372,7 +372,7 @@ export default function ExpressionsPage() {
                         register: e.target.value as ExpressionItem['register'],
                       })
                     }
-                    className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-2xl text-xs text-slate-800 focus:outline-none focus:border-amber-500"
+                    className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-2xl text-xs text-slate-900 focus:outline-none focus:border-amber-500"
                   >
                     <option value="Polite">Polite (สุภาพ)</option>
                     <option value="Formal">Formal (ทางการ)</option>
@@ -390,12 +390,12 @@ export default function ExpressionsPage() {
                     value={formData.intention}
                     onChange={(e) => setFormData({ ...formData, intention: e.target.value })}
                     placeholder="เช่น ขอคำอธิบายเพิ่มเติมอย่างสุภาพ"
-                    className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-2xl text-xs text-slate-800 focus:outline-none focus:border-amber-500"
+                    className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-2xl text-xs text-slate-900 focus:outline-none focus:border-amber-500"
                   />
                 </div>
               </div>
 
-              <div className="p-3 rounded-3xl bg-slate-50 border border-slate-100 space-y-2.5">
+              <div className="p-3 rounded-3xl bg-slate-50 border border-slate-200 space-y-2.5">
                 <div className="text-xs font-semibold text-slate-600">ตัวอย่างบทสนทนา (Mini Dialogue)</div>
                 <div className="grid grid-cols-3 gap-2">
                   <input
@@ -403,14 +403,14 @@ export default function ExpressionsPage() {
                     placeholder="Speaker A"
                     value={formData.dialogueSpeakerA}
                     onChange={(e) => setFormData({ ...formData, dialogueSpeakerA: e.target.value })}
-                    className="px-2.5 py-1.5 bg-slate-100 border border-slate-200 rounded-lg text-xs text-slate-800"
+                    className="px-2.5 py-1.5 bg-slate-100 border border-slate-200 rounded-lg text-xs text-slate-900"
                   />
                   <input
                     type="text"
                     placeholder="ประโยคของ A..."
                     value={formData.dialogueTextA}
                     onChange={(e) => setFormData({ ...formData, dialogueTextA: e.target.value })}
-                    className="col-span-2 px-2.5 py-1.5 bg-slate-100 border border-slate-200 rounded-lg text-xs text-slate-800"
+                    className="col-span-2 px-2.5 py-1.5 bg-slate-100 border border-slate-200 rounded-lg text-xs text-slate-900"
                   />
                 </div>
                 <div className="grid grid-cols-3 gap-2">
@@ -419,14 +419,14 @@ export default function ExpressionsPage() {
                     placeholder="Speaker B"
                     value={formData.dialogueSpeakerB}
                     onChange={(e) => setFormData({ ...formData, dialogueSpeakerB: e.target.value })}
-                    className="px-2.5 py-1.5 bg-slate-100 border border-slate-200 rounded-lg text-xs text-slate-800"
+                    className="px-2.5 py-1.5 bg-slate-100 border border-slate-200 rounded-lg text-xs text-slate-900"
                   />
                   <input
                     type="text"
                     placeholder="ประโยคของ B (ใช้สำนวน)..."
                     value={formData.dialogueTextB}
                     onChange={(e) => setFormData({ ...formData, dialogueTextB: e.target.value })}
-                    className="col-span-2 px-2.5 py-1.5 bg-slate-100 border border-slate-200 rounded-lg text-xs text-slate-800"
+                    className="col-span-2 px-2.5 py-1.5 bg-slate-100 border border-slate-200 rounded-lg text-xs text-slate-900"
                   />
                 </div>
               </div>
@@ -440,11 +440,11 @@ export default function ExpressionsPage() {
                   value={formData.note}
                   onChange={(e) => setFormData({ ...formData, note: e.target.value })}
                   placeholder="เช่น นิยมใช้ปิดท้ายการเจรจาหรือสอบสัมภาษณ์"
-                  className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-2xl text-xs text-slate-800 focus:outline-none focus:border-amber-500"
+                  className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-2xl text-xs text-slate-900 focus:outline-none focus:border-amber-500"
                 />
               </div>
 
-              <div className="pt-3 flex items-center justify-end gap-3 border-t border-slate-200/70">
+              <div className="pt-3 flex items-center justify-end gap-3 border-t border-slate-200">
                 <button
                   type="button"
                   onClick={() => setAddModalOpen(false)}
@@ -454,7 +454,7 @@ export default function ExpressionsPage() {
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-2xl bg-amber-600 hover:bg-amber-500 text-slate-800 text-xs font-semibold shadow-md shadow-amber-600/30"
+                  className="px-5 py-2 rounded-2xl bg-amber-600 hover:bg-amber-500 text-slate-900 text-xs font-semibold shadow-md shadow-amber-600/30"
                 >
                   บันทึกสำนวน
                 </button>

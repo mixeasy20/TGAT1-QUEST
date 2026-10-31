@@ -139,7 +139,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
   return (
     <div className="fixed inset-0 z-50 bg-slate-900/30 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-white border border-slate-200/80 rounded-3xl max-w-md w-full p-6 text-slate-800 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
+      <div className="bg-white border border-slate-200 rounded-3xl max-w-md w-full p-6 text-slate-900 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
         <button
           onClick={onClose}
           className="absolute top-5 right-5 p-1.5 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 cursor-pointer"
@@ -153,7 +153,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
             <Cloud className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-base font-bold text-slate-800">
+            <h3 className="text-base font-bold text-slate-900">
               {user ? 'สถานะบัญชีและการซิงก์ข้อมูล' : 'เข้าสู่ระบบ Firebase'}
             </h3>
             <p className="text-xs text-slate-400 font-medium">
@@ -180,7 +180,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
         {/* USER LOGGED IN STATE */}
         {user ? (
           <div className="space-y-4">
-            <div className="p-4 rounded-2xl bg-slate-50/70 border border-slate-100 space-y-2">
+            <div className="p-4 rounded-2xl bg-slate-50/70 border border-slate-200 space-y-2">
               <div className="flex items-center justify-between text-xs">
                 <span className="text-slate-400 font-medium">ผู้ใช้งานปัจจุบัน:</span>
                 <span className="font-bold text-emerald-600 flex items-center gap-1">
@@ -188,7 +188,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   {user.isAnonymous ? 'ผู้เยี่ยมชม (Guest)' : 'ยืนยันตัวตนแล้ว'}
                 </span>
               </div>
-              <div className="text-sm font-bold text-slate-800">
+              <div className="text-sm font-bold text-slate-900">
                 {user.displayName || user.email || `Guest UID: ${user.uid.slice(0, 8)}...`}
               </div>
               {user.email && (
@@ -196,7 +196,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
               )}
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between text-xs">
+            <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between text-xs">
               <div>
                 <div className="font-semibold text-slate-700">ซิงก์ Cloud ล่าสุด:</div>
                 <div className="text-[11px] text-slate-400 mt-0.5">
@@ -239,14 +239,14 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
               type="button"
               onClick={handleGoogleLogin}
               disabled={submitting || !isConfigured}
-              className="w-full py-2.5 px-4 rounded-full bg-white hover:bg-slate-50 disabled:opacity-50 text-slate-700 font-bold text-xs border border-slate-200/80 shadow-xs transition-all flex items-center justify-center gap-2.5 active:scale-98 cursor-pointer"
+              className="w-full py-2.5 px-4 rounded-full bg-white hover:bg-slate-50 disabled:opacity-50 text-slate-700 font-bold text-xs border border-slate-200 shadow-xs transition-all flex items-center justify-center gap-2.5 active:scale-98 cursor-pointer"
             >
               <GoogleIcon className="w-4 h-4 shrink-0" />
               <span>เข้าสู่ระบบด้วย Google</span>
             </button>
 
             <div className="relative flex items-center justify-center">
-              <div className="border-t border-slate-100 w-full" />
+              <div className="border-t border-slate-200 w-full" />
               <span className="bg-white px-3 text-[10px] text-slate-400 absolute font-semibold">
                 หรือใช้อีเมล
               </span>
@@ -301,7 +301,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                       value={displayName}
                       onChange={(e) => setDisplayName(e.target.value)}
                       placeholder="เช่น สมชาย ใจดี"
-                      className="w-full pl-10 pr-3 py-2 bg-slate-50/70 border border-slate-200/80 rounded-full text-xs text-slate-800 focus:outline-none focus:border-indigo-400 focus:bg-white"
+                      className="w-full pl-10 pr-3 py-2 bg-slate-50/70 border border-slate-200 rounded-full text-xs text-slate-900 focus:outline-none focus:border-indigo-400 focus:bg-white"
                     />
                   </div>
                 </div>
@@ -319,7 +319,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="student@example.com"
-                    className="w-full pl-10 pr-3 py-2 bg-slate-50/70 border border-slate-200/80 rounded-full text-xs text-slate-800 focus:outline-none focus:border-indigo-400 focus:bg-white"
+                    className="w-full pl-10 pr-3 py-2 bg-slate-50/70 border border-slate-200 rounded-full text-xs text-slate-900 focus:outline-none focus:border-indigo-400 focus:bg-white"
                   />
                 </div>
               </div>
@@ -337,7 +337,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="อย่างน้อย 6 ตัวอักษร"
-                    className="w-full pl-10 pr-3 py-2 bg-slate-50/70 border border-slate-200/80 rounded-full text-xs text-slate-800 focus:outline-none focus:border-indigo-400 focus:bg-white"
+                    className="w-full pl-10 pr-3 py-2 bg-slate-50/70 border border-slate-200 rounded-full text-xs text-slate-900 focus:outline-none focus:border-indigo-400 focus:bg-white"
                   />
                 </div>
               </div>

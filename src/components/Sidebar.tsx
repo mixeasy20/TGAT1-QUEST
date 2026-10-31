@@ -72,15 +72,15 @@ export function Sidebar() {
   const isGuest = Boolean(user?.isAnonymous);
 
   return (
-    <aside className="hidden lg:flex lg:flex-col w-64 bg-white border-r border-slate-200/70 text-slate-700 select-none shrink-0 h-screen sticky top-0 shadow-[1px_0_10px_rgba(0,0,0,0.02)]">
+    <aside className="hidden lg:flex lg:flex-col w-64 bg-white border-r border-slate-200 text-slate-700 select-none shrink-0 h-screen sticky top-0 shadow-[1px_0_10px_rgba(0,0,0,0.02)]">
       {/* Brand Logo */}
-      <div className="p-5 border-b border-slate-100 flex items-center justify-between">
+      <div className="p-5 border-b border-slate-200 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 group">
           <div className="w-10 h-10 rounded-2xl overflow-hidden flex items-center justify-center shadow-sm shadow-indigo-500/10 group-hover:scale-105 transition-transform bg-indigo-50 border border-indigo-100">
             <img src="/app-logo.jpg" alt="TGAT1 Quest Logo" className="w-full h-full object-cover" />
           </div>
           <div>
-            <div className="font-extrabold text-base tracking-tight text-slate-800 flex items-center gap-1.5">
+            <div className="font-extrabold text-base tracking-tight text-slate-900 flex items-center gap-1.5">
               <span>TGAT1 Quest</span>
               <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-indigo-50 text-indigo-600 border border-indigo-100">
                 PRO
@@ -154,7 +154,7 @@ export function Sidebar() {
 
       {/* Gamification Mini Widget */}
       {profile && (
-        <div className="p-3.5 mx-3 mb-2 rounded-2xl bg-slate-50/80 border border-slate-200/60 text-xs">
+        <div className="p-3.5 mx-3 mb-2 rounded-2xl bg-slate-50/80 border border-slate-200 text-xs">
           <div className="flex items-center justify-between mb-1.5">
             <span className="text-[11px] text-slate-500 font-medium flex items-center gap-1.5">
               <Flame className="w-3.5 h-3.5 text-amber-500" /> สตรีคต่อเนื่อง
@@ -179,7 +179,7 @@ export function Sidebar() {
           className={`w-full p-2.5 rounded-2xl border flex items-center justify-between text-xs transition-all ${
             user
               ? 'bg-emerald-50/70 border-emerald-200/60 text-emerald-800 hover:bg-emerald-100/70'
-              : 'bg-slate-50/70 border-slate-200/60 text-slate-600 hover:bg-slate-100'
+              : 'bg-slate-50/70 border-slate-200 text-slate-600 hover:bg-slate-100'
           }`}
         >
           <div className="flex items-center gap-2 overflow-hidden">
@@ -187,7 +187,7 @@ export function Sidebar() {
               <UserCheck className="w-3.5 h-3.5" />
             </div>
             <div className="truncate text-left">
-              <div className="font-bold text-[11px] text-slate-800 truncate">
+              <div className="font-bold text-[11px] text-slate-900 truncate">
                 {user ? (user.displayName || user.email || 'ผู้ใช้งาน') : 'เข้าสู่ระบบ Cloud'}
               </div>
               <div className="text-[10px] text-slate-400">
@@ -200,7 +200,7 @@ export function Sidebar() {
       </div>
 
       {/* Footer Info */}
-      <div className="p-3 border-t border-slate-100 text-[11px] text-slate-400 text-center font-medium">
+      <div className="p-3 border-t border-slate-200 text-[11px] text-slate-400 text-center font-medium">
         เตรียมสอบ TGAT1 การสื่อสารภาษาอังกฤษ
       </div>
     </aside>

@@ -152,7 +152,7 @@ export default function ProgressPage() {
           <LineChart className="w-4 h-4" />
           <span>Progress & Mistake Analysis</span>
         </div>
-        <h1 className="text-2xl font-black text-slate-800 tracking-tight mt-0.5">
+        <h1 className="text-2xl font-black text-slate-900 tracking-tight mt-0.5">
           วิเคราะห์พัฒนาการ & สมุดบันทึกข้อผิดพลาด
         </h1>
         <p className="text-xs text-slate-400 mt-1">
@@ -162,15 +162,15 @@ export default function ProgressPage() {
 
       {/* Top 4 KPI Metrics */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="p-4 rounded-3xl bg-white border border-slate-200/70">
+        <div className="p-4 rounded-3xl bg-white border border-slate-200">
           <div className="text-xs text-slate-400">จำนวนข้อที่ฝึกไปแล้ว</div>
-          <div className="text-2xl font-extrabold text-slate-800 mt-1">
+          <div className="text-2xl font-extrabold text-slate-900 mt-1">
             {stats.totalQuestions} <span className="text-xs text-slate-400">ข้อ</span>
           </div>
           <div className="text-[11px] text-slate-400 mt-0.5">รวมทุกโหมดฝึก</div>
         </div>
 
-        <div className="p-4 rounded-3xl bg-white border border-slate-200/70">
+        <div className="p-4 rounded-3xl bg-white border border-slate-200">
           <div className="text-xs text-slate-400">ความแม่นยำรวม (Accuracy)</div>
           <div className="text-2xl font-extrabold text-indigo-400 mt-1">
             {stats.totalQuestions > 0 ? `${stats.accuracy}%` : '—'}
@@ -180,7 +180,7 @@ export default function ProgressPage() {
           </div>
         </div>
 
-        <div className="p-4 rounded-3xl bg-white border border-slate-200/70">
+        <div className="p-4 rounded-3xl bg-white border border-slate-200">
           <div className="text-xs text-slate-400">ข้อผิดพลาดที่ค้างอยู่</div>
           <div className="text-2xl font-extrabold text-rose-400 mt-1">
             {mistakes.filter((m) => !m.resolved).length}
@@ -188,7 +188,7 @@ export default function ProgressPage() {
           <div className="text-[11px] text-slate-400 mt-0.5">รอการกลับไปทบทวน</div>
         </div>
 
-        <div className="p-4 rounded-3xl bg-white border border-slate-200/70">
+        <div className="p-4 rounded-3xl bg-white border border-slate-200">
           <div className="text-xs text-slate-400">ข้อผิดพลาดที่พิชิตแล้ว</div>
           <div className="text-2xl font-extrabold text-emerald-400 mt-1">
             {mistakes.filter((m) => m.resolved).length}
@@ -200,9 +200,9 @@ export default function ProgressPage() {
       {/* 5 TGAT1 Competencies Breakdown & Study Recommendation */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left: 5 Competency Bars */}
-        <div className="lg:col-span-2 p-6 rounded-3xl bg-white border border-slate-200/70 space-y-4">
+        <div className="lg:col-span-2 p-6 rounded-3xl bg-white border border-slate-200 space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-base font-bold text-slate-800 flex items-center gap-2">
+            <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-indigo-400" />
               <span>ความแม่นยำแยกตาม 5 ทักษะหลัก (TGAT1 Competencies)</span>
             </h2>
@@ -221,7 +221,7 @@ export default function ProgressPage() {
                     <span className="text-slate-400">
                       {data.total > 0 ? (
                         <>
-                          <strong className="text-slate-800">{pct}%</strong> ({data.correct}/{data.total} ข้อ)
+                          <strong className="text-slate-900">{pct}%</strong> ({data.correct}/{data.total} ข้อ)
                         </>
                       ) : (
                         'ยังไม่มีประวัติ'
@@ -255,12 +255,12 @@ export default function ProgressPage() {
             <div className="w-10 h-10 rounded-2xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center border border-indigo-500/30 mb-3">
               <Brain className="w-5 h-5" />
             </div>
-            <h3 className="text-base font-bold text-slate-800">คำแนะนำการฝึกเฉพาะตัว</h3>
+            <h3 className="text-base font-bold text-slate-900">คำแนะนำการฝึกเฉพาะตัว</h3>
             <p className="text-xs text-slate-600 mt-1">
               ระบบประเมินจากจุดที่คะแนนน้อยที่สุดเพื่ออุดรอยรั่วก่อนลงสนามจริง
             </p>
 
-            <div className="mt-4 p-4 rounded-3xl bg-white border border-slate-200/70 text-xs space-y-2">
+            <div className="mt-4 p-4 rounded-3xl bg-white border border-slate-200 text-xs space-y-2">
               {stats.weakestSkill ? (
                 <>
                   <div className="font-bold text-amber-300 flex items-center gap-1.5">
@@ -290,10 +290,10 @@ export default function ProgressPage() {
       </div>
 
       {/* Mistake Notebook Section */}
-      <div className="p-6 rounded-3xl bg-white border border-slate-200/70 space-y-4">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-3 border-b border-slate-200/70">
+      <div className="p-6 rounded-3xl bg-white border border-slate-200 space-y-4">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-3 border-b border-slate-200">
           <div>
-            <h2 className="text-base font-bold text-slate-800 flex items-center gap-2">
+            <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
               <AlertCircle className="w-5 h-5 text-rose-400" />
               <span>สมุดบันทึกข้อผิดพลาด (Mistake Notebook)</span>
             </h2>
@@ -321,7 +321,7 @@ export default function ProgressPage() {
               <button
                 onClick={() => setStatusFilter('unresolved')}
                 className={`px-3 py-1 rounded-lg font-semibold transition-colors ${
-                  statusFilter === 'unresolved' ? 'bg-rose-600 text-slate-800' : 'text-slate-400'
+                  statusFilter === 'unresolved' ? 'bg-rose-600 text-slate-900' : 'text-slate-400'
                 }`}
               >
                 ค้างทบทวน
@@ -354,7 +354,7 @@ export default function ProgressPage() {
                 key={m.id}
                 className={`p-5 rounded-3xl border transition-all ${
                   m.resolved
-                    ? 'bg-white border-slate-100 opacity-75'
+                    ? 'bg-white border-slate-200 opacity-75'
                     : 'bg-rose-500/5 border-rose-500/30'
                 }`}
               >
@@ -368,13 +368,13 @@ export default function ProgressPage() {
                         จาก: {m.contextSnippet}
                       </span>
                     </div>
-                    <h3 className="text-sm font-bold text-slate-800 pt-1">{m.questionText}</h3>
+                    <h3 className="text-sm font-bold text-slate-900 pt-1">{m.questionText}</h3>
                   </div>
 
                   {!m.resolved ? (
                     <button
                       onClick={() => handleResolve(m.id)}
-                      className="px-3.5 py-1.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-slate-800 text-xs font-semibold shadow-md shadow-emerald-600/20 flex items-center gap-1.5 shrink-0 active:scale-95 transition-all"
+                      className="px-3.5 py-1.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-slate-900 text-xs font-semibold shadow-md shadow-emerald-600/20 flex items-center gap-1.5 shrink-0 active:scale-95 transition-all"
                     >
                       <Check className="w-3.5 h-3.5" />
                       <span>เข้าใจแล้ว (+15 XP)</span>
@@ -400,7 +400,7 @@ export default function ProgressPage() {
                 </div>
 
                 {/* Explanation */}
-                <div className="mt-3 p-3 rounded-2xl bg-slate-50 border border-slate-100 text-xs text-slate-600 leading-relaxed">
+                <div className="mt-3 p-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-600 leading-relaxed">
                   <span className="font-bold text-indigo-300">คำอธิบายเหตุผล: </span>
                   {m.explanation}
                 </div>
@@ -410,7 +410,7 @@ export default function ProgressPage() {
         ) : (
           <div className="text-center py-12 px-4">
             <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto mb-2" />
-            <h3 className="text-sm font-bold text-slate-800">ไม่มีข้อผิดพลาดในตัวกรองนี้</h3>
+            <h3 className="text-sm font-bold text-slate-900">ไม่มีข้อผิดพลาดในตัวกรองนี้</h3>
             <p className="text-xs text-slate-400 mt-0.5">
               ยอดเยี่ยมมาก! ไม่มีข้อผิดพลาดที่ค้างอยู่ หรือไม่มีข้อมูลตามเงื่อนไขที่เลือก
             </p>
@@ -419,9 +419,9 @@ export default function ProgressPage() {
       </div>
 
       {/* Practice Session History Log */}
-      <div className="p-6 rounded-3xl bg-white border border-slate-200/70 space-y-4">
-        <div className="flex items-center justify-between pb-3 border-b border-slate-200/70">
-          <h2 className="text-base font-bold text-slate-800 flex items-center gap-2">
+      <div className="p-6 rounded-3xl bg-white border border-slate-200 space-y-4">
+        <div className="flex items-center justify-between pb-3 border-b border-slate-200">
+          <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
             <History className="w-5 h-5 text-indigo-400" />
             <span>ประวัติการฝึกซ้อมทั้งหมด (Practice History)</span>
           </h2>
@@ -437,10 +437,10 @@ export default function ProgressPage() {
               return (
                 <div
                   key={sess.id}
-                  className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs"
+                  className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs"
                 >
                   <div className="space-y-0.5">
-                    <div className="font-bold text-slate-800 flex items-center gap-2">
+                    <div className="font-bold text-slate-900 flex items-center gap-2">
                       <span>{sess.title}</span>
                       <span className="text-[10px] px-2 py-0.5 rounded bg-slate-700 text-slate-600 uppercase">
                         {sess.mode}
