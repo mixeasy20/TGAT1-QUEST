@@ -22,7 +22,7 @@ const NAV_ITEMS = [
     icon: LayoutDashboard,
   },
   {
-    name: 'บัตรคำ SRS',
+    name: 'บัตรคำ',
     href: '/vocab',
     icon: BookOpen,
     showBadgeDue: true,
@@ -38,7 +38,7 @@ const NAV_ITEMS = [
     icon: Award,
   },
   {
-    name: 'คลังของฉัน',
+    name: 'คลัง',
     href: '/collection',
     icon: BookmarkCheck,
   },
@@ -56,8 +56,8 @@ export function FloatingPillNavbar() {
   const isGuest = Boolean(user?.isAnonymous);
 
   return (
-    <nav className="lg:hidden fixed bottom-4 left-3 right-3 z-50 flex justify-center pointer-events-none">
-      <div className="pointer-events-auto bg-white/90 backdrop-blur-xl border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.08)] rounded-full px-2 py-2 flex items-center justify-around gap-1 max-w-md w-full">
+    <nav className="lg:hidden fixed bottom-2 left-2 right-2 z-40 flex justify-center pointer-events-none">
+      <div className="pointer-events-auto bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-[0_4px_20px_rgba(0,0,0,0.12)] rounded-full px-1.5 py-1 flex items-center justify-between max-w-sm w-full">
         {NAV_ITEMS.map((item) => {
           const isActive = pathname === item.href;
           const isRestrictedForGuest = isGuest && item.href !== '/vocab';
@@ -67,14 +67,13 @@ export function FloatingPillNavbar() {
             return (
               <div
                 key={item.href}
-                title="ผู้เยี่ยมชมใช้งานได้เฉพาะบัตรคำ"
-                className="flex flex-col items-center justify-center py-1.5 px-2 rounded-full text-slate-300 opacity-40 select-none cursor-not-allowed"
+                className="flex-1 flex flex-col items-center justify-center py-1 rounded-full text-slate-300 opacity-40 select-none cursor-not-allowed"
               >
                 <div className="relative">
-                  <Icon className="w-5 h-5 text-slate-400" />
-                  <Lock className="w-2.5 h-2.5 text-slate-400 absolute -top-1 -right-1" />
+                  <Icon className="w-4 h-4 text-slate-400" />
+                  <Lock className="w-2 h-2 text-slate-400 absolute -top-1 -right-1" />
                 </div>
-                <span className="text-[10px] mt-0.5 font-medium">{item.name}</span>
+                <span className="text-[9px] mt-0.5 leading-none font-medium">{item.name}</span>
               </div>
             );
           }
@@ -83,25 +82,29 @@ export function FloatingPillNavbar() {
             <Link
               key={item.href}
               href={item.href}
-              className={`relative flex flex-col items-center justify-center py-1.5 px-2.5 rounded-full transition-all duration-200 ${
+              className={`flex-1 flex flex-col items-center justify-center py-1 px-1 rounded-full transition-all duration-150 ${
                 isActive
-                  ? 'bg-indigo-50 text-indigo-600 font-bold shadow-xs'
-                  : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50 font-medium'
+                  ? 'bg-indigo-50 text-indigo-700 font-bold'
+                  : 'text-slate-600 hover:text-slate-900 font-medium'
               }`}
             >
               <div className="relative">
                 <Icon
-                  className={`w-5 h-5 transition-transform ${
-                    isActive ? 'scale-110 text-indigo-600' : 'text-slate-500'
+                  className={`w-4 h-4 transition-transform ${
+                    isActive ? 'scale-110 text-indigo-600 stroke-[2.5]' : 'text-slate-500'
                   }`}
                 />
                 {item.showBadgeDue && dueCount > 0 && (
-                  <span className="absolute -top-1.5 -right-2 px-1.5 py-0.2 text-[9px] font-bold rounded-full bg-amber-400 text-slate-900 shadow-xs animate-pulse">
+                  <span className="absolute -top-1.5 -right-2 px-1 py-0 text-[8px] font-bold rounded-full bg-amber-400 text-slate-900 shadow-xs animate-pulse leading-tight">
                     {dueCount}
                   </span>
                 )}
               </div>
-              <span className={`text-[10px] mt-0.5 tracking-tight ${isActive ? 'text-indigo-600' : 'text-slate-500'}`}>
+              <span
+                className={`text-[9px] mt-0.5 leading-none tracking-tight truncate ${
+                  isActive ? 'text-indigo-700 font-black' : 'text-slate-600'
+                }`}
+              >
                 {item.name}
               </span>
             </Link>
@@ -111,4 +114,3 @@ export function FloatingPillNavbar() {
     </nav>
   );
 }
-
