@@ -868,7 +868,7 @@ export default function ConversationPage() {
                     <div key={index} className="space-y-3">
                       {/* NPC Message */}
                       <div className="flex items-start gap-3 animate-in fade-in slide-in-from-bottom-2 duration-200">
-                        <div className="w-9 h-9 rounded-3xl bg-gradient-to-tr from-indigo-600 to-violet-500 text-slate-900 flex items-center justify-center font-bold text-xs shrink-0 shadow-md shadow-indigo-600/25">
+                        <div className="w-9 h-9 rounded-3xl bg-gradient-to-tr from-indigo-600 to-violet-500 text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-sm">
                           {item.speaker[0]}
                         </div>
                         <div className="flex-1 bg-white border border-slate-200 rounded-3xl p-4 space-y-1 shadow-sm">
@@ -899,8 +899,8 @@ export default function ConversationPage() {
                       {/* User's Chosen Option (if already answered this step) */}
                       {item.chosenOption && (
                         <div className="flex items-start justify-end gap-3 pl-8 animate-in fade-in slide-in-from-bottom-2 duration-200">
-                          <div className="bg-gradient-to-br from-indigo-950/80 to-slate-900 border border-indigo-500/40 rounded-3xl p-4 text-right space-y-2 max-w-lg shadow-md shadow-indigo-950/40">
-                            <div className="text-xs font-semibold text-indigo-200 leading-relaxed">
+                          <div className="bg-indigo-50/90 border border-indigo-200 rounded-3xl p-4 text-right space-y-2 max-w-lg shadow-sm">
+                            <div className="text-xs font-bold text-indigo-900 leading-relaxed">
                               {item.chosenOption.textEn}
                             </div>
                             {showStoryTranslations && (
@@ -913,7 +913,7 @@ export default function ConversationPage() {
                               {item.chosenOption.feedbackTh}
                             </div>
                           </div>
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-600 to-purple-600 text-slate-900 flex items-center justify-center font-bold text-xs shrink-0 shadow-md shadow-indigo-600/30">
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-600 to-purple-600 text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-sm">
                             You
                           </div>
                         </div>
@@ -957,7 +957,7 @@ export default function ConversationPage() {
 
               {/* Story Completion Summary */}
               {storyCompleted && (
-                <div className="p-6 rounded-3xl bg-gradient-to-b from-slate-900 to-indigo-950/60 border border-emerald-500/30 text-center space-y-4 animate-in zoom-in-95 duration-300">
+                <div className="p-6 rounded-3xl bg-white border border-emerald-200 text-center space-y-4 animate-in zoom-in-95 duration-300 shadow-md">
                   <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto border border-emerald-500/30">
                     <Trophy className="w-8 h-8" />
                   </div>
