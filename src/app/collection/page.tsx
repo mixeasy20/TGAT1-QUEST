@@ -118,7 +118,7 @@ export default function CollectionPage() {
               soundEffects.playSwipe();
               exportVocabAsCSV();
             }}
-            className="btn-flourish flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-slate-100 hover:bg-slate-700 text-slate-700 border border-slate-200 text-xs font-semibold cursor-pointer transition-all shadow-sm"
+            className="btn-flourish flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-xs font-semibold cursor-pointer transition-all shadow-sm"
             title="ดาวน์โหลดคำศัพท์ทั้งหมดเป็นไฟล์ Excel / CSV"
           >
             <FileSpreadsheet className="w-4 h-4 text-emerald-400" />
@@ -130,7 +130,7 @@ export default function CollectionPage() {
               soundEffects.playVictory();
               exportAllDataAsJSON();
             }}
-            className="btn-flourish flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-slate-100 hover:bg-slate-700 text-slate-700 border border-slate-200 text-xs font-semibold cursor-pointer transition-all shadow-sm"
+            className="btn-flourish flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-xs font-semibold cursor-pointer transition-all shadow-sm"
             title="สำรองข้อมูลคลังคำศัพท์ สถิติ และข้อผิดพลาดทั้งหมดเป็นไฟล์ JSON"
           >
             <Download className="w-4 h-4 text-indigo-400" />
@@ -139,7 +139,7 @@ export default function CollectionPage() {
 
           <Link
             href="/vocab"
-            className="flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-slate-100 hover:bg-slate-700 text-slate-700 border border-slate-200 text-xs font-semibold"
+            className="flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-xs font-semibold"
           >
             <BookOpen className="w-4 h-4 text-indigo-400" />
             <span>ไปเพิ่มใน Vocabulary Arena</span>
@@ -361,7 +361,7 @@ export default function CollectionPage() {
             <div className="mt-5 flex items-center justify-center gap-3">
               <button
                 onClick={() => setDeleteConfirm(null)}
-                className="px-4 py-2 rounded-2xl bg-slate-100 hover:bg-slate-700 text-slate-600 text-xs font-semibold"
+                className="px-4 py-2 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-semibold"
               >
                 ยกเลิก
               </button>

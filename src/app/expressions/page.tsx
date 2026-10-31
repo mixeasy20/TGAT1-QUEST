@@ -448,7 +448,7 @@ export default function ExpressionsPage() {
                 <button
                   type="button"
                   onClick={() => setAddModalOpen(false)}
-                  className="px-4 py-2 rounded-2xl bg-slate-100 hover:bg-slate-700 text-slate-600 text-xs font-semibold"
+                  className="px-4 py-2 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-semibold"
                 >
                   ยกเลิก
                 </button>

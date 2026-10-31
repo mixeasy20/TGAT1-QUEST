@@ -599,7 +599,7 @@ export default function VocabPage() {
                     <button
                       onClick={handlePrev}
                       disabled={currentIndex === 0}
-                      className="btn-flourish flex-1 py-3 px-4 rounded-2xl bg-slate-100 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none text-slate-700 font-semibold text-xs flex items-center justify-center gap-1.5 border border-slate-200 transition-all cursor-pointer"
+                      className="btn-flourish flex-1 py-3 px-4 rounded-2xl bg-slate-100 hover:bg-slate-200 disabled:opacity-40 disabled:pointer-events-none text-slate-700 font-semibold text-xs flex items-center justify-center gap-1.5 border border-slate-200 transition-all cursor-pointer"
                     >
                       <ChevronLeft className="w-4 h-4" />
                       <span>เลื่อนซ้าย / ก่อนหน้า (←)</span>
@@ -616,7 +616,7 @@ export default function VocabPage() {
                     <button
                       onClick={handleNext}
                       disabled={currentIndex === filteredVocabs.length - 1}
-                      className="btn-flourish flex-1 py-3 px-4 rounded-2xl bg-slate-100 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none text-slate-700 font-semibold text-xs flex items-center justify-center gap-1.5 border border-slate-200 transition-all cursor-pointer"
+                      className="btn-flourish flex-1 py-3 px-4 rounded-2xl bg-slate-100 hover:bg-slate-200 disabled:opacity-40 disabled:pointer-events-none text-slate-700 font-semibold text-xs flex items-center justify-center gap-1.5 border border-slate-200 transition-all cursor-pointer"
                     >
                       <span>เลื่อนขวา / ถัดไป (→)</span>
                       <ChevronRight className="w-4 h-4" />
@@ -933,7 +933,7 @@ export default function VocabPage() {
                     setAddModalOpen(false);
                     setEditModalItem(null);
                   }}
-                  className="px-4 py-2 rounded-2xl bg-slate-100 hover:bg-slate-700 text-slate-600 text-xs font-semibold"
+                  className="px-4 py-2 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-semibold"
                 >
                   ยกเลิก
                 </button>
@@ -963,7 +963,7 @@ export default function VocabPage() {
             <div className="mt-5 flex items-center justify-center gap-3">
               <button
                 onClick={() => setDeleteConfirmId(null)}
-                className="px-4 py-2 rounded-2xl bg-slate-100 hover:bg-slate-700 text-slate-600 text-xs font-semibold"
+                className="px-4 py-2 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-semibold"
               >
                 ยกเลิก
               </button>

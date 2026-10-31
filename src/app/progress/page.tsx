@@ -233,7 +233,7 @@ export default function ProgressPage() {
                     <div
                       className={`h-full rounded-full transition-all duration-500 ${
                         data.total === 0
-                          ? 'bg-slate-700'
+                          ? 'bg-slate-300'
                           : pct >= 80
                           ? 'bg-emerald-400'
                           : pct >= 50
@@ -442,7 +442,7 @@ export default function ProgressPage() {
                   <div className="space-y-0.5">
                     <div className="font-bold text-slate-900 flex items-center gap-2">
                       <span>{sess.title}</span>
-                      <span className="text-[10px] px-2 py-0.5 rounded bg-slate-700 text-slate-600 uppercase">
+                      <span className="text-[10px] px-2 py-0.5 rounded bg-indigo-100 text-indigo-700 border border-indigo-200 font-bold uppercase">
                         {sess.mode}
                       </span>
                     </div>
