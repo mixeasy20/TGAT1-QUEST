@@ -15,6 +15,8 @@ import {
   AlertTriangle,
   FolderPlus,
   Layers,
+  Download,
+  FileSpreadsheet,
 } from 'lucide-react';
 import { useUser } from '@/context/UserContext';
 import { useAuth } from '@/context/AuthContext';
@@ -25,6 +27,8 @@ import {
   deleteVocab,
   deleteExpression,
 } from '@/lib/storage';
+import { exportAllDataAsJSON, exportVocabAsCSV } from '@/lib/dataExport';
+import { soundEffects } from '@/lib/soundEffects';
 import { VocabItem, ExpressionItem } from '@/types';
 import { speakEnglish } from '@/lib/audio';
 
@@ -107,7 +111,32 @@ export default function CollectionPage() {
         </div>
 
         {/* Action button */}
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          {/* Export Buttons */}
+          <button
+            onClick={() => {
+              soundEffects.playSwipe();
+              exportVocabAsCSV();
+            }}
+            className="btn-flourish flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold cursor-pointer transition-all shadow-sm"
+            title="ดาวน์โหลดคำศัพท์ทั้งหมดเป็นไฟล์ Excel / CSV"
+          >
+            <FileSpreadsheet className="w-4 h-4 text-emerald-400" />
+            <span>ส่งออก CSV (Excel)</span>
+          </button>
+
+          <button
+            onClick={() => {
+              soundEffects.playVictory();
+              exportAllDataAsJSON();
+            }}
+            className="btn-flourish flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold cursor-pointer transition-all shadow-sm"
+            title="สำรองข้อมูลคลังคำศัพท์ สถิติ และข้อผิดพลาดทั้งหมดเป็นไฟล์ JSON"
+          >
+            <Download className="w-4 h-4 text-indigo-400" />
+            <span>สำรองข้อมูล JSON</span>
+          </button>
+
           <Link
             href="/vocab"
             className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold"

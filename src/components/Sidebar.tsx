@@ -41,6 +41,12 @@ const NAV_ITEMS = [
     icon: MessageSquareText,
   },
   {
+    name: 'Mock Exam Simulator',
+    subtitle: 'จำลองสอบจริง 60 ข้อ',
+    href: '/mock-exam',
+    icon: Award,
+  },
+  {
     name: 'Expression Bank',
     subtitle: 'คลังสำนวนออกสอบ',
     href: '/expressions',

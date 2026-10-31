@@ -42,6 +42,7 @@ export function Header() {
     { name: 'หน้าหลัก', href: '/', icon: LayoutDashboard },
     { name: 'Vocabulary Arena', href: '/vocab', icon: BookOpen, badge: dueCount },
     { name: 'Conversation Quest', href: '/conversation', icon: MessageSquareText },
+    { name: 'Mock Exam Simulator', href: '/mock-exam', icon: Award },
     { name: 'Expression Bank', href: '/expressions', icon: Sparkles },
     { name: 'My Collection', href: '/collection', icon: BookmarkCheck },
     { name: 'วิเคราะห์ผล & จุดอ่อน', href: '/progress', icon: LineChart },
