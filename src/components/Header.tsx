@@ -1,76 +1,43 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import {
   Coins,
   Flame,
   Award,
-  Menu,
-  X,
   Target,
   CheckCircle2,
-  ChevronRight,
-  BookOpen,
-  MessageSquareText,
-  Sparkles,
-  BookmarkCheck,
-  LineChart,
-  LayoutDashboard,
-  Sword,
   Cloud,
-  Lock,
+  X,
 } from 'lucide-react';
 import { useUser } from '@/context/UserContext';
 import { useAuth } from '@/context/AuthContext';
 import { AuthModal } from '@/components/AuthModal';
 
 export function Header() {
-  const { profile, levelInfo, claimQuest, dueCount, isCloudSynced } = useUser();
+  const { profile, levelInfo, claimQuest, isCloudSynced } = useUser();
   const { user } = useAuth();
-  const isGuest = Boolean(user?.isAnonymous);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [questModalOpen, setQuestModalOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
-  const pathname = usePathname();
 
   const completedUnclaimedCount =
     profile?.dailyQuests.filter((q) => q.completed && !q.claimed).length || 0;
 
-  const mobileNavItems = [
-    { name: 'หน้าหลัก', href: '/', icon: LayoutDashboard },
-    { name: 'Vocabulary Arena', href: '/vocab', icon: BookOpen, badge: dueCount },
-    { name: 'Conversation Quest', href: '/conversation', icon: MessageSquareText },
-    { name: 'Mock Exam Simulator', href: '/mock-exam', icon: Award },
-    { name: 'Expression Bank', href: '/expressions', icon: Sparkles },
-    { name: 'My Collection', href: '/collection', icon: BookmarkCheck },
-    { name: 'วิเคราะห์ผล & จุดอ่อน', href: '/progress', icon: LineChart },
-  ];
-
   return (
     <>
-      <header className="sticky top-0 z-30 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 text-white px-4 lg:px-8 py-3 flex items-center justify-between">
-        {/* Left Side: Mobile Menu Button & Title */}
+      <header className="sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b border-slate-200/60 text-slate-800 px-4 lg:px-8 py-3 flex items-center justify-between">
+        {/* Left Side: Brand Logo for mobile & Subtitle for Desktop */}
         <div className="flex items-center gap-3">
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700"
-            aria-label="Toggle Navigation"
-          >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
-
           <div className="lg:hidden flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center bg-indigo-900/40 border border-indigo-500/30">
+            <div className="w-8 h-8 rounded-xl overflow-hidden flex items-center justify-center bg-indigo-50 border border-indigo-100 shadow-xs">
               <img src="/app-logo.jpg" alt="TGAT1 Logo" className="w-full h-full object-cover" />
             </div>
-            <span className="font-bold text-sm tracking-tight">TGAT1 Quest</span>
+            <span className="font-extrabold text-sm tracking-tight text-slate-800">TGAT1 Quest</span>
           </div>
 
           <div className="hidden lg:block">
-            <div className="text-xs text-slate-400">เป้าหมายคะแนน TGAT1: 80+</div>
-            <div className="text-sm font-semibold text-slate-200">
+            <div className="text-[11px] text-slate-400 font-medium">เป้าหมายคะแนน TGAT1: 80+</div>
+            <div className="text-sm font-bold text-slate-700">
               {profile?.rankTitle || 'กำลังโหลด...'}
             </div>
           </div>
@@ -78,22 +45,22 @@ export function Header() {
 
         {/* Right Side: Level, XP Bar, Coins, Daily Quests & Firebase Cloud Button */}
         {profile && levelInfo && (
-          <div className="flex items-center gap-2.5 sm:gap-4">
+          <div className="flex items-center gap-2 sm:gap-3">
             {/* Level & XP Mini Bar */}
-            <div className="flex items-center gap-2.5 bg-slate-800/90 px-3 py-1.5 rounded-xl border border-slate-700/80">
-              <div className="flex items-center justify-center w-7 h-7 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 text-white font-extrabold text-xs shadow-inner">
+            <div className="flex items-center gap-2 bg-slate-100/70 px-2.5 py-1.5 rounded-full border border-slate-200/50">
+              <div className="flex items-center justify-center w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 text-white font-extrabold text-[11px] shadow-xs">
                 {profile.level}
               </div>
               <div className="hidden sm:block">
-                <div className="flex items-center justify-between text-[11px] gap-2 mb-1">
-                  <span className="font-semibold text-slate-200">Level {profile.level}</span>
-                  <span className="text-slate-400">
+                <div className="flex items-center justify-between text-[10px] gap-2 mb-0.5">
+                  <span className="font-bold text-slate-700">Lv.{profile.level}</span>
+                  <span className="text-slate-400 font-medium">
                     {levelInfo.currentLevelXp}/{levelInfo.xpNeededForNext} XP
                   </span>
                 </div>
-                <div className="w-24 h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                <div className="w-20 h-1.5 bg-slate-200 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-indigo-500 to-emerald-400 rounded-full transition-all duration-500"
+                    className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full transition-all duration-500"
                     style={{ width: `${levelInfo.progressPercent}%` }}
                   />
                 </div>
@@ -101,26 +68,26 @@ export function Header() {
             </div>
 
             {/* Coins */}
-            <div className="flex items-center gap-1.5 bg-amber-500/10 border border-amber-500/20 text-amber-300 px-2.5 py-1.5 rounded-xl text-xs font-bold">
-              <Coins className="w-4 h-4 text-amber-400" />
+            <div className="flex items-center gap-1.5 bg-amber-50 border border-amber-200/60 text-amber-800 px-2.5 py-1.5 rounded-full text-xs font-bold">
+              <Coins className="w-3.5 h-3.5 text-amber-500" />
               <span>{profile.coins}</span>
             </div>
 
             {/* Streak */}
-            <div className="hidden md:flex items-center gap-1.5 bg-rose-500/10 border border-rose-500/20 text-rose-300 px-2.5 py-1.5 rounded-xl text-xs font-bold">
-              <Flame className="w-4 h-4 text-rose-400" />
+            <div className="hidden md:flex items-center gap-1.5 bg-rose-50 border border-rose-200/60 text-rose-700 px-2.5 py-1.5 rounded-full text-xs font-bold">
+              <Flame className="w-3.5 h-3.5 text-rose-500" />
               <span>{profile.streak} วัน</span>
             </div>
 
             {/* Daily Quests Trigger Button */}
             <button
               onClick={() => setQuestModalOpen(true)}
-              className="relative flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1.5 rounded-xl text-xs font-semibold shadow-md shadow-indigo-600/20 transition-transform active:scale-95"
+              className="relative flex items-center gap-1.5 bg-indigo-500 hover:bg-indigo-600 text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-sm shadow-indigo-500/20 transition-transform active:scale-95 cursor-pointer"
             >
-              <Target className="w-4 h-4" />
-              <span className="hidden sm:inline">Quests</span>
+              <Target className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">ภารกิจ</span>
               {completedUnclaimedCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-emerald-500 text-slate-950 rounded-full text-[10px] font-extrabold flex items-center justify-center animate-bounce">
+                <span className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500 text-white rounded-full text-[9px] font-extrabold flex items-center justify-center animate-bounce shadow-xs">
                   {completedUnclaimedCount}
                 </span>
               )}
@@ -129,10 +96,10 @@ export function Header() {
             {/* Firebase Cloud Sync Button */}
             <button
               onClick={() => setAuthModalOpen(true)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all active:scale-95 ${
+              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold border transition-all active:scale-95 cursor-pointer ${
                 user
-                  ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/25'
-                  : 'bg-slate-800 hover:bg-slate-700 border-slate-700 text-slate-300 hover:text-white'
+                  ? 'bg-emerald-50 border-emerald-200/80 text-emerald-700 hover:bg-emerald-100/70'
+                  : 'bg-slate-100 hover:bg-slate-200 border-slate-200 text-slate-600 hover:text-slate-800'
               }`}
               title={
                 user
@@ -140,14 +107,14 @@ export function Header() {
                   : 'เชื่อมต่อ Firebase Cloud'
               }
             >
-              <Cloud className={`w-4 h-4 ${isCloudSynced ? 'text-emerald-400' : 'text-amber-400'}`} />
+              <Cloud className={`w-3.5 h-3.5 ${isCloudSynced ? 'text-emerald-500' : 'text-amber-500'}`} />
               <span className="hidden sm:inline">
                 {user ? (user.displayName || 'Online') : 'Firebase'}
               </span>
               {user && (
                 <span
                   className={`w-2 h-2 rounded-full ${
-                    isCloudSynced ? 'bg-emerald-400' : 'bg-amber-400 animate-pulse'
+                    isCloudSynced ? 'bg-emerald-500' : 'bg-amber-500 animate-pulse'
                   }`}
                   title={isCloudSynced ? 'ซิงค์บนคลาวด์แล้ว' : 'กำลังซิงค์'}
                 />
@@ -157,111 +124,24 @@ export function Header() {
         )}
       </header>
 
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-slate-950/80 backdrop-blur-sm lg:hidden flex">
-          <div className="w-72 bg-slate-900 h-full p-4 flex flex-col justify-between border-r border-slate-800">
-            <div>
-              <div className="flex items-center justify-between pb-4 border-b border-slate-800">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center bg-indigo-900/40 border border-indigo-500/30">
-                    <img src="/app-logo.jpg" alt="TGAT1 Logo" className="w-full h-full object-cover" />
-                  </div>
-                  <span className="font-bold text-sm text-white">TGAT1 Quest</span>
-                </div>
-                <button
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="p-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-white"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              <div className="mt-4 space-y-1">
-                {mobileNavItems.map((item) => {
-                  const isActive = pathname === item.href;
-                  const isRestrictedForGuest = isGuest && item.href !== '/vocab';
-                  const Icon = item.icon;
-
-                  if (isRestrictedForGuest) {
-                    return (
-                      <div
-                        key={item.href}
-                        className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium text-slate-500 opacity-60 bg-slate-900/50 cursor-not-allowed select-none"
-                      >
-                        <div className="flex items-center gap-3">
-                          <Icon className="w-4 h-4 text-slate-600" />
-                          <span className="text-slate-500">{item.name}</span>
-                        </div>
-                        <Lock className="w-4 h-4 text-slate-600" />
-                      </div>
-                    );
-                  }
-
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-colors ${
-                        isActive
-                          ? 'bg-indigo-600 text-white'
-                          : 'text-slate-300 hover:bg-slate-800 hover:text-white'
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <Icon className="w-4 h-4" />
-                        <span>{item.name}</span>
-                      </div>
-                      {typeof item.badge === 'number' && item.badge > 0 && (
-                        <span className="px-2 py-0.5 text-xs rounded-full bg-amber-500 text-slate-950 font-bold">
-                          {item.badge}
-                        </span>
-                      )}
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="pt-4 border-t border-slate-800 space-y-2">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  setAuthModalOpen(true);
-                }}
-                className="w-full py-2 px-3 rounded-xl bg-slate-800 text-slate-300 font-semibold text-xs flex items-center justify-center gap-2"
-              >
-                <Cloud className="w-4 h-4 text-amber-400" />
-                <span>{user ? 'จัดการ Firebase Cloud' : 'เชื่อมต่อ Firebase'}</span>
-              </button>
-              <div className="text-xs text-slate-400 text-center">
-                Level {profile?.level} • {profile?.rankTitle}
-              </div>
-            </div>
-          </div>
-          <div className="flex-1" onClick={() => setMobileMenuOpen(false)} />
-        </div>
-      )}
-
       {/* Daily Quests Modal */}
       {questModalOpen && profile && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 text-white shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 z-50 bg-slate-900/30 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white border border-slate-200/80 rounded-3xl max-w-lg w-full p-6 text-slate-800 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
             <button
               onClick={() => setQuestModalOpen(false)}
-              className="absolute top-4 right-4 p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+              className="absolute top-4 right-4 p-1.5 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
 
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center border border-indigo-500/30">
+              <div className="w-10 h-10 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center border border-indigo-100">
                 <Target className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-base font-bold text-white">ภารกิจประจำวัน (Daily Quests)</h3>
-                <p className="text-xs text-slate-400">
+                <h3 className="text-base font-bold text-slate-900">ภารกิจประจำวัน (Daily Quests)</h3>
+                <p className="text-xs text-slate-500 font-medium">
                   ทำภารกิจเพื่อรับ XP และเหรียญ (รีเซ็ตทุกเที่ยงคืน)
                 </p>
               </div>
@@ -273,15 +153,15 @@ export function Header() {
                 return (
                   <div
                     key={quest.id}
-                    className="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/60 flex flex-col gap-2"
+                    className="p-3.5 rounded-2xl bg-slate-50/80 border border-slate-100 flex flex-col gap-2"
                   >
                     <div className="flex items-start justify-between gap-2">
                       <div>
-                        <div className="font-semibold text-xs text-slate-100 flex items-center gap-1.5">
-                          {quest.completed && <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />}
+                        <div className="font-semibold text-xs text-slate-800 flex items-center gap-1.5">
+                          {quest.completed && <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />}
                           <span>{quest.titleTh}</span>
                         </div>
-                        <div className="text-[11px] text-slate-400 mt-0.5">
+                        <div className="text-[11px] text-slate-500 mt-0.5">
                           {quest.descriptionTh}
                         </div>
                       </div>
@@ -289,18 +169,18 @@ export function Header() {
                       {/* Reward button or Status */}
                       <div>
                         {quest.claimed ? (
-                          <span className="px-2.5 py-1 text-[11px] font-semibold text-slate-400 bg-slate-700/60 rounded-lg">
+                          <span className="px-2.5 py-1 text-[11px] font-semibold text-slate-400 bg-slate-100 rounded-full">
                             รับแล้ว ✓
                           </span>
                         ) : quest.completed ? (
                           <button
                             onClick={() => claimQuest(quest.id)}
-                            className="px-3 py-1 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs rounded-lg shadow-md shadow-emerald-500/20 transition-all active:scale-95 animate-pulse"
+                            className="px-3 py-1 bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs rounded-full shadow-xs active:scale-95 transition-all animate-pulse cursor-pointer"
                           >
                             รับรางวัล (+{quest.rewardXp} XP)
                           </button>
                         ) : (
-                          <span className="text-xs font-medium text-slate-400">
+                          <span className="text-xs font-medium text-slate-500">
                             {quest.current}/{quest.target}
                           </span>
                         )}
@@ -308,21 +188,21 @@ export function Header() {
                     </div>
 
                     {/* Progress Bar */}
-                    <div className="w-full h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                    <div className="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
                       <div
                         className={`h-full rounded-full transition-all duration-300 ${
-                          quest.completed ? 'bg-emerald-400' : 'bg-indigo-500'
+                          quest.completed ? 'bg-emerald-400' : 'bg-indigo-400'
                         }`}
                         style={{ width: `${percent}%` }}
                       />
                     </div>
 
-                    <div className="flex items-center gap-3 text-[11px] text-slate-400">
-                      <span className="flex items-center gap-1 text-indigo-300">
-                        <Award className="w-3 h-3 text-indigo-400" /> +{quest.rewardXp} XP
+                    <div className="flex items-center gap-3 text-[11px] text-slate-500 font-medium">
+                      <span className="flex items-center gap-1 text-indigo-600">
+                        <Award className="w-3 h-3 text-indigo-500" /> +{quest.rewardXp} XP
                       </span>
-                      <span className="flex items-center gap-1 text-amber-300">
-                        <Coins className="w-3 h-3 text-amber-400" /> +{quest.rewardCoins} Coins
+                      <span className="flex items-center gap-1 text-amber-600">
+                        <Coins className="w-3 h-3 text-amber-500" /> +{quest.rewardCoins} Coins
                       </span>
                     </div>
                   </div>
@@ -330,10 +210,10 @@ export function Header() {
               })}
             </div>
 
-            <div className="mt-5 pt-3 border-t border-slate-800 flex justify-end">
+            <div className="mt-5 pt-3 border-t border-slate-100 flex justify-end">
               <button
                 onClick={() => setQuestModalOpen(false)}
-                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold rounded-xl"
+                className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-full cursor-pointer"
               >
                 ปิดหน้าต่าง
               </button>

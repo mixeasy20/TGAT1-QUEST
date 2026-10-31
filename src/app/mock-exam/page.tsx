@@ -165,7 +165,7 @@ export default function MockExamPage() {
       {/* Header Banner */}
       {!examStarted ? (
         <div className="p-8 rounded-3xl bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-900 border border-indigo-500/30 text-center max-w-2xl mx-auto shadow-2xl space-y-6">
-          <div className="w-16 h-16 rounded-2xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center mx-auto border border-indigo-500/30 shadow-lg">
+          <div className="w-16 h-16 rounded-3xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center mx-auto border border-indigo-500/30 shadow-lg">
             <Award className="w-8 h-8" />
           </div>
 
@@ -173,22 +173,22 @@ export default function MockExamPage() {
             <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
               Official Simulation Mode
             </span>
-            <h1 className="text-3xl font-black text-white tracking-tight mt-3">
+            <h1 className="text-3xl font-black text-slate-800 tracking-tight mt-3">
               TGAT1 Mock Exam Simulator
             </h1>
-            <p className="text-sm text-slate-300 mt-2 leading-relaxed">
+            <p className="text-sm text-slate-600 mt-2 leading-relaxed">
               จำลองสนามสอบจริง 60 ข้อ จับเวลา 60 นาที ครอบคลุมทั้งบทสนทนาสั้น บทสนทนายาว และคลังคำศัพท์ออกสอบบ่อยตามโครงสร้างข้อสอบ ทปอ.
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-3 text-left p-4 rounded-2xl bg-slate-900/90 border border-slate-800 text-xs">
-            <div className="border-r border-slate-800 pr-2">
+          <div className="grid grid-cols-3 gap-3 text-left p-4 rounded-3xl bg-white border border-slate-200/70 text-xs">
+            <div className="border-r border-slate-200/70 pr-2">
               <div className="text-slate-400">จำนวนข้อ</div>
-              <div className="text-lg font-bold text-white mt-0.5">60 ข้อ</div>
+              <div className="text-lg font-bold text-slate-800 mt-0.5">60 ข้อ</div>
             </div>
-            <div className="border-r border-slate-800 pr-2">
+            <div className="border-r border-slate-200/70 pr-2">
               <div className="text-slate-400">เวลาทดสอบ</div>
-              <div className="text-lg font-bold text-white mt-0.5">60 นาที</div>
+              <div className="text-lg font-bold text-slate-800 mt-0.5">60 นาที</div>
             </div>
             <div>
               <div className="text-slate-400">เป้าหมายคะแนน</div>
@@ -198,7 +198,7 @@ export default function MockExamPage() {
 
           <button
             onClick={handleStartExam}
-            className="btn-flourish shine-sweep w-full py-4 rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-black text-base shadow-xl shadow-indigo-600/30 transition-all active:scale-[0.98] cursor-pointer"
+            className="btn-flourish shine-sweep w-full py-4 rounded-3xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-slate-800 font-black text-base shadow-xl shadow-indigo-600/30 transition-all active:scale-[0.98] cursor-pointer"
           >
             เริ่มทำข้อสอบเสมือนจริง (Start Simulation)
           </button>
@@ -207,12 +207,12 @@ export default function MockExamPage() {
         /* ACTIVE EXAM INTERFACE */
         <div className="space-y-6">
           {/* Top Control Bar */}
-          <div className="sticky top-16 z-20 p-4 rounded-2xl bg-slate-900/95 backdrop-blur-md border border-slate-800 flex items-center justify-between gap-4 shadow-xl">
+          <div className="sticky top-16 z-20 p-4 rounded-3xl bg-white/95 backdrop-blur-md border border-slate-200/70 flex items-center justify-between gap-4 shadow-xl">
             <div className="flex items-center gap-3">
-              <span className="text-sm font-bold text-white">
+              <span className="text-sm font-bold text-slate-800">
                 ข้อ {currentIdx + 1} / {questions.length}
               </span>
-              <span className="hidden sm:inline-block text-xs px-2.5 py-0.5 rounded-full bg-slate-800 text-indigo-300 border border-slate-700">
+              <span className="hidden sm:inline-block text-xs px-2.5 py-0.5 rounded-full bg-slate-100 text-indigo-300 border border-slate-200">
                 {currentQ?.part}
               </span>
             </div>
@@ -220,10 +220,10 @@ export default function MockExamPage() {
             <div className="flex items-center gap-3">
               {/* Countdown Timer */}
               <div
-                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl font-mono font-bold text-sm border ${
+                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-2xl font-mono font-bold text-sm border ${
                   secondsRemaining < 300
                     ? 'bg-rose-500/20 text-rose-300 border-rose-500/40 animate-pulse'
-                    : 'bg-slate-800 text-slate-100 border-slate-700'
+                    : 'bg-slate-100 text-slate-100 border-slate-200'
                 }`}
               >
                 <Clock className="w-4 h-4 text-indigo-400" />
@@ -233,14 +233,14 @@ export default function MockExamPage() {
               {!isSubmitted ? (
                 <button
                   onClick={() => setConfirmSubmitOpen(true)}
-                  className="px-4 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md transition-all active:scale-95 cursor-pointer"
+                  className="px-4 py-1.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-slate-800 font-bold text-xs shadow-md transition-all active:scale-95 cursor-pointer"
                 >
                   ส่งข้อสอบ ({answeredCount}/60)
                 </button>
               ) : (
                 <button
                   onClick={handleStartExam}
-                  className="px-4 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-md transition-all active:scale-95 cursor-pointer"
+                  className="px-4 py-1.5 rounded-2xl bg-indigo-500 hover:bg-indigo-600 text-white font-bold text-xs flex items-center gap-1.5 shadow-md transition-all active:scale-95 cursor-pointer"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   <span>เริ่มชุดใหม่</span>
@@ -255,10 +255,10 @@ export default function MockExamPage() {
               <div className="text-sm text-emerald-300 font-bold uppercase tracking-wider">
                 ผลการทดสอบเสมือนจริง (Exam Completed)
               </div>
-              <div className="text-4xl font-black text-white">
+              <div className="text-4xl font-black text-slate-800">
                 {score} <span className="text-lg text-slate-400 font-normal">/ 60 คะแนน</span>
               </div>
-              <p className="text-xs text-slate-300">
+              <p className="text-xs text-slate-600">
                 คิดเป็นคะแนนเทียบเท่า:{' '}
                 <strong className="text-indigo-300">{Math.round((score / 60) * 100)}%</strong> • บันทึกข้อผิดพลาดลงใน Mistake Notebook แล้ว
               </p>
@@ -266,18 +266,18 @@ export default function MockExamPage() {
           )}
 
           {/* Question Grid Navigator */}
-          <div className="p-3 rounded-2xl bg-slate-900 border border-slate-800 flex items-center gap-1.5 overflow-x-auto">
+          <div className="p-3 rounded-3xl bg-white border border-slate-200/70 flex items-center gap-1.5 overflow-x-auto">
             {questions.map((q, idx) => {
               const isAnswered = userAnswers[q.questionNumber] !== undefined;
               const isCurrent = idx === currentIdx;
               const isCorrect = isSubmitted && userAnswers[q.questionNumber] === q.correctOption;
               const isWrong = isSubmitted && userAnswers[q.questionNumber] !== q.correctOption;
 
-              let btnColor = 'bg-slate-800 text-slate-400 hover:bg-slate-700';
+              let btnColor = 'bg-slate-100 text-slate-400 hover:bg-slate-700';
               if (isSubmitted) {
-                btnColor = isCorrect ? 'bg-emerald-600 text-white' : 'bg-rose-600 text-white';
+                btnColor = isCorrect ? 'bg-emerald-500 text-white' : 'bg-rose-600 text-slate-800';
               } else if (isCurrent) {
-                btnColor = 'bg-indigo-600 text-white ring-2 ring-indigo-400';
+                btnColor = 'bg-indigo-500 text-white ring-2 ring-indigo-400';
               } else if (isAnswered) {
                 btnColor = 'bg-indigo-950 text-indigo-300 border border-indigo-500/40';
               }
@@ -296,10 +296,10 @@ export default function MockExamPage() {
 
           {/* Question Box */}
           {currentQ && (
-            <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-5 shadow-xl">
+            <div className="p-6 rounded-3xl bg-white border border-slate-200/70 space-y-5 shadow-xl">
               {/* Context Situation */}
               {currentQ.contextSituation && (
-                <div className="p-3 rounded-xl bg-slate-800/80 border border-slate-700 text-xs text-slate-300">
+                <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200 text-xs text-slate-600">
                   <span className="font-bold text-indigo-400">บริบทสถานการณ์: </span>
                   {currentQ.contextSituation}
                 </div>
@@ -307,7 +307,7 @@ export default function MockExamPage() {
 
               {/* Dialogue Script Snippet */}
               {currentQ.dialogueSnippet && currentQ.dialogueSnippet.length > 0 && (
-                <div className="space-y-2 p-4 rounded-2xl bg-slate-800/40 border border-slate-700/60 text-xs">
+                <div className="space-y-2 p-4 rounded-3xl bg-slate-50 border border-slate-100 text-xs">
                   {currentQ.dialogueSnippet.map((line, i) => (
                     <div key={i} className="flex items-start gap-2">
                       <span className="font-bold text-indigo-300 shrink-0">{line.speaker}:</span>
@@ -319,12 +319,12 @@ export default function MockExamPage() {
 
               {/* Question Text */}
               <div className="flex items-start justify-between gap-3">
-                <h3 className="text-base font-bold text-white leading-relaxed">
+                <h3 className="text-base font-bold text-slate-800 leading-relaxed">
                   ข้อ {currentQ.questionNumber}. {currentQ.questionText}
                 </h3>
                 <button
                   onClick={() => speakEnglish(currentQ.questionText)}
-                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white shrink-0"
+                  className="p-1.5 rounded-lg bg-slate-100 hover:bg-slate-700 text-slate-400 hover:text-slate-800 shrink-0"
                   title="ฟังคำถาม"
                 >
                   <Volume2 className="w-4 h-4" />
@@ -339,7 +339,7 @@ export default function MockExamPage() {
                   const isAnswerWrong = isSubmitted && isSelected && currentQ.correctOption !== opt;
 
                   let optClass =
-                    'bg-slate-800/80 hover:bg-slate-800 border-slate-700/80 text-slate-200';
+                    'bg-slate-50 hover:bg-slate-100 border-slate-200/80 text-slate-700';
                   if (isSubmitted) {
                     if (isAnswerCorrect) {
                       optClass = 'bg-emerald-500/20 border-emerald-500 text-emerald-200';
@@ -347,7 +347,7 @@ export default function MockExamPage() {
                       optClass = 'bg-rose-500/20 border-rose-500 text-rose-200';
                     }
                   } else if (isSelected) {
-                    optClass = 'bg-indigo-600/30 border-indigo-500 text-white shadow-md';
+                    optClass = 'bg-indigo-500/30 border-indigo-500 text-slate-800 shadow-md';
                   }
 
                   return (
@@ -355,10 +355,10 @@ export default function MockExamPage() {
                       key={opt}
                       onClick={() => handleSelectOption(currentQ.questionNumber, opt)}
                       disabled={isSubmitted}
-                      className={`w-full p-4 rounded-2xl border text-left transition-all flex items-center justify-between cursor-pointer ${optClass}`}
+                      className={`w-full p-4 rounded-3xl border text-left transition-all flex items-center justify-between cursor-pointer ${optClass}`}
                     >
                       <div className="flex items-center gap-3">
-                        <span className="w-7 h-7 rounded-lg bg-slate-800 border border-slate-700 text-indigo-300 font-mono font-bold flex items-center justify-center text-xs shrink-0">
+                        <span className="w-7 h-7 rounded-lg bg-slate-100 border border-slate-200 text-indigo-300 font-mono font-bold flex items-center justify-center text-xs shrink-0">
                           {opt}
                         </span>
                         <span className="text-sm">{currentQ.options[opt]}</span>
@@ -373,18 +373,18 @@ export default function MockExamPage() {
 
               {/* Explanation if submitted */}
               {isSubmitted && (
-                <div className="p-4 rounded-2xl bg-indigo-950/40 border border-indigo-500/30 text-xs space-y-1.5 animate-in fade-in">
+                <div className="p-4 rounded-3xl bg-indigo-950/40 border border-indigo-500/30 text-xs space-y-1.5 animate-in fade-in">
                   <div className="font-bold text-emerald-400">คำเฉลยและอธิบาย:</div>
-                  <div className="text-slate-200 leading-relaxed">{currentQ.explanation}</div>
+                  <div className="text-slate-700 leading-relaxed">{currentQ.explanation}</div>
                 </div>
               )}
 
               {/* Prev / Next controls */}
-              <div className="flex items-center justify-between pt-2 border-t border-slate-800">
+              <div className="flex items-center justify-between pt-2 border-t border-slate-200/70">
                 <button
                   onClick={() => setCurrentIdx((p) => Math.max(0, p - 1))}
                   disabled={currentIdx === 0}
-                  className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-40 text-xs font-semibold text-slate-300 flex items-center gap-1.5 cursor-pointer"
+                  className="px-4 py-2 rounded-2xl bg-slate-100 hover:bg-slate-700 disabled:opacity-40 text-xs font-semibold text-slate-600 flex items-center gap-1.5 cursor-pointer"
                 >
                   <ChevronLeft className="w-4 h-4" />
                   <span>ข้อก่อนหน้า</span>
@@ -393,7 +393,7 @@ export default function MockExamPage() {
                 <button
                   onClick={() => setCurrentIdx((p) => Math.min(questions.length - 1, p + 1))}
                   disabled={currentIdx === questions.length - 1}
-                  className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-40 text-xs font-semibold text-slate-300 flex items-center gap-1.5 cursor-pointer"
+                  className="px-4 py-2 rounded-2xl bg-slate-100 hover:bg-slate-700 disabled:opacity-40 text-xs font-semibold text-slate-600 flex items-center gap-1.5 cursor-pointer"
                 >
                   <span>ข้อถัดไป</span>
                   <ChevronRight className="w-4 h-4" />
@@ -404,27 +404,27 @@ export default function MockExamPage() {
 
           {/* Confirm Submit Modal */}
           {confirmSubmitOpen && (
-            <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-              <div className="max-w-md w-full bg-slate-900 border border-slate-800 rounded-3xl p-6 text-center space-y-4 shadow-2xl">
+            <div className="fixed inset-0 z-50 bg-white/30 backdrop-blur-sm flex items-center justify-center p-4">
+              <div className="max-w-md w-full bg-white border border-slate-200/70 rounded-3xl p-6 text-center space-y-4 shadow-2xl">
                 <div className="w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center mx-auto">
                   <AlertCircle className="w-6 h-6" />
                 </div>
-                <h3 className="text-lg font-bold text-white">ยืนยันการส่งกระดาษคำตอบ?</h3>
-                <p className="text-xs text-slate-300 leading-relaxed">
+                <h3 className="text-lg font-bold text-slate-800">ยืนยันการส่งกระดาษคำตอบ?</h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
                   คุณตอบไปแล้ว <strong className="text-indigo-400">{answeredCount}</strong> จากทั้งหมด{' '}
-                  <strong className="text-white">60 ข้อ</strong>{' '}
+                  <strong className="text-slate-800">60 ข้อ</strong>{' '}
                   {answeredCount < 60 && `(ยังมีข้อที่ยังไม่ได้ตอบอีก ${60 - answeredCount} ข้อ)`}
                 </p>
                 <div className="flex items-center gap-2 pt-2">
                   <button
                     onClick={() => setConfirmSubmitOpen(false)}
-                    className="flex-1 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold"
+                    className="flex-1 py-2.5 rounded-2xl bg-slate-100 hover:bg-slate-700 text-slate-600 text-xs font-semibold"
                   >
                     กลับไปทำต่อ
                   </button>
                   <button
                     onClick={handleSubmitExam}
-                    className="flex-1 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-md shadow-emerald-600/30"
+                    className="flex-1 py-2.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-slate-800 text-xs font-bold shadow-md shadow-emerald-600/30"
                   >
                     ยืนยันส่งข้อสอบ
                   </button>

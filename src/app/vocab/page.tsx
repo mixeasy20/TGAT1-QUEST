@@ -315,7 +315,7 @@ export default function VocabPage() {
             <BookOpen className="w-4 h-4" />
             <span>Vocabulary Arena & Flashcards</span>
           </div>
-          <h1 className="text-2xl font-black text-white tracking-tight mt-0.5">
+          <h1 className="text-2xl font-black text-slate-800 tracking-tight mt-0.5">
             คลังคำศัพท์ & บัตรคำช่วยจำ (SRS)
           </h1>
           <p className="text-xs text-slate-400 mt-1">
@@ -328,7 +328,7 @@ export default function VocabPage() {
           {!isGuest && (
             <button
               onClick={() => setAddModalOpen(true)}
-              className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md shadow-indigo-600/20 transition-transform active:scale-95"
+              className="flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-semibold shadow-md shadow-indigo-600/20 transition-transform active:scale-95"
             >
               <Plus className="w-4 h-4" />
               <span>เพิ่มคำศัพท์ใหม่</span>
@@ -336,13 +336,13 @@ export default function VocabPage() {
           )}
 
           {/* View Mode Toggle */}
-          <div className="p-1 rounded-xl bg-slate-900 border border-slate-800 flex items-center">
+          <div className="p-1 rounded-2xl bg-white border border-slate-200/70 flex items-center">
             <button
               onClick={() => setViewMode('flashcard')}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 viewMode === 'flashcard'
-                  ? 'bg-indigo-600 text-white shadow'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-indigo-500 text-white shadow'
+                  : 'text-slate-400 hover:text-slate-700'
               }`}
             >
               โหมด Flashcards
@@ -351,8 +351,8 @@ export default function VocabPage() {
               onClick={() => setViewMode('list')}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                 viewMode === 'list'
-                  ? 'bg-indigo-600 text-white shadow'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-indigo-500 text-white shadow'
+                  : 'text-slate-400 hover:text-slate-700'
               }`}
             >
               รายชื่อคำศัพท์ ({vocabList.length})
@@ -362,7 +362,7 @@ export default function VocabPage() {
       </div>
 
       {/* Filter & Search Bar */}
-      <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex flex-wrap items-center gap-3">
+      <div className="p-4 rounded-3xl bg-white border border-slate-200/70 flex flex-wrap items-center gap-3">
         {/* Search Input */}
         <div className="relative flex-1 min-w-[200px]">
           <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -371,7 +371,7 @@ export default function VocabPage() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="ค้นหาคำศัพท์ หรือความหมายภาษาไทย..."
-            className="w-full pl-10 pr-4 py-2 bg-slate-800/80 border border-slate-700 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500"
+            className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-2xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-500"
           />
         </div>
 
@@ -379,7 +379,7 @@ export default function VocabPage() {
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
-          className="bg-slate-800/80 border border-slate-700 text-slate-200 text-xs rounded-xl px-3 py-2 focus:outline-none focus:border-indigo-500"
+          className="bg-slate-50 border border-slate-200 text-slate-700 text-xs rounded-2xl px-3 py-2 focus:outline-none focus:border-indigo-500"
         >
           <option value="all">ทุกหมวดหมู่ (All Categories)</option>
           <option value="Academic">Academic (วิชาการ)</option>
@@ -394,7 +394,7 @@ export default function VocabPage() {
         <select
           value={selectedDifficulty}
           onChange={(e) => setSelectedDifficulty(e.target.value)}
-          className="bg-slate-800/80 border border-slate-700 text-slate-200 text-xs rounded-xl px-3 py-2 focus:outline-none focus:border-indigo-500"
+          className="bg-slate-50 border border-slate-200 text-slate-700 text-xs rounded-2xl px-3 py-2 focus:outline-none focus:border-indigo-500"
         >
           <option value="all">ทุกระดับ (All CEFR)</option>
           <option value="A2">A2 (พื้นฐาน)</option>
@@ -405,10 +405,10 @@ export default function VocabPage() {
         {/* Filter Due Only Toggle */}
         <button
           onClick={() => setFilterDueOnly(!filterDueOnly)}
-          className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold border transition-all ${
+          className={`flex items-center gap-1.5 px-3 py-2 rounded-2xl text-xs font-semibold border transition-all ${
             filterDueOnly
               ? 'bg-amber-500/20 text-amber-300 border-amber-500/40 shadow-sm'
-              : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-white'
+              : 'bg-slate-100 text-slate-400 border-slate-200 hover:text-slate-800'
           }`}
         >
           <Sparkles className="w-3.5 h-3.5" />
@@ -424,8 +424,8 @@ export default function VocabPage() {
               {/* Progress counter */}
               <div className="w-full flex items-center justify-between text-xs text-slate-400 mb-3 px-1">
                 <span>
-                  การ์ดที่ <strong className="text-white">{currentIndex + 1}</strong> จากทั้งหมด{' '}
-                  <strong className="text-white">{filteredVocabs.length}</strong>
+                  การ์ดที่ <strong className="text-slate-800">{currentIndex + 1}</strong> จากทั้งหมด{' '}
+                  <strong className="text-slate-800">{filteredVocabs.length}</strong>
                 </span>
                 <span className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-400" />
@@ -453,14 +453,14 @@ export default function VocabPage() {
                   }`}
                 >
                   {/* FRONT SIDE (English) */}
-                  <div className="absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-950/70 border-2 border-slate-800 group-hover:border-indigo-500/50 p-7 flex flex-col justify-between backface-hidden">
+                  <div className="absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-br from-indigo-50/70 via-white to-purple-50/30 border-2 border-slate-200/70 group-hover:border-indigo-500/50 p-7 flex flex-col justify-between backface-hidden">
                     <div className="flex flex-col gap-2">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <span className="px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
                             {currentCard.category}
                           </span>
-                          <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-400 border border-slate-700">
+                          <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-400 border border-slate-200">
                             {currentCard.difficulty}
                           </span>
                         </div>
@@ -469,7 +469,7 @@ export default function VocabPage() {
                             e.stopPropagation();
                             speakEnglish(currentCard.word);
                           }}
-                          className="btn-flourish p-2.5 rounded-xl bg-slate-800 hover:bg-indigo-600 text-indigo-400 hover:text-white transition-colors shadow"
+                          className="btn-flourish p-2.5 rounded-2xl bg-slate-100 hover:bg-indigo-600 text-indigo-400 hover:text-slate-800 transition-colors shadow"
                           title="ฟังการออกเสียง"
                         >
                           <Volume2 className="w-5 h-5" />
@@ -486,18 +486,18 @@ export default function VocabPage() {
                     </div>
 
                     <div className="text-center my-auto py-2">
-                      <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight drop-shadow-md">
+                      <h2 className="text-4xl md:text-5xl font-black text-slate-800 tracking-tight drop-shadow-md">
                         {currentCard.word}
                       </h2>
                       <p className="text-sm text-slate-400 font-mono mt-2 tracking-wide">
                         {currentCard.phonetic}
                       </p>
-                      <span className="inline-block mt-3 px-3.5 py-1 rounded-full text-xs font-semibold bg-slate-800/90 text-indigo-300 border border-slate-700/60 italic">
+                      <span className="inline-block mt-3 px-3.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-indigo-300 border border-slate-100 italic">
                         {currentCard.partOfSpeech}
                       </span>
                     </div>
 
-                    <div className="flex items-center justify-between text-[11px] text-slate-400 border-t border-slate-800/80 pt-3">
+                    <div className="flex items-center justify-between text-[11px] text-slate-400 border-t border-slate-100 pt-3">
                       <span className="flex items-center gap-1.5">
                         <Sparkles className="w-3.5 h-3.5 text-indigo-400 animate-pulse" />
                         <span>กด Spacebar หรือคลิกการ์ดเพื่อดูความหมาย</span>
@@ -507,7 +507,7 @@ export default function VocabPage() {
                   </div>
 
                   {/* BACK SIDE (Thai Meaning & Details) */}
-                  <div className="absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-slate-950 border-2 border-emerald-500/40 p-7 flex flex-col justify-between backface-hidden rotate-y-180">
+                  <div className="absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-br from-emerald-50/70 via-white to-teal-50/30 border border-emerald-200 shadow-md shadow-emerald-100/30 p-7 flex flex-col justify-between backface-hidden rotate-y-180">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <span className="font-extrabold text-sm text-indigo-400">
@@ -534,7 +534,7 @@ export default function VocabPage() {
                         </div>
                       </div>
 
-                      <div className="p-3 rounded-2xl bg-slate-800/70 border border-slate-700/60 text-xs">
+                      <div className="p-3 rounded-3xl bg-slate-50 border border-slate-100 text-xs">
                         <div className="text-slate-100 font-medium italic">
                           &quot;{currentCard.exampleEn}&quot;
                         </div>
@@ -544,7 +544,7 @@ export default function VocabPage() {
                       </div>
 
                       {currentCard.mnemonic && (
-                        <div className="flex items-start gap-2 p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-300">
+                        <div className="flex items-start gap-2 p-2.5 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-300">
                           <Lightbulb className="w-4 h-4 shrink-0 mt-0.5 text-amber-400" />
                           <div>
                             <span className="font-bold">เทคนิคการจำ: </span>
@@ -554,7 +554,7 @@ export default function VocabPage() {
                       )}
                     </div>
 
-                    <div className="text-center text-[11px] text-slate-400 border-t border-slate-800 pt-2 flex items-center justify-center gap-1.5">
+                    <div className="text-center text-[11px] text-slate-400 border-t border-slate-200/70 pt-2 flex items-center justify-center gap-1.5">
                       <span>เลือกระดับความจำด้านล่างเพื่อบันทึกลงระบบ SRS</span>
                     </div>
                   </div>
@@ -568,7 +568,7 @@ export default function VocabPage() {
                   <div className="grid grid-cols-3 gap-3 animate-in fade-in duration-200">
                     <button
                       onClick={() => handleRating(1)}
-                      className="btn-flourish flex flex-col items-center justify-center py-3 px-2 rounded-2xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-300 transition-all hover:scale-102 active:scale-98 shadow-sm"
+                      className="btn-flourish flex flex-col items-center justify-center py-3 px-2 rounded-3xl bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/30 text-rose-300 transition-all hover:scale-102 active:scale-98 shadow-sm"
                     >
                       <span className="text-xs font-bold">จำไม่ได้ (Hard)</span>
                       <span className="text-[10px] text-rose-400 mt-0.5">ทบทวนพรุ่งนี้ (+5 XP)</span>
@@ -577,7 +577,7 @@ export default function VocabPage() {
 
                     <button
                       onClick={() => handleRating(3)}
-                      className="btn-flourish flex flex-col items-center justify-center py-3 px-2 rounded-2xl bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/30 text-indigo-300 transition-all hover:scale-102 active:scale-98 shadow-sm"
+                      className="btn-flourish flex flex-col items-center justify-center py-3 px-2 rounded-3xl bg-indigo-500/10 hover:bg-indigo-600/20 border border-indigo-500/30 text-indigo-300 transition-all hover:scale-102 active:scale-98 shadow-sm"
                     >
                       <span className="text-xs font-bold">จำได้ (Good)</span>
                       <span className="text-[10px] text-indigo-400 mt-0.5">เว้นระยะตามรอบ (+15 XP)</span>
@@ -586,7 +586,7 @@ export default function VocabPage() {
 
                     <button
                       onClick={() => handleRating(5)}
-                      className="btn-flourish flex flex-col items-center justify-center py-3 px-2 rounded-2xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 transition-all hover:scale-102 active:scale-98 shadow-sm"
+                      className="btn-flourish flex flex-col items-center justify-center py-3 px-2 rounded-3xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 transition-all hover:scale-102 active:scale-98 shadow-sm"
                     >
                       <span className="text-xs font-bold">จำได้แม่น (Easy)</span>
                       <span className="text-[10px] text-emerald-400 mt-0.5">เว้นระยะยาวขึ้น (+25 XP)</span>
@@ -599,7 +599,7 @@ export default function VocabPage() {
                     <button
                       onClick={handlePrev}
                       disabled={currentIndex === 0}
-                      className="btn-flourish flex-1 py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none text-slate-200 font-semibold text-xs flex items-center justify-center gap-1.5 border border-slate-700 transition-all cursor-pointer"
+                      className="btn-flourish flex-1 py-3 px-4 rounded-2xl bg-slate-100 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none text-slate-700 font-semibold text-xs flex items-center justify-center gap-1.5 border border-slate-200 transition-all cursor-pointer"
                     >
                       <ChevronLeft className="w-4 h-4" />
                       <span>เลื่อนซ้าย / ก่อนหน้า (←)</span>
@@ -607,7 +607,7 @@ export default function VocabPage() {
 
                     <button
                       onClick={handleFlip}
-                      className="btn-flourish shine-sweep flex-1 py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-indigo-600/20 transition-all cursor-pointer"
+                      className="btn-flourish shine-sweep flex-1 py-3 px-4 rounded-2xl bg-indigo-500 hover:bg-indigo-600 text-white font-semibold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-indigo-600/20 transition-all cursor-pointer"
                     >
                       <RotateCw className="w-4 h-4" />
                       <span>พลิกการ์ด (Space)</span>
@@ -616,7 +616,7 @@ export default function VocabPage() {
                     <button
                       onClick={handleNext}
                       disabled={currentIndex === filteredVocabs.length - 1}
-                      className="btn-flourish flex-1 py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none text-slate-200 font-semibold text-xs flex items-center justify-center gap-1.5 border border-slate-700 transition-all cursor-pointer"
+                      className="btn-flourish flex-1 py-3 px-4 rounded-2xl bg-slate-100 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none text-slate-700 font-semibold text-xs flex items-center justify-center gap-1.5 border border-slate-200 transition-all cursor-pointer"
                     >
                       <span>เลื่อนขวา / ถัดไป (→)</span>
                       <ChevronRight className="w-4 h-4" />
@@ -627,10 +627,10 @@ export default function VocabPage() {
             </div>
           ) : (
             <div className="text-center py-16 px-4 max-w-md">
-              <div className="w-16 h-16 rounded-2xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center mx-auto mb-4 border border-indigo-500/20">
+              <div className="w-16 h-16 rounded-3xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center mx-auto mb-4 border border-indigo-500/20">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
-              <h3 className="text-lg font-bold text-white">ไม่พบคำศัพท์ตามเงื่อนไข</h3>
+              <h3 className="text-lg font-bold text-slate-800">ไม่พบคำศัพท์ตามเงื่อนไข</h3>
               <p className="text-xs text-slate-400 mt-2">
                 คุณอาจทบทวนคำศัพท์ที่ถึงกำหนดหมดแล้ว หรือไม่มีคำศัพท์ที่ตรงกับการค้นหา
               </p>
@@ -641,7 +641,7 @@ export default function VocabPage() {
                   setSelectedDifficulty('all');
                   setFilterDueOnly(false);
                 }}
-                className="mt-4 px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs font-semibold hover:bg-indigo-500 transition-colors"
+                className="mt-4 px-4 py-2 rounded-2xl bg-indigo-500 text-white text-xs font-semibold hover:bg-indigo-600 transition-colors"
               >
                 ล้างตัวกรองทั้งหมด
               </button>
@@ -665,16 +665,16 @@ export default function VocabPage() {
               return (
                 <div
                   key={vocab.id}
-                  className="p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 card-hover-lift transition-all flex flex-col justify-between"
+                  className="p-5 rounded-3xl bg-white border border-slate-200/70 hover:border-slate-200 card-hover-lift transition-all flex flex-col justify-between"
                 >
                   <div>
                     {/* Top Row: Category & Badges */}
                     <div className="flex items-center justify-between gap-2 mb-2">
                       <div className="flex items-center gap-1.5">
-                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-800 text-indigo-400 border border-slate-700">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-indigo-400 border border-slate-200">
                           {vocab.category}
                         </span>
-                        <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-400 border border-slate-700">
+                        <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-400 border border-slate-200">
                           {vocab.difficulty}
                         </span>
                         {vocab.isCustom && (
@@ -687,7 +687,7 @@ export default function VocabPage() {
                       <div className="flex items-center gap-1">
                         <button
                           onClick={() => speakEnglish(vocab.word)}
-                          className="btn-flourish p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+                          className="btn-flourish p-1.5 rounded-lg text-slate-400 hover:text-slate-800 hover:bg-slate-100"
                           title="ฟังเสียงอ่าน"
                         >
                           <Volume2 className="w-4 h-4" />
@@ -696,14 +696,14 @@ export default function VocabPage() {
                           <>
                             <button
                               onClick={() => openEditModal(vocab)}
-                              className="btn-flourish p-1.5 rounded-lg text-slate-400 hover:text-indigo-400 hover:bg-slate-800"
+                              className="btn-flourish p-1.5 rounded-lg text-slate-400 hover:text-indigo-400 hover:bg-slate-100"
                               title="แก้ไขคำศัพท์"
                             >
                               <Edit2 className="w-4 h-4" />
                             </button>
                             <button
                               onClick={() => setDeleteConfirmId(vocab.id)}
-                              className="btn-flourish p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-slate-800"
+                              className="btn-flourish p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-slate-100"
                               title="ลบคำศัพท์"
                             >
                               <Trash2 className="w-4 h-4" />
@@ -715,7 +715,7 @@ export default function VocabPage() {
 
                     {/* Word & Meaning */}
                     <div className="flex items-baseline gap-2">
-                      <h3 className="text-xl font-bold text-white tracking-tight">{vocab.word}</h3>
+                      <h3 className="text-xl font-bold text-slate-800 tracking-tight">{vocab.word}</h3>
                       <span className="text-xs text-slate-400 italic">({vocab.partOfSpeech})</span>
                     </div>
                     <div className="text-sm font-semibold text-emerald-400 mt-1">
@@ -731,14 +731,14 @@ export default function VocabPage() {
                     )}
 
                     {/* Example */}
-                    <div className="mt-3 p-2.5 rounded-xl bg-slate-800/60 border border-slate-700/50 text-[11px] text-slate-300">
+                    <div className="mt-3 p-2.5 rounded-2xl bg-slate-50 border border-slate-100 text-[11px] text-slate-600">
                       <div className="italic">&quot;{vocab.exampleEn}&quot;</div>
                       <div className="text-slate-400 text-[10px] mt-0.5">{vocab.exampleTh}</div>
                     </div>
                   </div>
 
                   {/* SRS Meta */}
-                  <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
                     <span>
                       สถานะ:{' '}
                       <strong
@@ -770,19 +770,19 @@ export default function VocabPage() {
 
       {/* ADD / EDIT MODAL */}
       {(addModalOpen || editModalItem) && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full p-6 text-white shadow-2xl relative max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 bg-white/30 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white border border-slate-200/70 rounded-3xl max-w-lg w-full p-6 text-slate-800 shadow-2xl relative max-h-[90vh] overflow-y-auto">
             <button
               onClick={() => {
                 setAddModalOpen(false);
                 setEditModalItem(null);
               }}
-              className="absolute top-5 right-5 p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+              className="absolute top-5 right-5 p-1.5 rounded-lg text-slate-400 hover:text-slate-800 hover:bg-slate-100"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <h3 className="text-lg font-bold text-white mb-1">
+            <h3 className="text-lg font-bold text-slate-800 mb-1">
               {editModalItem ? 'แก้ไขคำศัพท์ส่วนตัว' : 'เพิ่มคำศัพท์ส่วนตัว (Personal Word)'}
             </h3>
             <p className="text-xs text-slate-400 mb-5">
@@ -792,7 +792,7 @@ export default function VocabPage() {
             <form onSubmit={editModalItem ? handleEditSubmit : handleAddSubmit} className="space-y-4">
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  <label className="block text-xs font-semibold text-slate-600 mb-1">
                     คำศัพท์ (English Word)*
                   </label>
                   <input
@@ -801,11 +801,11 @@ export default function VocabPage() {
                     value={formData.word}
                     onChange={(e) => setFormData({ ...formData, word: e.target.value })}
                     placeholder="เช่น anticipate"
-                    className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-2xl text-xs text-slate-800 focus:outline-none focus:border-indigo-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  <label className="block text-xs font-semibold text-slate-600 mb-1">
                     คำอ่าน (Phonetic)
                   </label>
                   <input
@@ -813,14 +813,14 @@ export default function VocabPage() {
                     value={formData.phonetic}
                     onChange={(e) => setFormData({ ...formData, phonetic: e.target.value })}
                     placeholder="/ænˈtɪs.ə.peɪt/"
-                    className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-2xl text-xs text-slate-800 focus:outline-none focus:border-indigo-500"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-3 gap-3">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  <label className="block text-xs font-semibold text-slate-600 mb-1">
                     ชนิดของคำ (POS)
                   </label>
                   <select
@@ -828,7 +828,7 @@ export default function VocabPage() {
                     onChange={(e) =>
                       setFormData({ ...formData, partOfSpeech: e.target.value as VocabItem['partOfSpeech'] })
                     }
-                    className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-2xl text-xs text-slate-800 focus:outline-none focus:border-indigo-500"
                   >
                     <option value="verb">Verb (v.)</option>
                     <option value="noun">Noun (n.)</option>
@@ -840,13 +840,13 @@ export default function VocabPage() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">หมวดหมู่</label>
+                  <label className="block text-xs font-semibold text-slate-600 mb-1">หมวดหมู่</label>
                   <select
                     value={formData.category}
                     onChange={(e) =>
                       setFormData({ ...formData, category: e.target.value as VocabItem['category'] })
                     }
-                    className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-2xl text-xs text-slate-800 focus:outline-none focus:border-indigo-500"
                   >
                     <option value="Academic">Academic</option>
                     <option value="Daily Life">Daily Life</option>
@@ -858,13 +858,13 @@ export default function VocabPage() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">ระดับ CEFR</label>
+                  <label className="block text-xs font-semibold text-slate-600 mb-1">ระดับ CEFR</label>
                   <select
                     value={formData.difficulty}
                     onChange={(e) =>
                       setFormData({ ...formData, difficulty: e.target.value as CEFRLevel })
                     }
-                    className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-indigo-500"
+                    className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-2xl text-xs text-slate-800 focus:outline-none focus:border-indigo-500"
                   >
                     <option value="A2">A2</option>
                     <option value="B1">B1</option>
@@ -874,7 +874,7 @@ export default function VocabPage() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                <label className="block text-xs font-semibold text-slate-600 mb-1">
                   ความหมายภาษาไทย*
                 </label>
                 <input
@@ -883,12 +883,12 @@ export default function VocabPage() {
                   value={formData.meaningTh}
                   onChange={(e) => setFormData({ ...formData, meaningTh: e.target.value })}
                   placeholder="เช่น คาดหมาย, คาดเดาล่วงหน้า"
-                  className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-2xl text-xs text-slate-800 focus:outline-none focus:border-indigo-500"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                <label className="block text-xs font-semibold text-slate-600 mb-1">
                   ตัวอย่างประโยคภาษาอังกฤษ
                 </label>
                 <textarea
@@ -896,12 +896,12 @@ export default function VocabPage() {
                   value={formData.exampleEn}
                   onChange={(e) => setFormData({ ...formData, exampleEn: e.target.value })}
                   placeholder="เช่น We anticipate a large turnout for the seminar."
-                  className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-indigo-500 resize-none"
+                  className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-2xl text-xs text-slate-800 focus:outline-none focus:border-indigo-500 resize-none"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                <label className="block text-xs font-semibold text-slate-600 mb-1">
                   คำแปลตัวอย่างภาษาไทย
                 </label>
                 <textarea
@@ -909,12 +909,12 @@ export default function VocabPage() {
                   value={formData.exampleTh}
                   onChange={(e) => setFormData({ ...formData, exampleTh: e.target.value })}
                   placeholder="เช่น พวกเราคาดว่าจะมีผู้เข้าร่วมสัมมนาเป็นจำนวนมาก"
-                  className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-indigo-500 resize-none"
+                  className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-2xl text-xs text-slate-800 focus:outline-none focus:border-indigo-500 resize-none"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                <label className="block text-xs font-semibold text-slate-600 mb-1">
                   เทคนิคการจำ / คำช่วยจำ (Mnemonic)
                 </label>
                 <input
@@ -922,24 +922,24 @@ export default function VocabPage() {
                   value={formData.mnemonic}
                   onChange={(e) => setFormData({ ...formData, mnemonic: e.target.value })}
                   placeholder="เช่น Anti (ก่อน) + pate -> คิดล่วงหน้า"
-                  className="w-full px-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3 py-2 bg-slate-100 border border-slate-200 rounded-2xl text-xs text-slate-800 focus:outline-none focus:border-indigo-500"
                 />
               </div>
 
-              <div className="pt-3 flex items-center justify-end gap-3 border-t border-slate-800">
+              <div className="pt-3 flex items-center justify-end gap-3 border-t border-slate-200/70">
                 <button
                   type="button"
                   onClick={() => {
                     setAddModalOpen(false);
                     setEditModalItem(null);
                   }}
-                  className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold"
+                  className="px-4 py-2 rounded-2xl bg-slate-100 hover:bg-slate-700 text-slate-600 text-xs font-semibold"
                 >
                   ยกเลิก
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md shadow-indigo-600/30"
+                  className="px-5 py-2 rounded-2xl bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-semibold shadow-md shadow-indigo-600/30"
                 >
                   {editModalItem ? 'บันทึกการแก้ไข' : 'เพิ่มคำศัพท์'}
                 </button>
@@ -951,25 +951,25 @@ export default function VocabPage() {
 
       {/* DELETE CONFIRMATION MODAL */}
       {deleteConfirmId && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-sm w-full p-6 text-white shadow-2xl text-center">
+        <div className="fixed inset-0 z-50 bg-white/30 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white border border-slate-200/70 rounded-3xl max-w-sm w-full p-6 text-slate-800 shadow-2xl text-center">
             <div className="w-12 h-12 rounded-full bg-rose-500/10 text-rose-400 flex items-center justify-center mx-auto mb-3 border border-rose-500/20">
               <AlertTriangle className="w-6 h-6" />
             </div>
-            <h3 className="text-base font-bold text-white">ยืนยันการลบคำศัพท์?</h3>
+            <h3 className="text-base font-bold text-slate-800">ยืนยันการลบคำศัพท์?</h3>
             <p className="text-xs text-slate-400 mt-1">
               คำศัพท์นี้และประวัติการทบทวน SRS ทั้งหมดจะถูกลบออกจากระบบอย่างถาวร
             </p>
             <div className="mt-5 flex items-center justify-center gap-3">
               <button
                 onClick={() => setDeleteConfirmId(null)}
-                className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold"
+                className="px-4 py-2 rounded-2xl bg-slate-100 hover:bg-slate-700 text-slate-600 text-xs font-semibold"
               >
                 ยกเลิก
               </button>
               <button
                 onClick={() => handleDelete(deleteConfirmId)}
-                className="px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold shadow-md shadow-rose-600/30"
+                className="px-4 py-2 rounded-2xl bg-rose-500 hover:bg-rose-600 text-white text-xs font-semibold shadow-md shadow-rose-600/30"
               >
                 ยืนยันการลบ
               </button>

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Kanit } from 'next/font/google';
 import './globals.css';
 import { AppLayout } from '@/components/AppLayout';
@@ -10,15 +10,23 @@ const kanit = Kanit({
   variable: '--font-kanit',
 });
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: 'cover',
+  themeColor: '#ffffff',
+};
+
 export const metadata: Metadata = {
   title: 'TGAT1 Quest — เตรียมสอบการสื่อสารภาษาอังกฤษแบบ Gamified',
   description:
     'เว็บแอปฝึกทำข้อสอบ TGAT1 ภาษาอังกฤษ พร้อมระบบ Spaced Repetition Flashcards, Exam & Story Mode และ Mistake Analysis เพื่อการเตรียมตัวสอบอย่างมั่นใจ',
   manifest: '/manifest.json',
-  themeColor: '#4f46e5',
   appleWebApp: {
     capable: true,
-    statusBarStyle: 'black-translucent',
+    statusBarStyle: 'default',
     title: 'TGAT1 Quest',
   },
   icons: {
@@ -36,8 +44,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="th" className={`${kanit.variable} h-full antialiased dark`}>
-      <body className={`${kanit.className} min-h-full bg-slate-950 text-slate-100 flex flex-col`}>
+    <html lang="th" className={`${kanit.variable} h-full antialiased`}>
+      <body className={`${kanit.className} min-h-full bg-slate-50/60 text-slate-800 flex flex-col`}>
         <AppLayout>{children}</AppLayout>
       </body>
     </html>

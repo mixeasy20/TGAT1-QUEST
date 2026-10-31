@@ -152,7 +152,7 @@ export default function ProgressPage() {
           <LineChart className="w-4 h-4" />
           <span>Progress & Mistake Analysis</span>
         </div>
-        <h1 className="text-2xl font-black text-white tracking-tight mt-0.5">
+        <h1 className="text-2xl font-black text-slate-800 tracking-tight mt-0.5">
           วิเคราะห์พัฒนาการ & สมุดบันทึกข้อผิดพลาด
         </h1>
         <p className="text-xs text-slate-400 mt-1">
@@ -162,15 +162,15 @@ export default function ProgressPage() {
 
       {/* Top 4 KPI Metrics */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800">
+        <div className="p-4 rounded-3xl bg-white border border-slate-200/70">
           <div className="text-xs text-slate-400">จำนวนข้อที่ฝึกไปแล้ว</div>
-          <div className="text-2xl font-extrabold text-white mt-1">
+          <div className="text-2xl font-extrabold text-slate-800 mt-1">
             {stats.totalQuestions} <span className="text-xs text-slate-400">ข้อ</span>
           </div>
           <div className="text-[11px] text-slate-400 mt-0.5">รวมทุกโหมดฝึก</div>
         </div>
 
-        <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800">
+        <div className="p-4 rounded-3xl bg-white border border-slate-200/70">
           <div className="text-xs text-slate-400">ความแม่นยำรวม (Accuracy)</div>
           <div className="text-2xl font-extrabold text-indigo-400 mt-1">
             {stats.totalQuestions > 0 ? `${stats.accuracy}%` : '—'}
@@ -180,7 +180,7 @@ export default function ProgressPage() {
           </div>
         </div>
 
-        <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800">
+        <div className="p-4 rounded-3xl bg-white border border-slate-200/70">
           <div className="text-xs text-slate-400">ข้อผิดพลาดที่ค้างอยู่</div>
           <div className="text-2xl font-extrabold text-rose-400 mt-1">
             {mistakes.filter((m) => !m.resolved).length}
@@ -188,7 +188,7 @@ export default function ProgressPage() {
           <div className="text-[11px] text-slate-400 mt-0.5">รอการกลับไปทบทวน</div>
         </div>
 
-        <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800">
+        <div className="p-4 rounded-3xl bg-white border border-slate-200/70">
           <div className="text-xs text-slate-400">ข้อผิดพลาดที่พิชิตแล้ว</div>
           <div className="text-2xl font-extrabold text-emerald-400 mt-1">
             {mistakes.filter((m) => m.resolved).length}
@@ -200,9 +200,9 @@ export default function ProgressPage() {
       {/* 5 TGAT1 Competencies Breakdown & Study Recommendation */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left: 5 Competency Bars */}
-        <div className="lg:col-span-2 p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-4">
+        <div className="lg:col-span-2 p-6 rounded-3xl bg-white border border-slate-200/70 space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-base font-bold text-white flex items-center gap-2">
+            <h2 className="text-base font-bold text-slate-800 flex items-center gap-2">
               <TrendingUp className="w-5 h-5 text-indigo-400" />
               <span>ความแม่นยำแยกตาม 5 ทักษะหลัก (TGAT1 Competencies)</span>
             </h2>
@@ -217,11 +217,11 @@ export default function ProgressPage() {
               return (
                 <div key={skill} className="space-y-1.5">
                   <div className="flex items-center justify-between text-xs font-semibold">
-                    <span className="text-slate-200">{skill}</span>
+                    <span className="text-slate-700">{skill}</span>
                     <span className="text-slate-400">
                       {data.total > 0 ? (
                         <>
-                          <strong className="text-white">{pct}%</strong> ({data.correct}/{data.total} ข้อ)
+                          <strong className="text-slate-800">{pct}%</strong> ({data.correct}/{data.total} ข้อ)
                         </>
                       ) : (
                         'ยังไม่มีประวัติ'
@@ -229,7 +229,7 @@ export default function ProgressPage() {
                     </span>
                   </div>
 
-                  <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                  <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
                     <div
                       className={`h-full rounded-full transition-all duration-500 ${
                         data.total === 0
@@ -252,27 +252,27 @@ export default function ProgressPage() {
         {/* Right: Smart Study Recommendation */}
         <div className="p-6 rounded-3xl bg-gradient-to-br from-indigo-950/60 to-slate-900 border border-indigo-500/30 flex flex-col justify-between">
           <div>
-            <div className="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center border border-indigo-500/30 mb-3">
+            <div className="w-10 h-10 rounded-2xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center border border-indigo-500/30 mb-3">
               <Brain className="w-5 h-5" />
             </div>
-            <h3 className="text-base font-bold text-white">คำแนะนำการฝึกเฉพาะตัว</h3>
-            <p className="text-xs text-slate-300 mt-1">
+            <h3 className="text-base font-bold text-slate-800">คำแนะนำการฝึกเฉพาะตัว</h3>
+            <p className="text-xs text-slate-600 mt-1">
               ระบบประเมินจากจุดที่คะแนนน้อยที่สุดเพื่ออุดรอยรั่วก่อนลงสนามจริง
             </p>
 
-            <div className="mt-4 p-4 rounded-2xl bg-slate-900/90 border border-slate-800 text-xs space-y-2">
+            <div className="mt-4 p-4 rounded-3xl bg-white border border-slate-200/70 text-xs space-y-2">
               {stats.weakestSkill ? (
                 <>
                   <div className="font-bold text-amber-300 flex items-center gap-1.5">
                     <AlertCircle className="w-4 h-4 text-amber-400" />
                     <span>ทักษะที่ควรเน้น: {stats.weakestSkill}</span>
                   </div>
-                  <p className="text-slate-300 leading-relaxed">
+                  <p className="text-slate-600 leading-relaxed">
                     ความแม่นยำปัจจุบันอยู่ที่ <strong>{stats.lowestRate}%</strong> แนะนำให้ฝึกทำข้อสอบ Conversation Quest โดยเน้นสังเกตบริบทและระดับความสุภาพของผู้พูด
                   </p>
                 </>
               ) : (
-                <p className="text-slate-300">
+                <p className="text-slate-600">
                   เริ่มฝึกทำข้อสอบ Conversation หรือ Story Mode อย่างน้อย 1 ชุด เพื่อให้ระบบวิเคราะห์จุดที่ต้องพัฒนาได้อย่างแม่นยำ
                 </p>
               )}
@@ -281,7 +281,7 @@ export default function ProgressPage() {
 
           <Link
             href="/conversation"
-            className="mt-6 w-full py-2.5 px-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs text-center shadow-md shadow-indigo-600/30 transition-all flex items-center justify-center gap-2"
+            className="mt-6 w-full py-2.5 px-3 rounded-2xl bg-indigo-500 hover:bg-indigo-600 text-white font-semibold text-xs text-center shadow-md shadow-indigo-600/30 transition-all flex items-center justify-center gap-2"
           >
             <span>ไปฝึก Conversation Quest</span>
             <ArrowRight className="w-4 h-4" />
@@ -290,10 +290,10 @@ export default function ProgressPage() {
       </div>
 
       {/* Mistake Notebook Section */}
-      <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-4">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-3 border-b border-slate-800">
+      <div className="p-6 rounded-3xl bg-white border border-slate-200/70 space-y-4">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-3 border-b border-slate-200/70">
           <div>
-            <h2 className="text-base font-bold text-white flex items-center gap-2">
+            <h2 className="text-base font-bold text-slate-800 flex items-center gap-2">
               <AlertCircle className="w-5 h-5 text-rose-400" />
               <span>สมุดบันทึกข้อผิดพลาด (Mistake Notebook)</span>
             </h2>
@@ -307,7 +307,7 @@ export default function ProgressPage() {
             <select
               value={mistakeFilter}
               onChange={(e) => setMistakeFilter(e.target.value)}
-              className="bg-slate-800 border border-slate-700 text-slate-200 text-xs rounded-xl px-3 py-1.5 focus:outline-none"
+              className="bg-slate-100 border border-slate-200 text-slate-700 text-xs rounded-2xl px-3 py-1.5 focus:outline-none"
             >
               <option value="all">ทุกทักษะ</option>
               {SKILL_CATEGORIES.map((s) => (
@@ -317,11 +317,11 @@ export default function ProgressPage() {
               ))}
             </select>
 
-            <div className="p-1 rounded-xl bg-slate-800 flex items-center text-xs">
+            <div className="p-1 rounded-2xl bg-slate-100 flex items-center text-xs">
               <button
                 onClick={() => setStatusFilter('unresolved')}
                 className={`px-3 py-1 rounded-lg font-semibold transition-colors ${
-                  statusFilter === 'unresolved' ? 'bg-rose-600 text-white' : 'text-slate-400'
+                  statusFilter === 'unresolved' ? 'bg-rose-600 text-slate-800' : 'text-slate-400'
                 }`}
               >
                 ค้างทบทวน
@@ -329,7 +329,7 @@ export default function ProgressPage() {
               <button
                 onClick={() => setStatusFilter('resolved')}
                 className={`px-3 py-1 rounded-lg font-semibold transition-colors ${
-                  statusFilter === 'resolved' ? 'bg-emerald-600 text-white' : 'text-slate-400'
+                  statusFilter === 'resolved' ? 'bg-emerald-500 text-white' : 'text-slate-400'
                 }`}
               >
                 พิชิตแล้ว
@@ -337,7 +337,7 @@ export default function ProgressPage() {
               <button
                 onClick={() => setStatusFilter('all')}
                 className={`px-3 py-1 rounded-lg font-semibold transition-colors ${
-                  statusFilter === 'all' ? 'bg-indigo-600 text-white' : 'text-slate-400'
+                  statusFilter === 'all' ? 'bg-indigo-500 text-white' : 'text-slate-400'
                 }`}
               >
                 ทั้งหมด
@@ -352,29 +352,29 @@ export default function ProgressPage() {
             {filteredMistakes.map((m) => (
               <div
                 key={m.id}
-                className={`p-5 rounded-2xl border transition-all ${
+                className={`p-5 rounded-3xl border transition-all ${
                   m.resolved
-                    ? 'bg-slate-900/60 border-slate-800/80 opacity-75'
+                    ? 'bg-white border-slate-100 opacity-75'
                     : 'bg-rose-500/5 border-rose-500/30'
                 }`}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
-                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-800 text-indigo-300 border border-slate-700">
+                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-indigo-300 border border-slate-200">
                         {m.skillCategory}
                       </span>
                       <span className="text-[11px] text-slate-400 font-medium">
                         จาก: {m.contextSnippet}
                       </span>
                     </div>
-                    <h3 className="text-sm font-bold text-white pt-1">{m.questionText}</h3>
+                    <h3 className="text-sm font-bold text-slate-800 pt-1">{m.questionText}</h3>
                   </div>
 
                   {!m.resolved ? (
                     <button
                       onClick={() => handleResolve(m.id)}
-                      className="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold shadow-md shadow-emerald-600/20 flex items-center gap-1.5 shrink-0 active:scale-95 transition-all"
+                      className="px-3.5 py-1.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-slate-800 text-xs font-semibold shadow-md shadow-emerald-600/20 flex items-center gap-1.5 shrink-0 active:scale-95 transition-all"
                     >
                       <Check className="w-3.5 h-3.5" />
                       <span>เข้าใจแล้ว (+15 XP)</span>
@@ -389,18 +389,18 @@ export default function ProgressPage() {
 
                 {/* Answers Comparison */}
                 <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                  <div className="p-3 rounded-xl bg-rose-950/20 border border-rose-500/30 text-rose-300">
+                  <div className="p-3 rounded-2xl bg-rose-950/20 border border-rose-500/30 text-rose-300">
                     <span className="font-bold text-rose-400">คำตอบที่คุณเลือก: </span>
                     <span>{m.userAnswer}</span>
                   </div>
-                  <div className="p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/30 text-emerald-300">
+                  <div className="p-3 rounded-2xl bg-emerald-950/20 border border-emerald-500/30 text-emerald-300">
                     <span className="font-bold text-emerald-400">คำตอบที่ถูกต้อง: </span>
                     <span>{m.correctAnswer}</span>
                   </div>
                 </div>
 
                 {/* Explanation */}
-                <div className="mt-3 p-3 rounded-xl bg-slate-800/60 border border-slate-700/60 text-xs text-slate-300 leading-relaxed">
+                <div className="mt-3 p-3 rounded-2xl bg-slate-50 border border-slate-100 text-xs text-slate-600 leading-relaxed">
                   <span className="font-bold text-indigo-300">คำอธิบายเหตุผล: </span>
                   {m.explanation}
                 </div>
@@ -410,7 +410,7 @@ export default function ProgressPage() {
         ) : (
           <div className="text-center py-12 px-4">
             <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto mb-2" />
-            <h3 className="text-sm font-bold text-white">ไม่มีข้อผิดพลาดในตัวกรองนี้</h3>
+            <h3 className="text-sm font-bold text-slate-800">ไม่มีข้อผิดพลาดในตัวกรองนี้</h3>
             <p className="text-xs text-slate-400 mt-0.5">
               ยอดเยี่ยมมาก! ไม่มีข้อผิดพลาดที่ค้างอยู่ หรือไม่มีข้อมูลตามเงื่อนไขที่เลือก
             </p>
@@ -419,9 +419,9 @@ export default function ProgressPage() {
       </div>
 
       {/* Practice Session History Log */}
-      <div className="p-6 rounded-3xl bg-slate-900 border border-slate-800 space-y-4">
-        <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-          <h2 className="text-base font-bold text-white flex items-center gap-2">
+      <div className="p-6 rounded-3xl bg-white border border-slate-200/70 space-y-4">
+        <div className="flex items-center justify-between pb-3 border-b border-slate-200/70">
+          <h2 className="text-base font-bold text-slate-800 flex items-center gap-2">
             <History className="w-5 h-5 text-indigo-400" />
             <span>ประวัติการฝึกซ้อมทั้งหมด (Practice History)</span>
           </h2>
@@ -437,12 +437,12 @@ export default function ProgressPage() {
               return (
                 <div
                   key={sess.id}
-                  className="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700/50 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs"
+                  className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs"
                 >
                   <div className="space-y-0.5">
-                    <div className="font-bold text-white flex items-center gap-2">
+                    <div className="font-bold text-slate-800 flex items-center gap-2">
                       <span>{sess.title}</span>
-                      <span className="text-[10px] px-2 py-0.5 rounded bg-slate-700 text-slate-300 uppercase">
+                      <span className="text-[10px] px-2 py-0.5 rounded bg-slate-700 text-slate-600 uppercase">
                         {sess.mode}
                       </span>
                     </div>

@@ -4,17 +4,12 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import {
-  Sword,
   Mail,
   Lock,
   User as UserIcon,
   AlertCircle,
   ArrowRight,
   ShieldCheck,
-  CheckCircle2,
-  Brain,
-  MessageSquareText,
-  LineChart,
   Cloud,
   LogOut,
 } from 'lucide-react';
@@ -22,7 +17,6 @@ import { useAuth } from '@/context/AuthContext';
 import { useUser } from '@/context/UserContext';
 import StackedFeatureCards from '@/components/StackedFeatureCards';
 
-// Official Google Multi-color Icon
 function GoogleIcon({ className = 'w-5 h-5' }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24">
@@ -130,30 +124,30 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-[85vh] flex items-center justify-center py-6 px-4">
-      <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-2 rounded-3xl overflow-hidden bg-slate-900 border border-slate-800 shadow-2xl">
+      <div className="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-2 rounded-3xl overflow-hidden bg-white border border-slate-200/80 shadow-[0_12px_40px_rgb(0,0,0,0.06)]">
         {/* Left Side: Brand & Feature Showcase */}
-        <div className="bg-gradient-to-br from-indigo-950/80 via-slate-900 to-slate-950 p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-800">
+        <div className="bg-gradient-to-br from-indigo-50/50 via-purple-50/30 to-white p-8 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-slate-100">
           <div>
             <Link href="/" className="inline-flex items-center gap-3 group">
-              <div className="w-12 h-12 rounded-2xl overflow-hidden flex items-center justify-center shadow-lg shadow-indigo-500/25 group-hover:scale-105 transition-transform bg-indigo-900/40 border border-indigo-500/30">
+              <div className="w-12 h-12 rounded-2xl overflow-hidden flex items-center justify-center shadow-sm shadow-indigo-500/10 group-hover:scale-105 transition-transform bg-white border border-indigo-100">
                 <img src="/app-logo.jpg" alt="TGAT1 Logo" className="w-full h-full object-cover" />
               </div>
               <div>
-                <div className="font-extrabold text-lg text-white tracking-tight flex items-center gap-1.5">
+                <div className="font-extrabold text-lg text-slate-900 tracking-tight flex items-center gap-1.5">
                   <span>TGAT1 Quest</span>
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">
+                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-600 border border-indigo-100">
                     AUTH
                   </span>
                 </div>
-                <div className="text-xs text-slate-400">English Learning & Exam Prep</div>
+                <div className="text-xs text-slate-500 font-medium">English Learning & Exam Prep</div>
               </div>
             </Link>
 
-            <div className="mt-8 space-y-3">
-              <h2 className="text-xl md:text-2xl font-black text-white tracking-tight">
+            <div className="mt-8 space-y-2">
+              <h2 className="text-xl md:text-2xl font-black text-slate-800 tracking-tight">
                 เข้าสู่ระบบเพื่อซิงก์ข้อมูลบน Cloud
               </h2>
-              <p className="text-xs text-slate-300 leading-relaxed">
+              <p className="text-xs text-slate-500 leading-relaxed font-medium">
                 เข้าถึงคำศัพท์ในคลัง SRS, สถิติความแม่นยำ 5 ทักษะ, และความคืบหน้า Daily Quests ได้ทุกที่ทุกเวลาบนทุกอุปกรณ์
               </p>
             </div>
@@ -164,12 +158,12 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <div className="mt-8 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+          <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
             <span>Powered by Firebase & Next.js</span>
             <button
               type="button"
               onClick={handleGuestSignIn}
-              className="text-indigo-400 hover:text-indigo-300 font-semibold"
+              className="text-indigo-600 hover:text-indigo-700 font-semibold cursor-pointer"
             >
               ทดลองใช้แบบผู้เยี่ยมชม →
             </button>
@@ -177,40 +171,40 @@ export default function LoginPage() {
         </div>
 
         {/* Right Side: Auth Forms & Google Button */}
-        <div className="p-8 flex flex-col justify-center bg-slate-900">
+        <div className="p-8 flex flex-col justify-center bg-white">
           {/* USER ALREADY LOGGED IN */}
           {user ? (
             <div className="space-y-6 text-center animate-in fade-in duration-300">
-              <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto border border-emerald-500/30">
+              <div className="w-16 h-16 rounded-3xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto border border-emerald-100 shadow-sm">
                 <ShieldCheck className="w-8 h-8" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white">คุณเข้าสู่ระบบอยู่แล้ว</h3>
-                <p className="text-xs text-slate-400 mt-1">
+                <h3 className="text-xl font-bold text-slate-800">คุณเข้าสู่ระบบอยู่แล้ว</h3>
+                <p className="text-xs text-slate-500 mt-1">
                   กำลังใช้งานในชื่อ:{' '}
-                  <strong className="text-emerald-400">
+                  <strong className="text-emerald-600 font-semibold">
                     {user.displayName || user.email || `Guest (${user.uid.slice(0, 8)}...)`}
                   </strong>
                 </p>
-                {user.email && <div className="text-xs text-slate-500 mt-0.5">{user.email}</div>}
+                {user.email && <div className="text-xs text-slate-400 mt-0.5">{user.email}</div>}
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-800/60 border border-slate-700/60 text-xs text-slate-300 flex items-center justify-center gap-2">
-                <Cloud className="w-4 h-4 text-emerald-400" />
+              <div className="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-100 text-xs text-emerald-800 flex items-center justify-center gap-2">
+                <Cloud className="w-4 h-4 text-emerald-500" />
                 <span>สถานะ: ข้อมูลเชื่อมต่อกับ Cloud Firestore เรียบร้อยแล้ว</span>
               </div>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
                 <button
                   onClick={() => router.push('/')}
-                  className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shadow-md shadow-indigo-600/30 flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-indigo-500 hover:bg-indigo-600 text-white font-bold text-xs shadow-sm shadow-indigo-500/20 flex items-center justify-center gap-2 cursor-pointer transition-all"
                 >
                   <span>ไปที่ Dashboard</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
                 <button
                   onClick={handleLogout}
-                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-rose-600/15 hover:bg-rose-600/25 text-rose-300 border border-rose-500/30 text-xs font-semibold flex items-center justify-center gap-1.5"
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200/60 text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer transition-colors"
                 >
                   <LogOut className="w-4 h-4" />
                   <span>ออกจากระบบ</span>
@@ -221,10 +215,10 @@ export default function LoginPage() {
             /* USER NOT LOGGED IN: SIGN IN OR REGISTER */
             <div className="space-y-5">
               <div>
-                <h3 className="text-2xl font-black text-white tracking-tight">
+                <h3 className="text-2xl font-black text-slate-800 tracking-tight">
                   {mode === 'login' ? 'ยินดีต้อนรับกลับมา!' : 'สร้างบัญชีผู้เรียนใหม่'}
                 </h3>
-                <p className="text-xs text-slate-400 mt-1">
+                <p className="text-xs text-slate-500 mt-1">
                   {mode === 'login'
                     ? 'เข้าสู่ระบบเพื่อฝึกทำข้อสอบและสะสมคะแนน XP'
                     : 'เริ่มต้นเตรียมสอบ TGAT1 แบบครบวงจรได้ฟรี'}
@@ -233,12 +227,12 @@ export default function LoginPage() {
 
               {/* Notice if Firebase is not yet configured in env */}
               {!isConfigured && (
-                <div className="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-300 space-y-1">
+                <div className="p-3.5 rounded-2xl bg-amber-50 border border-amber-200/60 text-xs text-amber-800 space-y-1">
                   <div className="font-bold flex items-center gap-1.5">
-                    <AlertCircle className="w-4 h-4" />
+                    <AlertCircle className="w-4 h-4 text-amber-500" />
                     <span>แจ้งเตือน: ยังไม่ได้ตั้งค่า Firebase Keys ใน .env.local</span>
                   </div>
-                  <p className="text-[11px] text-slate-300">
+                  <p className="text-[11px] text-amber-700">
                     คุณยังสามารถทดลองใช้งานในโหมด LocalStorage ได้โดยตรง หรือเพิ่ม Firebase Config ในไฟล์ .env.local
                   </p>
                 </div>
@@ -249,29 +243,29 @@ export default function LoginPage() {
                 type="button"
                 onClick={handleGoogleSignIn}
                 disabled={loading || !isConfigured}
-                className="w-full py-3 px-4 rounded-2xl bg-white hover:bg-slate-100 disabled:opacity-50 text-slate-800 font-bold text-xs shadow-md transition-all flex items-center justify-center gap-3 active:scale-98 cursor-pointer"
+                className="w-full py-3 px-4 rounded-full bg-white hover:bg-slate-50 disabled:opacity-50 text-slate-700 font-bold text-xs border border-slate-200/80 shadow-xs transition-all flex items-center justify-center gap-3 active:scale-98 cursor-pointer"
               >
                 <GoogleIcon className="w-5 h-5 shrink-0" />
                 <span>เข้าสู่ระบบด้วย Google (Google Sign-In)</span>
               </button>
 
               <div className="relative flex items-center justify-center">
-                <div className="border-t border-slate-800 w-full" />
-                <span className="bg-slate-900 px-3 text-[11px] text-slate-400 absolute uppercase font-semibold">
+                <div className="border-t border-slate-100 w-full" />
+                <span className="bg-white px-3 text-[11px] text-slate-400 absolute font-semibold">
                   หรือใช้อีเมล
                 </span>
               </div>
 
               {/* Mode Switcher Tabs */}
-              <div className="p-1 rounded-xl bg-slate-800 flex items-center">
+              <div className="p-1 rounded-full bg-slate-100 flex items-center">
                 <button
                   type="button"
                   onClick={() => {
                     setMode('login');
                     setErrorMessage('');
                   }}
-                  className={`flex-1 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                    mode === 'login' ? 'bg-indigo-600 text-white shadow' : 'text-slate-400 hover:text-white'
+                  className={`flex-1 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                    mode === 'login' ? 'bg-white text-indigo-600 shadow-xs' : 'text-slate-500 hover:text-slate-800'
                   }`}
                 >
                   เข้าสู่ระบบ
@@ -282,8 +276,8 @@ export default function LoginPage() {
                     setMode('register');
                     setErrorMessage('');
                   }}
-                  className={`flex-1 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                    mode === 'register' ? 'bg-indigo-600 text-white shadow' : 'text-slate-400 hover:text-white'
+                  className={`flex-1 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                    mode === 'register' ? 'bg-white text-indigo-600 shadow-xs' : 'text-slate-500 hover:text-slate-800'
                   }`}
                 >
                   สมัครสมาชิก
@@ -292,7 +286,7 @@ export default function LoginPage() {
 
               {/* Error Alert */}
               {errorMessage && (
-                <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-start gap-2">
+                <div className="p-3 rounded-2xl bg-rose-50 border border-rose-200/60 text-rose-600 text-xs flex items-start gap-2">
                   <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
                   <span>{errorMessage}</span>
                 </div>
@@ -302,56 +296,56 @@ export default function LoginPage() {
               <form onSubmit={handleEmailSubmit} className="space-y-3">
                 {mode === 'register' && (
                   <div>
-                    <label className="block text-xs font-semibold text-slate-300 mb-1">
+                    <label className="block text-xs font-semibold text-slate-600 mb-1">
                       ชื่อผู้เรียน (Display Name)
                     </label>
                     <div className="relative">
-                      <UserIcon className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                      <UserIcon className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                       <input
                         type="text"
                         required
                         value={displayName}
                         onChange={(e) => setDisplayName(e.target.value)}
                         placeholder="เช่น มณี มีใจ"
-                        className="w-full pl-9 pr-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500"
+                        className="w-full pl-10 pr-3 py-2 bg-slate-50/70 border border-slate-200/80 rounded-full text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-400 focus:bg-white transition-all"
                       />
                     </div>
                   </div>
                 )}
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  <label className="block text-xs font-semibold text-slate-600 mb-1">
                     อีเมล (Email)
                   </label>
                   <div className="relative">
-                    <Mail className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                    <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                     <input
                       type="email"
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="student@example.com"
-                      className="w-full pl-9 pr-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500"
+                      className="w-full pl-10 pr-3 py-2 bg-slate-50/70 border border-slate-200/80 rounded-full text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-400 focus:bg-white transition-all"
                     />
                   </div>
                 </div>
 
                 <div>
                   <div className="flex items-center justify-between mb-1">
-                    <label className="block text-xs font-semibold text-slate-300">
+                    <label className="block text-xs font-semibold text-slate-600">
                       รหัสผ่าน (Password)
                     </label>
                     {mode === 'login' && (
                       <Link
                         href="/forgot-password"
-                        className="text-[11px] text-indigo-400 hover:text-indigo-300 font-medium transition-colors"
+                        className="text-[11px] text-indigo-600 hover:text-indigo-700 font-medium transition-colors"
                       >
                         ลืมรหัสผ่าน?
                       </Link>
                     )}
                   </div>
                   <div className="relative">
-                    <Lock className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                    <Lock className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                     <input
                       type="password"
                       required
@@ -359,7 +353,7 @@ export default function LoginPage() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="อย่างน้อย 6 ตัวอักษร"
-                      className="w-full pl-9 pr-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500"
+                      className="w-full pl-10 pr-3 py-2 bg-slate-50/70 border border-slate-200/80 rounded-full text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-indigo-400 focus:bg-white transition-all"
                     />
                   </div>
                 </div>
@@ -367,7 +361,7 @@ export default function LoginPage() {
                 <button
                   type="submit"
                   disabled={loading || !isConfigured}
-                  className="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-bold text-xs shadow-md shadow-indigo-600/30 transition-all active:scale-98"
+                  className="w-full py-2.5 rounded-full bg-indigo-500 hover:bg-indigo-600 disabled:opacity-50 text-white font-bold text-xs shadow-sm shadow-indigo-500/20 transition-all active:scale-98 cursor-pointer"
                 >
                   {loading
                     ? 'กำลังดำเนินการ...'
@@ -382,7 +376,7 @@ export default function LoginPage() {
                 type="button"
                 onClick={handleGuestSignIn}
                 disabled={loading || !isConfigured}
-                className="w-full py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 disabled:opacity-50 text-slate-300 font-semibold text-xs border border-slate-700 transition-colors"
+                className="w-full py-2 rounded-full bg-slate-50 hover:bg-slate-100 disabled:opacity-50 text-slate-600 font-semibold text-xs border border-slate-200/60 transition-colors cursor-pointer"
               >
                 เข้าใช้งานแบบผู้เยี่ยมชม (Guest Anonymous)
               </button>
@@ -393,4 +387,3 @@ export default function LoginPage() {
     </div>
   );
 }
-

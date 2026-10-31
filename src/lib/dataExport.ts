@@ -86,3 +86,4 @@ export function exportVocabAsCSV(): void {
   link.click();
   link.remove();
 }
+

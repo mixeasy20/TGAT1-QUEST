@@ -91,18 +91,18 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
     if (mode === 'login') {
       const res = await loginWithEmail(email, password);
       if (!res.success) {
-        setErrorMessage(res.error || 'เข้าสู่ระบบไม่สำเร็จ');
+        setErrorMessage(res.error || 'อีเมลหรือรหัสผ่านไม่ถูกต้อง');
       } else {
         refreshUserData();
         onClose();
       }
     } else {
       if (!displayName.trim()) {
-        setErrorMessage('กรุณาระบุชื่อผู้เรียน');
+        setErrorMessage('กรุณากรอกชื่อผู้เรียน');
         setSubmitting(false);
         return;
       }
-      const res = await registerWithEmail(email, password, displayName);
+      const res = await registerWithEmail(email, password, displayName.trim());
       if (!res.success) {
         setErrorMessage(res.error || 'สมัครสมาชิกไม่สำเร็จ');
       } else {
@@ -138,25 +138,25 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-      <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-md w-full p-6 text-white shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
+    <div className="fixed inset-0 z-50 bg-slate-900/30 backdrop-blur-sm flex items-center justify-center p-4">
+      <div className="bg-white border border-slate-200/80 rounded-3xl max-w-md w-full p-6 text-slate-800 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+          className="absolute top-5 right-5 p-1.5 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 cursor-pointer"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Modal Header */}
         <div className="flex items-center gap-3 mb-5">
-          <div className="w-10 h-10 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center border border-amber-500/20">
+          <div className="w-10 h-10 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center border border-amber-100">
             <Cloud className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-base font-bold text-white">
+            <h3 className="text-base font-bold text-slate-800">
               {user ? 'สถานะบัญชีและการซิงก์ข้อมูล' : 'เข้าสู่ระบบ Firebase'}
             </h3>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-400 font-medium">
               {user
                 ? 'ซิงก์ประวัติการฝึก คำศัพท์ และ XP ข้ามอุปกรณ์'
                 : 'บันทึกความคืบหน้าขึ้น Cloud Firestore'}
@@ -166,13 +166,13 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
         {/* Firebase Config Notice if missing env vars */}
         {!isConfigured && (
-          <div className="mb-4 p-3.5 rounded-2xl bg-indigo-950/30 border border-indigo-500/30 text-xs space-y-1.5">
-            <div className="font-bold text-indigo-300 flex items-center gap-1.5">
-              <Sparkles className="w-4 h-4 text-indigo-400" />
+          <div className="mb-4 p-3.5 rounded-2xl bg-indigo-50/50 border border-indigo-100 text-xs space-y-1">
+            <div className="font-bold text-indigo-700 flex items-center gap-1.5">
+              <Sparkles className="w-4 h-4 text-indigo-500" />
               <span>โหมดออฟไลน์ (Local Mode ทำงานสมบูรณ์ 100%)</span>
             </div>
-            <p className="text-[11px] text-slate-300 leading-relaxed">
-              ระบบกำลังทำงานผ่าน LocalStorage หากต้องการเปิดใช้ Cloud ให้ตั้งค่าในไฟล์ <code className="text-indigo-300">.env.local</code>
+            <p className="text-[11px] text-slate-500 leading-relaxed">
+              ระบบกำลังทำงานผ่าน LocalStorage หากต้องการเปิดใช้ Cloud ให้ตั้งค่าในไฟล์ <code className="text-indigo-600 font-semibold">.env.local</code>
             </p>
           </div>
         )}
@@ -180,15 +180,15 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
         {/* USER LOGGED IN STATE */}
         {user ? (
           <div className="space-y-4">
-            <div className="p-4 rounded-2xl bg-slate-800/60 border border-slate-700/60 space-y-2">
+            <div className="p-4 rounded-2xl bg-slate-50/70 border border-slate-100 space-y-2">
               <div className="flex items-center justify-between text-xs">
-                <span className="text-slate-400">ผู้ใช้งานปัจจุบัน:</span>
-                <span className="font-bold text-emerald-400 flex items-center gap-1">
+                <span className="text-slate-400 font-medium">ผู้ใช้งานปัจจุบัน:</span>
+                <span className="font-bold text-emerald-600 flex items-center gap-1">
                   <ShieldCheck className="w-3.5 h-3.5" />
                   {user.isAnonymous ? 'ผู้เยี่ยมชม (Guest)' : 'ยืนยันตัวตนแล้ว'}
                 </span>
               </div>
-              <div className="text-sm font-bold text-white">
+              <div className="text-sm font-bold text-slate-800">
                 {user.displayName || user.email || `Guest UID: ${user.uid.slice(0, 8)}...`}
               </div>
               {user.email && (
@@ -196,9 +196,9 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
               )}
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-slate-800/40 border border-slate-800 flex items-center justify-between text-xs">
+            <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-between text-xs">
               <div>
-                <div className="font-semibold text-slate-200">ซิงก์ Cloud ล่าสุด:</div>
+                <div className="font-semibold text-slate-700">ซิงก์ Cloud ล่าสุด:</div>
                 <div className="text-[11px] text-slate-400 mt-0.5">
                   {lastSyncTime ? lastSyncTime.toLocaleTimeString('th-TH') : 'ซิงก์เมื่อเริ่มแอป'}
                 </div>
@@ -206,7 +206,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
               <button
                 onClick={handleManualSync}
                 disabled={isSyncing}
-                className="px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-semibold text-xs flex items-center gap-1.5 shadow"
+                className="px-3 py-1.5 rounded-full bg-indigo-500 hover:bg-indigo-600 disabled:opacity-50 text-white font-semibold text-xs flex items-center gap-1.5 shadow-xs cursor-pointer"
               >
                 <RotateCw className={`w-3.5 h-3.5 ${isSyncing ? 'animate-spin' : ''}`} />
                 <span>{isSyncing ? 'กำลังซิงก์...' : 'ซิงก์ทันที'}</span>
@@ -217,14 +217,14 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
               <Link
                 href="/login"
                 onClick={onClose}
-                className="text-xs text-indigo-400 hover:text-indigo-300 flex items-center gap-1 font-semibold"
+                className="text-xs text-indigo-600 hover:text-indigo-700 flex items-center gap-1 font-semibold"
               >
                 <span>เปิดหน้า Login เต็ม</span>
                 <ExternalLink className="w-3 h-3" />
               </Link>
               <button
                 onClick={handleLogout}
-                className="px-4 py-2 rounded-xl bg-rose-600/20 hover:bg-rose-600/30 text-rose-300 border border-rose-500/30 text-xs font-semibold flex items-center gap-1.5"
+                className="px-4 py-2 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-600 border border-rose-200/60 text-xs font-semibold flex items-center gap-1.5 cursor-pointer"
               >
                 <LogOut className="w-3.5 h-3.5" />
                 <span>ออกจากระบบ</span>
@@ -239,29 +239,29 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
               type="button"
               onClick={handleGoogleLogin}
               disabled={submitting || !isConfigured}
-              className="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-slate-100 disabled:opacity-50 text-slate-800 font-bold text-xs shadow transition-all flex items-center justify-center gap-2.5 active:scale-98"
+              className="w-full py-2.5 px-4 rounded-full bg-white hover:bg-slate-50 disabled:opacity-50 text-slate-700 font-bold text-xs border border-slate-200/80 shadow-xs transition-all flex items-center justify-center gap-2.5 active:scale-98 cursor-pointer"
             >
               <GoogleIcon className="w-4 h-4 shrink-0" />
               <span>เข้าสู่ระบบด้วย Google</span>
             </button>
 
             <div className="relative flex items-center justify-center">
-              <div className="border-t border-slate-800 w-full" />
-              <span className="bg-slate-900 px-3 text-[10px] text-slate-400 absolute uppercase font-semibold">
+              <div className="border-t border-slate-100 w-full" />
+              <span className="bg-white px-3 text-[10px] text-slate-400 absolute font-semibold">
                 หรือใช้อีเมล
               </span>
             </div>
 
             {/* Mode Tabs */}
-            <div className="p-1 rounded-xl bg-slate-800 flex items-center">
+            <div className="p-1 rounded-full bg-slate-100 flex items-center">
               <button
                 type="button"
                 onClick={() => {
                   setMode('login');
                   setErrorMessage('');
                 }}
-                className={`flex-1 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                  mode === 'login' ? 'bg-indigo-600 text-white shadow' : 'text-slate-400'
+                className={`flex-1 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                  mode === 'login' ? 'bg-white text-indigo-600 shadow-xs' : 'text-slate-500'
                 }`}
               >
                 เข้าสู่ระบบ
@@ -272,8 +272,8 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   setMode('register');
                   setErrorMessage('');
                 }}
-                className={`flex-1 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                  mode === 'register' ? 'bg-indigo-600 text-white shadow' : 'text-slate-400'
+                className={`flex-1 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
+                  mode === 'register' ? 'bg-white text-indigo-600 shadow-xs' : 'text-slate-500'
                 }`}
               >
                 สมัครสมาชิก
@@ -281,7 +281,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
             </div>
 
             {errorMessage && (
-              <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-start gap-2">
+              <div className="p-3 rounded-2xl bg-rose-50 border border-rose-200/60 text-rose-600 text-xs flex items-start gap-2">
                 <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
                 <span>{errorMessage}</span>
               </div>
@@ -290,46 +290,46 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
             <form onSubmit={handleSubmit} className="space-y-3">
               {mode === 'register' && (
                 <div>
-                  <label className="block text-xs font-semibold text-slate-300 mb-1">
+                  <label className="block text-xs font-semibold text-slate-600 mb-1">
                     ชื่อผู้เรียน (Display Name)
                   </label>
                   <div className="relative">
-                    <UserIcon className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                    <UserIcon className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                     <input
                       type="text"
                       required
                       value={displayName}
                       onChange={(e) => setDisplayName(e.target.value)}
                       placeholder="เช่น สมชาย ใจดี"
-                      className="w-full pl-9 pr-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-indigo-500"
+                      className="w-full pl-10 pr-3 py-2 bg-slate-50/70 border border-slate-200/80 rounded-full text-xs text-slate-800 focus:outline-none focus:border-indigo-400 focus:bg-white"
                     />
                   </div>
                 </div>
               )}
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                <label className="block text-xs font-semibold text-slate-600 mb-1">
                   อีเมล (Email)
                 </label>
                 <div className="relative">
-                  <Mail className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                  <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
                     type="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="student@example.com"
-                    className="w-full pl-9 pr-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-indigo-500"
+                    className="w-full pl-10 pr-3 py-2 bg-slate-50/70 border border-slate-200/80 rounded-full text-xs text-slate-800 focus:outline-none focus:border-indigo-400 focus:bg-white"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-300 mb-1">
+                <label className="block text-xs font-semibold text-slate-600 mb-1">
                   รหัสผ่าน (Password)
                 </label>
                 <div className="relative">
-                  <Lock className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                  <Lock className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
                     type="password"
                     required
@@ -337,7 +337,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="อย่างน้อย 6 ตัวอักษร"
-                    className="w-full pl-9 pr-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-indigo-500"
+                    className="w-full pl-10 pr-3 py-2 bg-slate-50/70 border border-slate-200/80 rounded-full text-xs text-slate-800 focus:outline-none focus:border-indigo-400 focus:bg-white"
                   />
                 </div>
               </div>
@@ -345,7 +345,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
               <button
                 type="submit"
                 disabled={submitting || !isConfigured}
-                className="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-bold text-xs shadow-md shadow-indigo-600/30 transition-all active:scale-98"
+                className="w-full py-2.5 rounded-full bg-indigo-500 hover:bg-indigo-600 disabled:opacity-50 text-white font-bold text-xs shadow-sm shadow-indigo-500/20 transition-all active:scale-98 cursor-pointer"
               >
                 {submitting
                   ? 'กำลังดำเนินการ...'
@@ -360,14 +360,14 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 type="button"
                 onClick={handleGuestLogin}
                 disabled={submitting || !isConfigured}
-                className="text-slate-400 hover:text-slate-200"
+                className="text-slate-400 hover:text-slate-600 cursor-pointer"
               >
                 ใช้งานแบบผู้เยี่ยมชม (Guest)
               </button>
               <Link
                 href="/login"
                 onClick={onClose}
-                className="text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1"
+                className="text-indigo-600 hover:text-indigo-700 font-semibold flex items-center gap-1"
               >
                 <span>เปิดหน้า Login เต็ม</span>
                 <ExternalLink className="w-3 h-3" />
