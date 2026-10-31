@@ -14,12 +14,19 @@ export const metadata: Metadata = {
   title: 'TGAT1 Quest — เตรียมสอบการสื่อสารภาษาอังกฤษแบบ Gamified',
   description:
     'เว็บแอปฝึกทำข้อสอบ TGAT1 ภาษาอังกฤษ พร้อมระบบ Spaced Repetition Flashcards, Exam & Story Mode และ Mistake Analysis เพื่อการเตรียมตัวสอบอย่างมั่นใจ',
+  manifest: '/manifest.json',
+  themeColor: '#4f46e5',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'TGAT1 Quest',
+  },
   icons: {
     icon: [
       { url: '/favicon-round.jpg', sizes: 'any' },
     ],
     shortcut: '/favicon-round.jpg',
-    apple: '/favicon-round.jpg',
+    apple: '/app-logo.jpg',
   },
 };
 

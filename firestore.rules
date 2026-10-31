@@ -1,0 +1,19 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ผู้ใช้สามารถเข้าถึง อ่าน และบันทึกได้เฉพาะข้อมูลของตัวเอง (ตาม UID)
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+
+      // กฎสำหรับ sub-collections เช่น vocab, srs, mistakes, sessions, expressions
+      match /{allSubcollections=**} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+
+    // กฎป้องกันการเข้าถึง collections อื่นๆ ที่ไม่ได้ระบุ
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

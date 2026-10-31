@@ -28,10 +28,31 @@ body {
   background: var(--background);
   color: var(--foreground);
   overflow-x: hidden;
+  font-size: 1.05rem; /* Enhanced baseline font size for better legibility */
+  line-height: 1.6;
 }
 
 .font-sans {
   font-family: 'Kanit', var(--font-kanit), sans-serif !important;
+}
+
+/* Enhanced typography scale for easier reading with Kanit */
+.text-\[9px\] {
+  font-size: 0.72rem !important; /* ~11.5px */
+}
+.text-\[10px\] {
+  font-size: 0.8rem !important; /* ~13px */
+}
+.text-\[11px\] {
+  font-size: 0.875rem !important; /* ~14px */
+}
+.text-xs {
+  font-size: 0.925rem !important; /* ~14.8px */
+  line-height: 1.5 !important;
+}
+.text-sm {
+  font-size: 1.025rem !important; /* ~16.4px */
+  line-height: 1.6 !important;
 }
 
 /* Custom 3D Flip Card Utilities */
