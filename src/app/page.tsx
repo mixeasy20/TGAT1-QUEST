@@ -18,6 +18,8 @@ import {
   Volume2,
 } from 'lucide-react';
 import { useUser } from '@/context/UserContext';
+import { useAuth } from '@/context/AuthContext';
+import { GuestRestrictionNotice } from '@/components/GuestRestrictionNotice';
 import {
   getVocabList,
   getSRSList,
@@ -29,7 +31,9 @@ import { VocabItem, MistakeRecord } from '@/types';
 import { speakEnglish } from '@/lib/audio';
 
 export default function DashboardPage() {
+  const { user } = useAuth();
   const { profile, levelInfo, dueCount, claimQuest } = useUser();
+  const isGuest = Boolean(user?.isAnonymous);
   const [totalVocabCount, setTotalVocabCount] = useState(0);
   const [masteredCount, setMasteredCount] = useState(0);
   const [unresolvedMistakes, setUnresolvedMistakes] = useState<MistakeRecord[]>([]);
@@ -62,6 +66,15 @@ export default function DashboardPage() {
 
   const completedQuests = profile?.dailyQuests.filter((q) => q.completed).length || 0;
   const totalQuests = profile?.dailyQuests.length || 4;
+
+  if (isGuest) {
+    return (
+      <GuestRestrictionNotice
+        featureName="แดชบอร์ดหลัก (Dashboard)"
+        description="ในโหมดผู้เยี่ยมชม คุณสามารถเข้าใช้งานได้เฉพาะส่วน Flashcard (Vocabulary Arena) เพื่อทดลองท่องคำศัพท์เท่านั้น สมัครสมาชิกหรือเข้าสู่ระบบเพื่อใช้งานแดชบอร์ดและฟังก์ชันเต็มรูปแบบ"
+      />
+    );
+  }
 
   return (
     <div className="space-y-6 animate-in fade-in duration-300">

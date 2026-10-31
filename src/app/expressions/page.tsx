@@ -15,6 +15,8 @@ import {
   MessageSquare,
 } from 'lucide-react';
 import { useUser } from '@/context/UserContext';
+import { useAuth } from '@/context/AuthContext';
+import { GuestRestrictionNotice } from '@/components/GuestRestrictionNotice';
 import {
   getExpressions,
   toggleExpressionBookmark,
@@ -25,6 +27,8 @@ import { ExpressionItem } from '@/types';
 import { speakEnglish } from '@/lib/audio';
 
 export default function ExpressionsPage() {
+  const { user } = useAuth();
+  const isGuest = Boolean(user?.isAnonymous);
   const { refreshUserData } = useUser();
   const [expressions, setExpressions] = useState<ExpressionItem[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -119,6 +123,15 @@ export default function ExpressionsPage() {
       return true;
     });
   }, [expressions, searchQuery, selectedRegister, bookmarkedOnly]);
+
+  if (isGuest) {
+    return (
+      <GuestRestrictionNotice
+        featureName="Expression Bank (คลังสำนวนออกสอบ)"
+        description="ในโหมดผู้เยี่ยมชม คุณสามารถเข้าใช้งานได้เฉพาะส่วน Flashcard (Vocabulary Arena) เท่านั้น เข้าสู่ระบบเพื่อเปิดคลังสำนวนและตัวอย่างบทสนทนาทั้งหมด"
+      />
+    );
+  }
 
   return (
     <div className="space-y-6">

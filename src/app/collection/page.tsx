@@ -17,6 +17,8 @@ import {
   Layers,
 } from 'lucide-react';
 import { useUser } from '@/context/UserContext';
+import { useAuth } from '@/context/AuthContext';
+import { GuestRestrictionNotice } from '@/components/GuestRestrictionNotice';
 import {
   getVocabList,
   getExpressions,
@@ -27,6 +29,8 @@ import { VocabItem, ExpressionItem } from '@/types';
 import { speakEnglish } from '@/lib/audio';
 
 export default function CollectionPage() {
+  const { user } = useAuth();
+  const isGuest = Boolean(user?.isAnonymous);
   const { refreshUserData } = useUser();
   const [activeTab, setActiveTab] = useState<'vocab' | 'expression'>('vocab');
   const [customVocab, setCustomVocab] = useState<VocabItem[]>([]);
@@ -75,6 +79,15 @@ export default function CollectionPage() {
       e.intention.toLowerCase().includes(q)
     );
   });
+
+  if (isGuest) {
+    return (
+      <GuestRestrictionNotice
+        featureName="My Collection (คลังส่วนตัวของฉัน)"
+        description="ในโหมดผู้เยี่ยมชม คุณสามารถเข้าใช้งานได้เฉพาะส่วน Flashcard (Vocabulary Arena) เท่านั้น เข้าสู่ระบบเพื่อสร้างคำศัพท์และสำนวนส่วนตัวของคุณ"
+      />
+    );
+  }
 
   return (
     <div className="space-y-6">

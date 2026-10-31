@@ -12,7 +12,9 @@ function ProtectedLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
 
-  const isLoginPage = pathname === '/login';
+  const isLoginPage = pathname === '/login' || pathname === '/forgot-password';
+  const isVocabPage = pathname === '/vocab';
+  const isGuest = Boolean(user?.isAnonymous);
 
   useEffect(() => {
     if (!loading) {
@@ -20,11 +22,14 @@ function ProtectedLayout({ children }: { children: ReactNode }) {
         // Not logged in -> must enter login page first
         router.replace('/login');
       } else if (user && isLoginPage) {
-        // Already logged in and currently on /login -> go to dashboard
-        router.replace('/');
+        // Already logged in and currently on /login -> go to destination
+        router.replace(isGuest ? '/vocab' : '/');
+      } else if (isGuest && !isVocabPage && !isLoginPage) {
+        // Guest user is strictly restricted to /vocab only
+        router.replace('/vocab');
       }
     }
-  }, [user, loading, isLoginPage, router]);
+  }, [user, loading, isLoginPage, isVocabPage, isGuest, router]);
 
   if (loading) {
     return (

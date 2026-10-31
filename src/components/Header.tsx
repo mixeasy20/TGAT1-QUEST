@@ -20,6 +20,7 @@ import {
   LayoutDashboard,
   Sword,
   Cloud,
+  Lock,
 } from 'lucide-react';
 import { useUser } from '@/context/UserContext';
 import { useAuth } from '@/context/AuthContext';
@@ -28,6 +29,7 @@ import { AuthModal } from '@/components/AuthModal';
 export function Header() {
   const { profile, levelInfo, claimQuest, dueCount, isCloudSynced } = useUser();
   const { user } = useAuth();
+  const isGuest = Boolean(user?.isAnonymous);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [questModalOpen, setQuestModalOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
@@ -177,7 +179,24 @@ export function Header() {
               <div className="mt-4 space-y-1">
                 {mobileNavItems.map((item) => {
                   const isActive = pathname === item.href;
+                  const isRestrictedForGuest = isGuest && item.href !== '/vocab';
                   const Icon = item.icon;
+
+                  if (isRestrictedForGuest) {
+                    return (
+                      <div
+                        key={item.href}
+                        className="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium text-slate-500 opacity-60 bg-slate-900/50 cursor-not-allowed select-none"
+                      >
+                        <div className="flex items-center gap-3">
+                          <Icon className="w-4 h-4 text-slate-600" />
+                          <span className="text-slate-500">{item.name}</span>
+                        </div>
+                        <Lock className="w-4 h-4 text-slate-600" />
+                      </div>
+                    );
+                  }
+
                   return (
                     <Link
                       key={item.href}

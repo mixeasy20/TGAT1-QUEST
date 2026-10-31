@@ -119,7 +119,7 @@ export default function LoginPage() {
       setLoading(false);
     } else {
       refreshUserData();
-      router.push('/');
+      router.push('/vocab');
     }
   };
 

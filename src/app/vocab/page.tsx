@@ -19,6 +19,7 @@ import {
   GraduationCap,
 } from 'lucide-react';
 import { useUser } from '@/context/UserContext';
+import { useAuth } from '@/context/AuthContext';
 import {
   getVocabList,
   getSRSList,
@@ -33,6 +34,8 @@ import { isItemDue } from '@/lib/srs';
 
 export default function VocabPage() {
   const { refreshUserData } = useUser();
+  const { user } = useAuth();
+  const isGuest = Boolean(user?.isAnonymous);
   const [viewMode, setViewMode] = useState<'flashcard' | 'list'>('flashcard');
   const [vocabList, setVocabList] = useState<VocabItem[]>([]);
   const [srsMap, setSrsMap] = useState<Map<string, SRSItem>>(new Map());
@@ -268,13 +271,15 @@ export default function VocabPage() {
 
         {/* Action Buttons */}
         <div className="flex items-center gap-2.5">
-          <button
-            onClick={() => setAddModalOpen(true)}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md shadow-indigo-600/20 transition-transform active:scale-95"
-          >
-            <Plus className="w-4 h-4" />
-            <span>เพิ่มคำศัพท์ใหม่</span>
-          </button>
+          {!isGuest && (
+            <button
+              onClick={() => setAddModalOpen(true)}
+              className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-md shadow-indigo-600/20 transition-transform active:scale-95"
+            >
+              <Plus className="w-4 h-4" />
+              <span>เพิ่มคำศัพท์ใหม่</span>
+            </button>
+          )}
 
           {/* View Mode Toggle */}
           <div className="p-1 rounded-xl bg-slate-900 border border-slate-800 flex items-center">

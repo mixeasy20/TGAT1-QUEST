@@ -22,6 +22,8 @@ import {
   GraduationCap,
 } from 'lucide-react';
 import { useUser } from '@/context/UserContext';
+import { useAuth } from '@/context/AuthContext';
+import { GuestRestrictionNotice } from '@/components/GuestRestrictionNotice';
 import {
   getConversations,
   getStories,
@@ -39,6 +41,8 @@ import { speakEnglish } from '@/lib/audio';
 import { triggerRewardConfetti } from '@/lib/confetti';
 
 export default function ConversationPage() {
+  const { user } = useAuth();
+  const isGuest = Boolean(user?.isAnonymous);
   const { awardXpAndCoins, refreshUserData } = useUser();
   const [activeTab, setActiveTab] = useState<'exam' | 'story'>('exam');
 
@@ -255,6 +259,15 @@ export default function ConversationPage() {
     const s = sec % 60;
     return `${m}:${s < 10 ? '0' : ''}${s}`;
   };
+
+  if (isGuest) {
+    return (
+      <GuestRestrictionNotice
+        featureName="Conversation Quest (ข้อสอบ & Story Mode)"
+        description="ในโหมดผู้เยี่ยมชม คุณสามารถเข้าใช้งานได้เฉพาะส่วน Flashcard (Vocabulary Arena) เท่านั้น เข้าสู่ระบบหรือสมัครสมาชิกเพื่อทำข้อสอบเสมือนจริงและสัมผัส Story Quest"
+      />
+    );
+  }
 
   return (
     <div className="space-y-6">

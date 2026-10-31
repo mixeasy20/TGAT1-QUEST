@@ -19,6 +19,8 @@ import {
   History,
 } from 'lucide-react';
 import { useUser } from '@/context/UserContext';
+import { useAuth } from '@/context/AuthContext';
+import { GuestRestrictionNotice } from '@/components/GuestRestrictionNotice';
 import {
   getPracticeSessions,
   getMistakes,
@@ -39,6 +41,8 @@ const SKILL_CATEGORIES: SkillCategory[] = [
 ];
 
 export default function ProgressPage() {
+  const { user } = useAuth();
+  const isGuest = Boolean(user?.isAnonymous);
   const { refreshUserData } = useUser();
   const [sessions, setSessions] = useState<PracticeSessionRecord[]>([]);
   const [mistakes, setMistakes] = useState<MistakeRecord[]>([]);
@@ -130,6 +134,15 @@ export default function ProgressPage() {
       return true;
     });
   }, [mistakes, mistakeFilter, statusFilter]);
+
+  if (isGuest) {
+    return (
+      <GuestRestrictionNotice
+        featureName="วิเคราะห์ผล & สมุดข้อผิดพลาด (Mistake Notebook)"
+        description="ในโหมดผู้เยี่ยมชม คุณสามารถเข้าใช้งานได้เฉพาะส่วน Flashcard (Vocabulary Arena) เท่านั้น เข้าสู่ระบบเพื่อเริ่มวิเคราะห์ความแม่นยำ 5 ทักษะและสมุดจดข้อผิดพลาด"
+      />
+    );
+  }
 
   return (
     <div className="space-y-6">

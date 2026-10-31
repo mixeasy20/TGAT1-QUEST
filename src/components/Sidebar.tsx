@@ -15,6 +15,7 @@ import {
   Award,
   ChevronRight,
   UserCheck,
+  Lock,
 } from 'lucide-react';
 import { useUser } from '@/context/UserContext';
 import { useAuth } from '@/context/AuthContext';
@@ -63,6 +64,7 @@ export function Sidebar() {
   const pathname = usePathname();
   const { dueCount, profile } = useUser();
   const { user } = useAuth();
+  const isGuest = Boolean(user?.isAnonymous);
 
   return (
     <aside className="hidden lg:flex lg:flex-col w-64 bg-slate-900 border-r border-slate-800 text-slate-200 select-none shrink-0 h-screen sticky top-0">
@@ -91,7 +93,28 @@ export function Sidebar() {
         </div>
         {NAV_ITEMS.map((item) => {
           const isActive = pathname === item.href;
+          const isRestrictedForGuest = isGuest && item.href !== '/vocab';
           const Icon = item.icon;
+
+          if (isRestrictedForGuest) {
+            return (
+              <div
+                key={item.href}
+                title="โหมดผู้เยี่ยมชม: เข้าถึงได้เฉพาะ Vocabulary Flashcard"
+                className="flex items-center justify-between px-3.5 py-2.5 rounded-xl font-medium text-xs text-slate-500 opacity-60 cursor-not-allowed select-none bg-slate-900/40"
+              >
+                <div className="flex items-center gap-3">
+                  <Icon className="w-4 h-4 text-slate-600" />
+                  <div>
+                    <div className="leading-tight font-semibold text-slate-500">{item.name}</div>
+                    <div className="text-[10px] text-slate-600">{item.subtitle}</div>
+                  </div>
+                </div>
+                <Lock className="w-3.5 h-3.5 text-slate-600" />
+              </div>
+            );
+          }
+
           return (
             <Link
               key={item.href}
