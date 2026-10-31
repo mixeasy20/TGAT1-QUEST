@@ -7,6 +7,7 @@ import { UserProvider } from '@/context/UserContext';
 import { Sidebar } from '@/components/Sidebar';
 import { Header } from '@/components/Header';
 import { FloatingPillNavbar } from '@/components/FloatingPillNavbar';
+import { MobileAddWordFAB } from '@/components/MobileAddWordFAB';
 
 function ProtectedLayout({ children }: { children: ReactNode }) {
   const { user, loading } = useAuth();
@@ -32,7 +33,7 @@ function ProtectedLayout({ children }: { children: ReactNode }) {
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center text-slate-700 select-none">
-        <div className="w-16 h-16 rounded-2xl overflow-hidden shadow-xl shadow-indigo-500/10 border border-slate-200/80 mb-4 animate-bounce">
+        <div className="w-16 h-16 rounded-2xl overflow-hidden shadow-xl shadow-indigo-500/10 border border-slate-200 mb-4 animate-bounce">
           <img src="/app-logo.jpg" alt="TGAT1 Quest Logo" className="w-full h-full object-cover" />
         </div>
         <h2 className="text-base font-bold text-slate-800 tracking-tight">TGAT1 Quest</h2>
@@ -62,12 +63,15 @@ function ProtectedLayout({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-screen bg-slate-50/60 text-slate-800 font-sans selection:bg-indigo-100 selection:text-indigo-800">
       <Sidebar />
-      <div className="flex-1 flex flex-col min-w-0 pb-20 lg:pb-0">
+      <div className="flex-1 flex flex-col min-w-0 pb-28 lg:pb-0">
         <Header />
-        <main className="flex-1 p-4 md:p-6 lg:p-8 max-w-7xl w-full mx-auto">
+        <main className="flex-1 p-3.5 sm:p-5 md:p-6 lg:p-8 max-w-7xl w-full mx-auto">
           {children}
         </main>
       </div>
+      {/* Mobile Floating Action Button (Add Word) */}
+      <MobileAddWordFAB />
+      {/* Mobile Floating Pill Bottom Navbar */}
       <FloatingPillNavbar />
     </div>
   );

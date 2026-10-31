@@ -324,11 +324,11 @@ export default function VocabPage() {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex flex-wrap items-center justify-between sm:justify-end gap-2.5 w-full md:w-auto">
           {!isGuest && (
             <button
               onClick={() => setAddModalOpen(true)}
-              className="flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-indigo-500 hover:bg-indigo-600 text-white text-xs font-semibold shadow-md shadow-indigo-600/20 transition-transform active:scale-95"
+              className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold shadow-md shadow-indigo-600/20 transition-transform active:scale-95 cursor-pointer"
             >
               <Plus className="w-4 h-4" />
               <span>เพิ่มคำศัพท์ใหม่</span>
@@ -336,7 +336,7 @@ export default function VocabPage() {
           )}
 
           {/* View Mode Toggle */}
-          <div className="p-1 rounded-2xl bg-white border border-slate-200 flex items-center">
+          <div className="p-1 rounded-full bg-white border border-slate-200 flex items-center shadow-xs">
             <button
               onClick={() => setViewMode('flashcard')}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
