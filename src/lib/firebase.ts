@@ -65,6 +65,18 @@ export function formatFirebaseError(err: unknown): string {
   if (msg.includes('auth/weak-password')) {
     return 'รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัวอักษร';
   }
+  if (msg.includes('auth/invalid-email')) {
+    return 'รูปแบบอีเมลไม่ถูกต้อง กรุณาตรวจสอบอีเมลอีกครั้ง';
+  }
+  if (msg.includes('auth/user-not-found')) {
+    return 'ไม่พบบัญชีผู้ใช้นี้ในระบบ';
+  }
+  if (msg.includes('auth/too-many-requests')) {
+    return 'มีการส่งคำขอถี่เกินไป เพื่อความปลอดภัยกรุณารอสักครู่แล้วลองใหม่อีกครั้ง';
+  }
+  if (msg.includes('auth/network-request-failed')) {
+    return 'การเชื่อมต่อเครือข่ายล้มเหลว กรุณาตรวจสอบอินเทอร์เน็ตแล้วลองใหม่อีกครั้ง';
+  }
   return msg;
 }
 

@@ -11,6 +11,7 @@ import {
   updateProfile,
   GoogleAuthProvider,
   signInWithPopup,
+  sendPasswordResetEmail,
 } from 'firebase/auth';
 import { auth, isFirebaseConfigured, formatFirebaseError } from '@/lib/firebase';
 import {
@@ -52,6 +53,7 @@ interface AuthContextType {
   registerWithEmail: (e: string, p: string, name: string) => Promise<{ success: boolean; error?: string }>;
   loginWithGoogle: () => Promise<{ success: boolean; error?: string }>;
   loginAsGuest: () => Promise<{ success: boolean; error?: string }>;
+  resetPassword: (email: string) => Promise<{ success: boolean; error?: string }>;
   logout: () => Promise<void>;
   syncData: () => Promise<void>;
 }
@@ -251,6 +253,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return { success: true };
   };
 
+  const resetPassword = async (emailToReset: string) => {
+    if (!auth) {
+      return { success: false, error: 'Firebase ยังไม่ได้กำหนดค่าใน .env.local' };
+    }
+    try {
+      await sendPasswordResetEmail(auth, emailToReset.trim());
+      return { success: true };
+    } catch (err: unknown) {
+      return { success: false, error: formatFirebaseError(err) };
+    }
+  };
+
   const logout = async () => {
     if (typeof window !== 'undefined') {
       sessionStorage.removeItem('tgat1_guest_session');
@@ -283,6 +297,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         registerWithEmail,
         loginWithGoogle,
         loginAsGuest,
+        resetPassword,
         logout,
         syncData,
       }}
