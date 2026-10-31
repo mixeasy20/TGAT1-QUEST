@@ -56,10 +56,10 @@ export const StackedFeatureCards: React.FC = () => {
       <div className="absolute inset-0 -top-6 -bottom-6 bg-gradient-to-r from-indigo-500/10 via-purple-500/15 to-cyan-500/10 blur-2xl rounded-3xl pointer-events-none" />
 
       {/* Desktop & Tablet Overlapping Stack Layout (>= sm) */}
-      <div className="hidden sm:block relative h-64 md:h-72 w-full perspective-1000">
+      <div className="hidden sm:block relative h-56 md:h-64 w-full">
         {/* Card 1: Left / Background (Spaced Repetition) */}
         <div
-          className="group absolute top-2 left-0 w-[84%] rounded-2xl p-4 bg-gradient-to-br from-slate-900/90 via-slate-900/95 to-indigo-950/50 border border-indigo-500/30 backdrop-blur-md shadow-xl transition-all duration-300 ease-out origin-bottom-left -rotate-3 hover:rotate-0 hover:scale-105 hover:z-30 hover:shadow-indigo-500/20 animate-float-left cursor-default z-10"
+          className="group absolute top-1 left-2 w-[85%] rounded-2xl p-4 bg-gradient-to-br from-slate-900/90 via-slate-900/95 to-indigo-950/60 border border-indigo-500/30 backdrop-blur-md shadow-xl transition-all duration-300 ease-out origin-bottom-left -rotate-2 hover:rotate-0 hover:scale-105 hover:z-30 hover:shadow-indigo-500/20 animate-float-left cursor-default z-10"
           style={{ animationDelay: '0s' }}
         >
           <div className="flex items-start justify-between gap-2 mb-2">
@@ -80,7 +80,7 @@ export const StackedFeatureCards: React.FC = () => {
 
         {/* Card 3: Right / Background (Mistake Notebook) */}
         <div
-          className="group absolute top-8 right-0 w-[84%] rounded-2xl p-4 bg-gradient-to-bl from-slate-900/90 via-slate-900/95 to-cyan-950/50 border border-cyan-500/30 backdrop-blur-md shadow-xl transition-all duration-300 ease-out origin-bottom-right rotate-3 hover:rotate-0 hover:scale-105 hover:z-30 hover:shadow-cyan-500/20 animate-float-right cursor-default z-10"
+          className="group absolute top-7 right-2 w-[85%] rounded-2xl p-4 bg-gradient-to-bl from-slate-900/90 via-slate-900/95 to-cyan-950/60 border border-cyan-500/30 backdrop-blur-md shadow-xl transition-all duration-300 ease-out origin-bottom-right rotate-2 hover:rotate-0 hover:scale-105 hover:z-30 hover:shadow-cyan-500/20 animate-float-right cursor-default z-10"
           style={{ animationDelay: '1.2s' }}
         >
           <div className="flex items-start justify-between gap-2 mb-2">
@@ -101,7 +101,7 @@ export const StackedFeatureCards: React.FC = () => {
 
         {/* Card 2: Center / Foreground Highlight (Conversation Exam & Story Mode) */}
         <div
-          className="group absolute top-14 left-1/2 -translate-x-1/2 w-[90%] rounded-2xl p-4 bg-gradient-to-r from-slate-900/95 via-purple-950/60 to-slate-900/95 border border-purple-500/40 backdrop-blur-lg shadow-2xl shadow-purple-950/60 ring-1 ring-purple-500/30 transition-all duration-300 ease-out hover:scale-105 hover:border-purple-400/80 hover:shadow-purple-500/30 animate-float-center cursor-default z-20"
+          className="group absolute top-14 left-4 right-4 rounded-2xl p-4 bg-gradient-to-r from-slate-900/95 via-purple-950/80 to-slate-900/95 border border-purple-500/50 backdrop-blur-lg shadow-2xl shadow-purple-950/70 ring-1 ring-purple-500/30 transition-all duration-300 ease-out hover:scale-[1.03] hover:border-purple-400 hover:shadow-purple-500/30 animate-float-center cursor-default z-20"
           style={{ animationDelay: '0.6s' }}
         >
           <div className="flex items-start justify-between gap-2 mb-2.5">

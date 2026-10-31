@@ -159,10 +159,10 @@ body {
 
 @keyframes float-center {
   0%, 100% {
-    transform: translate(-50%, 0px) scale(1);
+    transform: translateY(0px) scale(1);
   }
   50% {
-    transform: translate(-50%, -7px) scale(1.01);
+    transform: translateY(-6px) scale(1.01);
   }
 }
 
