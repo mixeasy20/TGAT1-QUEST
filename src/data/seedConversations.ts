@@ -1385,5 +1385,225 @@ export const SEED_CONVERSATIONS: ConversationItem[] = [
       },
     ],
   },
+  {
+    "id": "conv_short_11",
+    "type": "short",
+    "title": "Short 11: Inquiring About an Internship Opportunity",
+    "situation": "At a University Career Fair, a student approaches a recruiter from a multinational firm.",
+    "difficulty": "B2",
+    "source": "Practice Bank",
+    "examReference": "TGAT1 Blueprint พาร์ท Situational Dialogue (Career & Networking) • CEFR B2",
+    "keyVocab": [
+      {
+        "word": "prospective",
+        "meaningTh": "ที่คาดหวังไว้ / ผู้มีโอกาสเป็นลูกค้าหรือพนักงาน",
+        "pos": "adjective",
+        "cefrLevel": "B2",
+        "examRef": "TGAT1 Business"
+      },
+      {
+        "word": "eligibility",
+        "meaningTh": "คุณสมบัติที่เหมาะสม / ความมีสิทธิ์",
+        "pos": "noun",
+        "cefrLevel": "B2",
+        "examRef": "TGAT1 Career"
+      }
+    ],
+    "dialogue": [
+      {
+        "speaker": "Student (Krit)",
+        "text": "Good morning! I am a third-year data science major, and I am genuinely keen on your summer analytics program.",
+        "translationTh": "สวัสดีตอนเช้าครับ! ผมเป็นนักศึกษาชั้นปีที่ 3 สาขาวิทยาการข้อมูล และสนใจโครงการวิเคราะห์ข้อมูลภาคฤดูร้อนของบริษัทคุณมากครับ"
+      },
+      {
+        "speaker": "Recruiter (Ms. Jenkins)",
+        "text": "Fantastic! We love proactive applicants. Have you already had a chance to look over our minimum eligibility criteria online?",
+        "translationTh": "ยอดเยี่ยมเลยค่ะ! พวกเราชอบผู้สมัครที่มีความกระตือรือร้นล่วงหน้า คุณได้ลองดูเกณฑ์คุณสมบัติขั้นต่ำบนเว็บไซต์มาแล้วหรือยังคะ?"
+      },
+      {
+        "speaker": "Student (Krit)",
+        "text": "[ _______________ ]",
+        "translationTh": "[ ...คำตอบของกฤต... ]"
+      }
+    ],
+    "questions": [
+      {
+        "id": "q_conv_short_11_1",
+        "question": "What is the most professional response for Krit to demonstrate readiness and polite initiative?",
+        "options": {
+          "A": "Yes, I reviewed them carefully yesterday, and I believe my coursework in Python and SQL satisfies all requirements.",
+          "B": "No, I didn’t bother reading that because I figured you would just tell me everything right now.",
+          "C": "Who cares about requirements as long as you pay good stipends to interns?",
+          "D": "I think job requirements are usually exaggerated anyway, so I didn’t read them."
+        },
+        "correctOption": "A",
+        "explanation": "ตัวเลือก A สุภาพและเป็นมืออาชีพ (Formal & Prepared) แสดงให้เห็นว่าทำการบ้านล่วงหน้า และนำเสนอจุดแข็งที่ตรงกับคุณสมบัติของตำแหน่ง",
+        "optionExplanations": {
+          "A": "ถูกต้อง แสดงความพร้อมและความรอบคอบตรงตามบริบทการสมัครงาน",
+          "B": "ไม่เหมาะสม แสดงความเกียจคร้านและไม่ใส่ใจ",
+          "C": "ไม่สุภาพอย่างยิ่ง มุ่งเน้นเรื่องเงินจนเสียมารยาท",
+          "D": "มีทัศนคติเชิงลบต่อองค์กร"
+        },
+        "skillCategory": "Appropriate Response"
+      }
+    ]
+  },
+  {
+    "id": "conv_short_12",
+    "type": "short",
+    "title": "Short 12: Returning a Defective Item at a Department Store",
+    "situation": "A customer approaches the customer service counter to return a recently purchased bluetooth speaker that does not charge.",
+    "difficulty": "B1",
+    "source": "Practice Bank",
+    "examReference": "TGAT1 Daily Life Situations (Customer Service & Complaints) • CEFR B1",
+    "keyVocab": [
+      {
+        "word": "malfunction",
+        "meaningTh": "ทำงานผิดปกติ / ขัดข้อง",
+        "pos": "verb",
+        "cefrLevel": "B1",
+        "examRef": "TGAT1 Consumer"
+      },
+      {
+        "word": "receipt",
+        "meaningTh": "ใบเสร็จรับเงิน",
+        "pos": "noun",
+        "cefrLevel": "A2",
+        "examRef": "TGAT1 Shopping"
+      }
+    ],
+    "dialogue": [
+      {
+        "speaker": "Customer",
+        "text": "Excuse me. I bought this speaker yesterday, but when I plugged it in overnight, the battery wouldn’t hold any charge.",
+        "translationTh": "ขอโทษนะคะ ฉันเพิ่งซื้อลำโพงนี้ไปเมื่อวาน แต่พอเสียบชาร์จทิ้งไว้ข้ามคืน แบตเตอรี่กลับไม่เก็บไฟเลยค่ะ"
+      },
+      {
+        "speaker": "Service Agent",
+        "text": "I am terribly sorry about the inconvenience! As long as you have the original receipt and packaging, we can replace it immediately.",
+        "translationTh": "ต้องกราบขออภัยในความไม่สะดวกด้วยครับ! ตราบใดที่คุณลูกค้ามีใบเสร็จตัวจริงและกล่องบรรจุภัณฑ์ เราสามารถเปลี่ยนเครื่องใหม่ให้ได้ทันทีครับ"
+      },
+      {
+        "speaker": "Customer",
+        "text": "[ _______________ ]",
+        "translationTh": "[ ...คำตอบของลูกค้า... ]"
+      }
+    ],
+    "questions": [
+      {
+        "id": "q_conv_short_12_1",
+        "question": "Which option represents the most appropriate response?",
+        "options": {
+          "A": "That sounds perfect. Here are both the purchase receipt and the original box.",
+          "B": "Why do you ask for receipt? You should remember my face from yesterday!",
+          "C": "I threw everything away into the trash bin outside.",
+          "D": "Never mind, I will just call the police on your store."
+        },
+        "correctOption": "A",
+        "explanation": "ตัวเลือก A ตอบรับความช่วยเหลืออย่างสุภาพและส่งมอบหลักฐานตามที่เจ้าหน้าที่ร้องขออย่างครบถ้วน",
+        "optionExplanations": {
+          "A": "ถูกต้อง ตอบรับอย่างสุภาพและมีหลักฐานครบถ้วน",
+          "B": "ไม่สุภาพและไม่มีเหตุผล",
+          "C": "ทำให้ไม่สามารถดำเนินการเปลี่ยนสินค้าได้ตามเงื่อนไข",
+          "D": "ตอบสนองเกินกว่าเหตุ (Overreacting)"
+        },
+        "skillCategory": "Context Understanding"
+      }
+    ]
+  },
+  {
+    "id": "conv_long_6",
+    "type": "long",
+    "title": "Long 6: Coordinating a Campus Charity Blood Drive",
+    "situation": "Two student council representatives are organizing logistics for an upcoming annual Red Cross Blood Drive.",
+    "difficulty": "B2",
+    "source": "Practice Bank",
+    "examReference": "TGAT1 Campus & Project Coordination • CEFR B2",
+    "keyVocab": [
+      {
+        "word": "volunteer",
+        "meaningTh": "อาสาสมัคร",
+        "pos": "noun",
+        "cefrLevel": "B1",
+        "examRef": "TGAT1 Campus"
+      },
+      {
+        "word": "registration",
+        "meaningTh": "การลงทะเบียน",
+        "pos": "noun",
+        "cefrLevel": "A2",
+        "examRef": "TGAT1 Campus"
+      },
+      {
+        "word": "contingency",
+        "meaningTh": "แผนสำรองฉุกเฉิน",
+        "pos": "noun",
+        "cefrLevel": "B2",
+        "examRef": "TGAT1 Project"
+      }
+    ],
+    "dialogue": [
+      {
+        "speaker": "Nicha (Event Lead)",
+        "text": "Art, the Red Cross medical team just notified us that they are bringing 8 donation beds instead of 5.",
+        "translationTh": "อาร์ตคะ ทีมแพทย์สภากาชาดเพิ่งแจ้งมาว่าพวกเขาจะนำเตียงรับบริจาคมา 8 เตียงแทนที่จะเป็น 5 เตียงค่ะ"
+      },
+      {
+        "speaker": "Art (Logistics)",
+        "text": "That is wonderful news because our donor pre-registration numbers are higher than expected!",
+        "translationTh": "เป็นข่าวดีมากเลยครับ เพราะยอดลงทะเบียนล่วงหน้าของผู้บริจาคเราสูงกว่าที่คาดไว้เยอะเลย!"
+      },
+      {
+        "speaker": "Nicha (Event Lead)",
+        "text": "Yes, but the main multipurpose hall might feel congested. Should we relocate the recovery snack station to the foyer?",
+        "translationTh": "ใช่ค่ะ แต่หอประชุมอเนกประสงค์หลักอาจจะดูแออัดไป เราควรย้ายจุดพักรับประทานของว่างไปไว้ตรงโถงทางเข้าดีไหมคะ?"
+      },
+      {
+        "speaker": "Art (Logistics)",
+        "text": "That makes total sense. Moving the snack area outside frees up ample space for the medical beds and screening booths.",
+        "translationTh": "เห็นด้วยอย่างยิ่งเลยครับ การย้ายมุมของว่างออกไปข้างนอกจะช่วยเพิ่มพื้นที่กว้างขวางสำหรับเตียงแพทย์และจุดคัดกรอง"
+      }
+    ],
+    "questions": [
+      {
+        "id": "q_conv_long_6_1",
+        "question": "Why did Nicha propose moving the recovery snack station?",
+        "options": {
+          "A": "To prevent congestion inside the main hall after bed count increased.",
+          "B": "Because the donors complained about the food choices.",
+          "C": "Because the event was cancelled by the university.",
+          "D": "To charge students for eating snacks."
+        },
+        "correctOption": "A",
+        "explanation": "ในบทสนทนาณิชาระบุว่าจำนวนเตียงเพิ่มเป็น 8 เตียง หอประชุมอาจจะแออัด (congested) จึงเสนอให้ย้ายจุดของว่างไปโถงทางเข้า",
+        "optionExplanations": {
+          "A": "ถูกต้อง ตรงตามบทสนทนาที่พูดถึงความแออัด",
+          "B": "ผิด ไม่มีการร้องเรียนเรื่องอาหาร",
+          "C": "ผิด งานไม่ได้ถูกยกเลิก",
+          "D": "ผิด งานจิตอาสาไม่มีการเก็บเงิน"
+        },
+        "skillCategory": "Context Understanding"
+      },
+      {
+        "id": "q_conv_long_6_2",
+        "question": "What was Art’s attitude toward the increase in donation beds?",
+        "options": {
+          "A": "Relieved and pleased, since pre-registration numbers were high.",
+          "B": "Annoyed and reluctant to do extra work.",
+          "C": "Indifferent and distracted.",
+          "D": "Angry at the medical team for changing plans."
+        },
+        "correctOption": "A",
+        "explanation": "อาร์ตกล่าวว่า That is wonderful news แสดงความพึงพอใจและโล่งใจที่รองรับจำนวนคนลงทะเบียนได้ทัน",
+        "optionExplanations": {
+          "A": "ถูกต้อง แสดงความโล่งใจและยินดีต่อข่าวดังกล่าว",
+          "B": "ผิด ไม่ได้แสดงความรำคาญ",
+          "C": "ผิด มีความกระตือรือร้นในการจัดสถานที่",
+          "D": "ผิด ไม่ได้โกรธทีมแพทย์"
+        },
+        "skillCategory": "Speaker Intention"
+      }
+    ]
+  }
 ];
 

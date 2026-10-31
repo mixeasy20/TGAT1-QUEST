@@ -962,6 +962,222 @@ export const SEED_STORIES: StoryScenario[] = [
       },
     },
   },
+  {
+    "id": "story_roommate",
+    "title": "Resolving a Late-Night Dormitory Conflict",
+    "category": "Daily Life",
+    "descriptionTh": "คุณอาศัยอยู่ในหอพักมหาวิทยาลัยกับรูมเมตชาวต่างชาติ แต่ช่วงนี้รูมเมตมักจะเล่นเกมและโทรคุยเสียงดังตอนดึก ทำให้คุณนอนไม่หลับก่อนวันสอบ คุณต้องเจรจาอย่างประนีประนอม สุภาพ และไม่ให้เสียมิตรภาพ",
+    "difficulty": "B1",
+    "estimatedMinutes": 4,
+    "badgeReward": "Diplomatic Roommate",
+    "initialNodeId": "node_dorm_1",
+    "learningTakeaways": {
+      "expressions": [
+        "Would you mind keeping it down after 11 PM?",
+        "I really appreciate your understanding.",
+        "Could we find a middle ground that works for both of us?"
+      ],
+      "vocabulary": [
+        "compromise",
+        "considerate",
+        "boundary",
+        "unintentional"
+      ]
+    },
+    "nodes": {
+      "node_dorm_1": {
+        "id": "node_dorm_1",
+        "speaker": "Lucas (Roommate)",
+        "speakerRole": "Exchange Student from Germany",
+        "avatarSeed": "lucas",
+        "textEn": "Hey! You are still awake? Sorry if my Discord call was a bit loud, we were finishing a boss raid.",
+        "textTh": "เฮ้! เธอยังไม่นอนเหรอ? โทษทีนะถ้าเสียงคอล Discord ของเราดังไปหน่อย พอดีพวกเรากำลังตีบอสกันอยู่น่ะ",
+        "contextTh": "รูมเมตเพิ่งสังเกตเห็นว่าคุณลุกขึ้นมานั่ง และกล่าวขอโทษแบบไม่เป็นทางการ",
+        "choices": [
+          {
+            "id": "c_dorm_1a",
+            "textEn": "No worries about enjoying your game, Lucas, but I have a major TGAT mock exam tomorrow morning. Would you mind switching to headphones and chatting more quietly?",
+            "textTh": "เข้าใจว่าเล่นเกมสนุกนะลูกัส แต่พรุ่งนี้เช้าเรามีสอบจำลอง TGAT ที่สำคัญมาก เธอจะรบกวนช่วยใส่หูฟังและคุยเบาลงหน่อยได้ไหม?",
+            "nextNodeId": "node_dorm_2a",
+            "feedbackTh": "ยอดเยี่ยมมาก! แสดงความเห็นอกเห็นใจก่อน แล้วค่อยแจ้งปัญหาและเสนอทางออกที่เป็นรูปธรรมอย่างสุภาพ (Assertive & Polite)",
+            "tone": "Polite & Formal",
+            "isOptimal": true,
+            "xpReward": 35
+          },
+          {
+            "id": "c_dorm_1b",
+            "textEn": "You are so selfish! Turn that off right now or I will report you to the dorm manager!",
+            "textTh": "เธอเห็นแก่ตัวมากเลยนะ! ปิดเดี๋ยวนี้เลย ไม่งั้นเราจะไปฟ้องผู้จัดการหอพัก!",
+            "nextNodeId": "node_dorm_2b",
+            "feedbackTh": "ก้าวร้าวเกินไป (Too Aggressive) จะทำให้สถานการณ์บานปลายและสร้างความบาดหมางในหอพัก",
+            "tone": "Too Direct / Blunt",
+            "isOptimal": false,
+            "xpReward": 10
+          }
+        ]
+      },
+      "node_dorm_2a": {
+        "id": "node_dorm_2a",
+        "speaker": "Lucas (Roommate)",
+        "speakerRole": "Exchange Student from Germany",
+        "avatarSeed": "lucas",
+        "textEn": "Oh man, I totally lost track of time! I am so sorry. I will put my headset on and mute my microphone right now. Good luck on your exam tomorrow!",
+        "textTh": "โอ้โห เราลืมดูเวลาไปเลย! ขอโทษจริงๆ นะ เดี๋ยวเราจะรีบใส่หูฟังและปิดไมค์เดี๋ยวนี้เลย ขอให้โชคดีกับการสอบพรุ่งนี้นะ!",
+        "contextTh": "การเจรจาประสบความสำเร็จ รูมเมตรับฟังและแก้ไขทันทีด้วยความเข้าใจซึ่งกันและกัน",
+        "choices": [
+          {
+            "id": "c_dorm_final",
+            "textEn": "Thanks a lot, Lucas. I truly appreciate your consideration. Good night!",
+            "textTh": "ขอบใจมากนะลูกัส เราซาบซึ้งในความเกรงใจของเธอจริงๆ ราตรีสวัสดิ์นะ!",
+            "nextNodeId": "node_dorm_end",
+            "feedbackTh": "ปิดท้ายด้วยคำขอบคุณและการแสดงความซาบซึ้ง ช่วยกระชับมิตรภาพให้แน่นแฟ้นยิ่งขึ้น",
+            "tone": "Casual & Friendly",
+            "isOptimal": true,
+            "xpReward": 35
+          }
+        ]
+      },
+      "node_dorm_2b": {
+        "id": "node_dorm_2b",
+        "speaker": "Lucas (Roommate)",
+        "speakerRole": "Exchange Student from Germany",
+        "avatarSeed": "lucas",
+        "textEn": "Whoa, calm down! You could have just asked nicely instead of threatening me. Fine, whatever.",
+        "textTh": "เฮ้ย ใจเย็นก่อนสิ! ขอดีๆ ก็ได้ไม่ต้องมาขู่กันหรอก เออ ช่างมันเถอะ",
+        "contextTh": "บรรยากาศในห้องเต็มไปด้วยความตึงเครียด แม้เสียงจะเบาลงแต่ความสัมพันธ์ได้รับความเสียหาย",
+        "choices": [
+          {
+            "id": "c_dorm_repair",
+            "textEn": "Sorry for snapping, I am just very stressed about tomorrow. Let’s set a quiet-hours agreement from now on.",
+            "textTh": "ขอโทษที่อารมณ์เสียนะ พอดีเครียดเรื่องสอบพรุ่งนี้มาก จากนี้เรามาตกลงเวลางดใช้เสียงกันดีกว่า",
+            "nextNodeId": "node_dorm_end",
+            "feedbackTh": "แก้ไขสถานการณ์ได้ดีขึ้นโดยการขอโทษและเสนอข้อตกลงร่วมกันอย่างสร้างสรรค์",
+            "tone": "Casual & Friendly",
+            "isOptimal": true,
+            "xpReward": 20
+          }
+        ]
+      },
+      "node_dorm_end": {
+        "id": "node_dorm_end",
+        "speaker": "Narrator",
+        "speakerRole": "Story Conclusion",
+        "avatarSeed": "narrator",
+        "textEn": "Mission accomplished! You successfully resolved an everyday roommate conflict and established mutual respect.",
+        "textTh": "ภารกิจสำเร็จ! คุณสามารถคลี่คลายความขัดแย้งในชีวิตประจำวันได้อย่างสันติและสร้างความเคารพซึ่งกันและกัน",
+        "contextTh": "บทเรียน: ในข้อสอบ TGAT1 การแสดงความสุภาพแบบหนักแน่น (Assertive) ได้ผลดีกว่าการก้าวร้าวหรือเงียบเก็บกด",
+        "choices": []
+      }
+    }
+  },
+  {
+    "id": "story_cafe",
+    "title": "Handling a Dietary Allergy at a Modern Cafe",
+    "category": "Daily Life",
+    "descriptionTh": "คุณไปรับประทานอาหารที่คาเฟ่สไตล์บรันช์ในเมลเบิร์น และคุณมีอาการแพ้ถั่วลิสงขั้นรุนแรง (Peanut Allergy) ต้องสื่อสารเพื่อยืนยันส่วนผสมอย่างชัดเจนและปลอดภัย",
+    "difficulty": "B1",
+    "estimatedMinutes": 3,
+    "badgeReward": "Safety First Communicator",
+    "initialNodeId": "node_cafe_1",
+    "learningTakeaways": {
+      "expressions": [
+        "I have a severe allergy to...",
+        "Could you double-check with the chef?",
+        "Does this dish contain any traces of...?"
+      ],
+      "vocabulary": [
+        "severe",
+        "allergy",
+        "cross-contamination",
+        "substitute"
+      ]
+    },
+    "nodes": {
+      "node_cafe_1": {
+        "id": "node_cafe_1",
+        "speaker": "Liam (Cafe Staff)",
+        "speakerRole": "Barista / Front of House",
+        "avatarSeed": "liam",
+        "textEn": "G’day! Welcome to Botanical Brew. Are you ready to order, or do you need a couple more minutes with the menu?",
+        "textTh": "สวัสดีครับ! ยินดีต้อนรับสู่ Botanical Brew พร้อมสั่งอาหารหรือยังครับ หรือต้องการเวลาดูเมนูอีกสักครู่ดีครับ?",
+        "contextTh": "พนักงานทักทายอย่างเป็นกันเอง คุณต้องการสั่ง Acai Bowl แต่ต้องแจ้งเรื่องการแพ้อาหาร",
+        "choices": [
+          {
+            "id": "c_cafe_1a",
+            "textEn": "Hi Liam! I would love the Tropical Acai Bowl, but I have a severe peanut allergy. Could you confirm whether the granola contains any peanuts or traces of nuts?",
+            "textTh": "สวัสดีครับเลียม! ผมอยากสั่ง Tropical Acai Bowl ครับ แต่ผมแพ้ถั่วลิสงรุนแรงมาก อยากรบกวนช่วยยืนยันให้หน่อยได้ไหมครับว่าตัวกราโนล่ามีส่วนผสมของถั่วลิสงหรือการปนเปื้อนของถั่วไหมครับ?",
+            "nextNodeId": "node_cafe_2a",
+            "feedbackTh": "ยอดเยี่ยมมาก! ระบุชื่อเมนูและอาการแพ้อย่างชัดเจน (Severe Peanut Allergy) พร้อมถามถึง Cross-contamination ได้ตรงจุดความปลอดภัย",
+            "tone": "Polite & Formal",
+            "isOptimal": true,
+            "xpReward": 35
+          },
+          {
+            "id": "c_cafe_1b",
+            "textEn": "Just give me the Acai Bowl. I hope your cooks don’t try to poison me with peanuts.",
+            "textTh": "เอา Acai Bowl มาเถอะ หวังว่าคนครัวจะไม่คิดวางยาพิษผมด้วยถั่วลิสงนะ",
+            "nextNodeId": "node_cafe_2b",
+            "feedbackTh": "ใช้คำพูดประชดประชันและหยาบคาย ไม่เหมาะสมสำหรับการสื่อสารในชีวิตประจำวัน",
+            "tone": "Too Direct / Blunt",
+            "isOptimal": false,
+            "xpReward": 10
+          }
+        ]
+      },
+      "node_cafe_2a": {
+        "id": "node_cafe_2a",
+        "speaker": "Liam (Cafe Staff)",
+        "speakerRole": "Barista / Front of House",
+        "avatarSeed": "liam",
+        "textEn": "Thanks so much for letting me know! Our standard granola actually has crushed peanuts, but we have a nut-free toasted oat option. Would you like me to substitute that for you?",
+        "textTh": "ขอบคุณมากเลยครับที่แจ้งให้ทราบ! กราโนล่าปกติของเรามีถั่วลิสงบดอยู่จริงๆ ครับ แต่เรามีตัวเลือกข้าวโอ๊ตอบกรอบปลอดถั่ว ให้ผมเปลี่ยนเป็นตัวนี้แทนให้ไหมครับ?",
+        "contextTh": "พนักงานขอบคุณที่คุณแจ้ง และเสนอทางเลือกทดแทนที่ปลอดภัยทันที",
+        "choices": [
+          {
+            "id": "c_cafe_sub_yes",
+            "textEn": "That would be fantastic! Please use the nut-free toasted oats instead. Thank you for your care!",
+            "textTh": "ยอดเยี่ยมเลยครับ! รบกวนเปลี่ยนเป็นข้าวโอ๊ตปลอดถั่วแทนได้เลยครับ ขอบคุณที่ใส่ใจดูแลนะครับ!",
+            "nextNodeId": "node_cafe_end",
+            "feedbackTh": "ตอบรับข้อเสนอที่ปลอดภัยอย่างสุภาพและแสดงความขอบคุณต่อการบริการที่ดี",
+            "tone": "Casual & Friendly",
+            "isOptimal": true,
+            "xpReward": 35
+          }
+        ]
+      },
+      "node_cafe_2b": {
+        "id": "node_cafe_2b",
+        "speaker": "Liam (Cafe Staff)",
+        "speakerRole": "Barista / Front of House",
+        "avatarSeed": "liam",
+        "textEn": "Excuse me? There is no need to be rude. If you have an allergy, just tell us properly so we can help you safely.",
+        "textTh": "ขอโทษนะครับ? ไม่เห็นต้องพูดจาหยาบคายขนาดนี้เลย ถ้าคุณแพ้อาหารแค่แจ้งพวกเราดีๆ เราก็พร้อมดูแลความปลอดภัยให้อยู่แล้วครับ",
+        "contextTh": "พนักงานรู้สึกไม่พอใจกับคำพูดประชดประชัน ทำให้บรรยากาศเสีย",
+        "choices": [
+          {
+            "id": "c_cafe_apology",
+            "textEn": "I apologize, that came out wrong. I am just really nervous because my allergy is life-threatening. Could you check the ingredients for me?",
+            "textTh": "ผมต้องขอโทษด้วยครับ พูดจาไม่ดีไปเอง พอดีกังวลมากเพราะอาการแพ้ถึงชีวิตจริงๆ รบกวนช่วยตรวจสอบส่วนผสมให้ผมหน่อยนะครับ",
+            "nextNodeId": "node_cafe_end",
+            "feedbackTh": "ขอโทษและอธิบายเหตุผลได้อย่างจริงใจ ช่วยกู้สถานการณ์กลับมาได้",
+            "tone": "Polite & Formal",
+            "isOptimal": true,
+            "xpReward": 20
+          }
+        ]
+      },
+      "node_cafe_end": {
+        "id": "node_cafe_end",
+        "speaker": "Narrator",
+        "speakerRole": "Story Conclusion",
+        "avatarSeed": "narrator",
+        "textEn": "Delicious and safe! You enjoyed your brunch without allergic reactions by communicating your dietary constraints accurately.",
+        "textTh": "อร่อยและปลอดภัย! คุณได้เพลิดเพลินกับมื้ออาหารโดยไม่มีอาการแพ้ ด้วยการสื่อสารข้อจำกัดทางอาหารอย่างแม่นยำ",
+        "contextTh": "ข้อสอบ TGAT1 มักนำสถานการณ์สั่งอาหารและแจ้งข้อจำกัดมาทดสอบทักษะ Context & Politeness อยู่เสมอ",
+        "choices": []
+      }
+    }
+  }
 ];
 
 

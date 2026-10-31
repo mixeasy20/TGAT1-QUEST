@@ -148,7 +148,7 @@ export default function ProgressPage() {
     <div className="space-y-6">
       {/* Page Header */}
       <div>
-        <div className="flex items-center gap-2 text-indigo-400 text-xs font-bold uppercase tracking-wider">
+        <div className="flex items-center gap-2 text-indigo-600 text-xs font-bold uppercase tracking-wider">
           <LineChart className="w-4 h-4" />
           <span>Progress & Mistake Analysis</span>
         </div>
@@ -250,9 +250,9 @@ export default function ProgressPage() {
         </div>
 
         {/* Right: Smart Study Recommendation */}
-        <div className="p-6 rounded-3xl bg-gradient-to-br from-indigo-950/60 to-slate-900 border border-indigo-500/30 flex flex-col justify-between">
+        <div className="p-6 rounded-3xl bg-gradient-to-br from-indigo-50 via-purple-50 to-white border border-indigo-200 flex flex-col justify-between">
           <div>
-            <div className="w-10 h-10 rounded-2xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center border border-indigo-500/30 mb-3">
+            <div className="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-700 flex items-center justify-center border border-indigo-200 mb-3">
               <Brain className="w-5 h-5" />
             </div>
             <h3 className="text-base font-bold text-slate-900">คำแนะนำการฝึกเฉพาะตัว</h3>
