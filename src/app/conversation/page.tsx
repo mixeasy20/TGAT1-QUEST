@@ -38,6 +38,7 @@ import {
   SkillCategory,
 } from '@/types';
 import { speakEnglish } from '@/lib/audio';
+import { soundEffects } from '@/lib/soundEffects';
 import { triggerRewardConfetti } from '@/lib/confetti';
 
 export default function ConversationPage() {
@@ -79,6 +80,7 @@ export default function ConversationPage() {
   >([]);
   const [storyCompleted, setStoryCompleted] = useState(false);
   const [totalStoryXp, setTotalStoryXp] = useState(0);
+  const [showStoryTranslations, setShowStoryTranslations] = useState(true);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -204,6 +206,7 @@ export default function ConversationPage() {
   const handleStoryChoice = (choice: StoryChoice) => {
     if (!selectedStory || !currentNodeId) return;
 
+    soundEffects.playMessagePop();
     const accumulatedXp = totalStoryXp + choice.xpReward;
     setTotalStoryXp(accumulatedXp);
 
@@ -223,6 +226,7 @@ export default function ConversationPage() {
       setCurrentNodeId(choice.nextNodeId);
     } else {
       // Completed Story
+      soundEffects.playVictory();
       setStoryHistory(updatedHistory);
       setStoryCompleted(true);
       setCurrentNodeId(null);
@@ -823,21 +827,37 @@ export default function ConversationPage() {
           ) : (
             /* Interactive Story Flow */
             <div className="max-w-2xl mx-auto space-y-6 animate-in fade-in duration-200">
-              {/* Story Top Bar */}
-              <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex items-center justify-between">
+              {/* Story Top Bar with Translation Toggle */}
+              <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-lg">
                 <div>
                   <button
                     onClick={() => setSelectedStory(null)}
-                    className="text-xs text-slate-400 hover:text-white"
+                    className="text-xs text-slate-400 hover:text-white inline-flex items-center gap-1 transition-colors"
                   >
                     ← ออกจาก Story Mode
                   </button>
-                  <h2 className="text-base font-bold text-white mt-1">{selectedStory.title}</h2>
+                  <h2 className="text-base font-bold text-white mt-0.5">{selectedStory.title}</h2>
                 </div>
 
-                <div className="text-right">
-                  <div className="text-xs text-slate-400">XP สะสมในด่านนี้</div>
-                  <div className="text-base font-black text-amber-400">+{totalStoryXp} XP</div>
+                <div className="flex items-center gap-3 self-end sm:self-center">
+                  {/* Story Translation Toggle */}
+                  <button
+                    onClick={() => setShowStoryTranslations(!showStoryTranslations)}
+                    className={`btn-flourish flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
+                      showStoryTranslations
+                        ? 'bg-indigo-600/20 text-indigo-300 border-indigo-500/40 shadow-sm'
+                        : 'bg-slate-800 text-slate-400 border-slate-700 hover:text-white'
+                    }`}
+                    title="สลับโหมดเปิด/ปิดคำแปลไทยในบทสนทนา"
+                  >
+                    {showStoryTranslations ? <Eye className="w-3.5 h-3.5 text-indigo-400" /> : <EyeOff className="w-3.5 h-3.5 text-slate-400" />}
+                    <span>{showStoryTranslations ? 'คำแปลไทย: เปิด' : 'คำแปลไทย: ปิด'}</span>
+                  </button>
+
+                  <div className="text-right pl-2 border-l border-slate-800">
+                    <div className="text-[10px] text-slate-400 uppercase tracking-wider">XP ในด่าน</div>
+                    <div className="text-sm font-black text-amber-400">+{totalStoryXp} XP</div>
+                  </div>
                 </div>
               </div>
 
@@ -847,11 +867,11 @@ export default function ConversationPage() {
                   return (
                     <div key={index} className="space-y-3">
                       {/* NPC Message */}
-                      <div className="flex items-start gap-3">
-                        <div className="w-9 h-9 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-500 text-white flex items-center justify-center font-bold text-xs shrink-0 shadow">
+                      <div className="flex items-start gap-3 animate-in fade-in slide-in-from-bottom-2 duration-200">
+                        <div className="w-9 h-9 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-500 text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-md shadow-indigo-600/25">
                           {item.speaker[0]}
                         </div>
-                        <div className="flex-1 bg-slate-900 border border-slate-800 rounded-3xl p-4 space-y-1">
+                        <div className="flex-1 bg-slate-900 border border-slate-800 rounded-3xl p-4 space-y-1 shadow-sm">
                           <div className="flex items-center justify-between">
                             <span className="font-bold text-xs text-indigo-300">
                               {item.speaker}{' '}
@@ -861,15 +881,15 @@ export default function ConversationPage() {
                             </span>
                             <button
                               onClick={() => speakEnglish(item.textEn)}
-                              className="text-slate-400 hover:text-white"
+                              className="text-slate-400 hover:text-indigo-300 transition-colors p-1"
                               title="ฟังเสียงพูด"
                             >
                               <Volume2 className="w-3.5 h-3.5" />
                             </button>
                           </div>
-                          <p className="text-sm text-slate-100 font-medium">{item.textEn}</p>
-                          {item.textTh && (
-                            <p className="text-[11px] text-slate-400 pt-1 border-t border-slate-800">
+                          <p className="text-sm text-slate-100 font-medium leading-relaxed">{item.textEn}</p>
+                          {showStoryTranslations && item.textTh && (
+                            <p className="text-xs text-slate-400 pt-1.5 border-t border-slate-800/80 leading-relaxed">
                               {item.textTh}
                             </p>
                           )}
@@ -878,20 +898,22 @@ export default function ConversationPage() {
 
                       {/* User's Chosen Option (if already answered this step) */}
                       {item.chosenOption && (
-                        <div className="flex items-start justify-end gap-3 pl-8">
-                          <div className="bg-indigo-600/20 border border-indigo-500/40 rounded-3xl p-4 text-right space-y-2 max-w-lg">
-                            <div className="text-xs font-semibold text-indigo-200">
+                        <div className="flex items-start justify-end gap-3 pl-8 animate-in fade-in slide-in-from-bottom-2 duration-200">
+                          <div className="bg-gradient-to-br from-indigo-950/80 to-slate-900 border border-indigo-500/40 rounded-3xl p-4 text-right space-y-2 max-w-lg shadow-md shadow-indigo-950/40">
+                            <div className="text-xs font-semibold text-indigo-200 leading-relaxed">
                               {item.chosenOption.textEn}
                             </div>
-                            <div className="text-[11px] text-slate-300">
-                              {item.chosenOption.textTh}
-                            </div>
-                            <div className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-left text-[11px] text-slate-300">
-                              <span className="font-bold text-emerald-400">คำแนะนำ: </span>
+                            {showStoryTranslations && (
+                              <div className="text-[11px] text-slate-300">
+                                {item.chosenOption.textTh}
+                              </div>
+                            )}
+                            <div className="p-2.5 rounded-xl bg-slate-900/90 border border-slate-800 text-left text-[11px] text-slate-300 shadow-inner">
+                              <span className="font-bold text-emerald-400">คำแนะนำสถานการณ์: </span>
                               {item.chosenOption.feedbackTh}
                             </div>
                           </div>
-                          <div className="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-xs shrink-0">
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-600 to-purple-600 text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-md shadow-indigo-600/30">
                             You
                           </div>
                         </div>
@@ -903,9 +925,10 @@ export default function ConversationPage() {
 
               {/* Current Active Choices */}
               {!storyCompleted && currentNodeId && (
-                <div className="p-5 rounded-3xl bg-slate-900 border border-slate-800 space-y-3">
-                  <div className="text-xs font-bold text-slate-300">
-                    เลือกคำตอบเพื่อดำเนินบทสนทนาต่อไป:
+                <div className="p-5 rounded-3xl bg-slate-900 border border-slate-800 space-y-3 shadow-xl">
+                  <div className="text-xs font-bold text-slate-300 flex items-center justify-between">
+                    <span>เลือกคำตอบเพื่อดำเนินบทสนทนาต่อไป:</span>
+                    <span className="text-[10px] text-indigo-400 font-normal">คลิกเพื่อตอบ</span>
                   </div>
 
                   <div className="space-y-2.5">
@@ -913,17 +936,19 @@ export default function ConversationPage() {
                       <button
                         key={choice.id}
                         onClick={() => handleStoryChoice(choice)}
-                        className="w-full p-4 rounded-2xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500/60 text-left transition-all active:scale-98 flex flex-col gap-1 group"
+                        className="btn-flourish w-full p-4 rounded-2xl bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 hover:border-indigo-500/60 text-left transition-all active:scale-98 flex flex-col gap-1 group shadow-sm hover:shadow-indigo-950/50 cursor-pointer"
                       >
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-between gap-2">
                           <span className="text-xs font-semibold text-white group-hover:text-indigo-300 transition-colors">
                             {choice.textEn}
                           </span>
-                          <span className="text-[10px] px-2 py-0.5 rounded bg-slate-700 text-slate-300 shrink-0">
+                          <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-700/80 text-slate-300 shrink-0 font-medium">
                             {choice.tone}
                           </span>
                         </div>
-                        <span className="text-[11px] text-slate-400">{choice.textTh}</span>
+                        {showStoryTranslations && (
+                          <span className="text-[11px] text-slate-400">{choice.textTh}</span>
+                        )}
                       </button>
                     ))}
                   </div>

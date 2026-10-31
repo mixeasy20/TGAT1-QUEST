@@ -105,7 +105,7 @@ export interface StoryNode {
 export interface StoryScenario {
   id: string;
   title: string;
-  category: 'School' | 'Restaurant' | 'Airport' | 'Shopping' | 'Job Interview' | 'Travel';
+  category: 'School' | 'Restaurant' | 'Airport' | 'Shopping' | 'Job Interview' | 'Travel' | 'Daily Life' | 'Hotel';
   descriptionTh: string;
   difficulty: CEFRLevel;
   estimatedMinutes: number;

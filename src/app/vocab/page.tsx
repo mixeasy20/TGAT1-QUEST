@@ -30,6 +30,7 @@ import {
 } from '@/lib/storage';
 import { VocabItem, SRSItem, CEFRLevel } from '@/types';
 import { speakEnglish } from '@/lib/audio';
+import { soundEffects } from '@/lib/soundEffects';
 import { isItemDue } from '@/lib/srs';
 
 export default function VocabPage() {
@@ -43,6 +44,11 @@ export default function VocabPage() {
   // Flashcard State
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
+  const [swipeDirection, setSwipeDirection] = useState<'left' | 'right' | null>(null);
+
+  // Touch Swipe coordinates
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
 
   // Filters & Search
   const [searchQuery, setSearchQuery] = useState('');
@@ -117,33 +123,81 @@ export default function VocabPage() {
   const currentSRS = currentCard ? srsMap.get(currentCard.id) : null;
 
   // Handle Flashcard Flip & Next/Prev
-  const handleFlip = () => setIsFlipped((prev) => !prev);
+  const handleFlip = () => {
+    soundEffects.playFlip();
+    setIsFlipped((prev) => !prev);
+  };
 
   const handleNext = () => {
     if (currentIndex < filteredVocabs.length - 1) {
-      setCurrentIndex((prev) => prev + 1);
-      setIsFlipped(false);
+      soundEffects.playSwipe();
+      setSwipeDirection('left');
+      setTimeout(() => {
+        setCurrentIndex((prev) => prev + 1);
+        setIsFlipped(false);
+        setSwipeDirection(null);
+      }, 150);
     }
   };
 
   const handlePrev = () => {
     if (currentIndex > 0) {
-      setCurrentIndex((prev) => prev - 1);
-      setIsFlipped(false);
+      soundEffects.playSwipe();
+      setSwipeDirection('right');
+      setTimeout(() => {
+        setCurrentIndex((prev) => prev - 1);
+        setIsFlipped(false);
+        setSwipeDirection(null);
+      }, 150);
     }
+  };
+
+  // Touch handlers for mobile swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX || !touchEndX) return;
+    const distance = touchStartX - touchEndX;
+    const minSwipeDistance = 50;
+
+    if (distance > minSwipeDistance) {
+      // Swiped Left -> Go Next
+      handleNext();
+    } else if (distance < -minSwipeDistance) {
+      // Swiped Right -> Go Prev
+      handlePrev();
+    }
+
+    setTouchStartX(null);
+    setTouchEndX(null);
   };
 
   // SRS Rating Action
   const handleRating = (rating: 1 | 3 | 5) => {
     if (!currentCard) return;
+    if (rating === 5) {
+      soundEffects.playCorrect();
+    } else {
+      soundEffects.playSwipe();
+    }
     recordSRSReview(currentCard.id, rating);
     refreshUserData();
     loadData();
 
     // Move to next card
     if (currentIndex < filteredVocabs.length - 1) {
-      setCurrentIndex((prev) => prev + 1);
-      setIsFlipped(false);
+      setSwipeDirection('left');
+      setTimeout(() => {
+        setCurrentIndex((prev) => prev + 1);
+        setIsFlipped(false);
+        setSwipeDirection(null);
+      }, 150);
     } else {
       setIsFlipped(false);
     }
@@ -379,10 +433,19 @@ export default function VocabPage() {
                 </span>
               </div>
 
-              {/* 3D Flip Card Container */}
+              {/* 3D Flip Card Container with Swipe Gestures */}
               <div
                 onClick={handleFlip}
-                className="w-full h-88 cursor-pointer select-none perspective-1000 group"
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+                className={`w-full h-88 cursor-pointer select-none perspective-1000 group transition-transform duration-150 ${
+                  swipeDirection === 'left'
+                    ? '-translate-x-12 opacity-80 rotate-[-2deg]'
+                    : swipeDirection === 'right'
+                    ? 'translate-x-12 opacity-80 rotate-[2deg]'
+                    : 'translate-x-0 opacity-100'
+                }`}
               >
                 <div
                   className={`relative w-full h-full rounded-3xl flashcard-inner transform-style-3d shadow-2xl ${
@@ -536,26 +599,26 @@ export default function VocabPage() {
                     <button
                       onClick={handlePrev}
                       disabled={currentIndex === 0}
-                      className="btn-flourish flex-1 py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none text-slate-200 font-semibold text-xs flex items-center justify-center gap-1.5 border border-slate-700 transition-all"
+                      className="btn-flourish flex-1 py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none text-slate-200 font-semibold text-xs flex items-center justify-center gap-1.5 border border-slate-700 transition-all cursor-pointer"
                     >
                       <ChevronLeft className="w-4 h-4" />
-                      <span>คำก่อนหน้า (←)</span>
+                      <span>เลื่อนซ้าย / ก่อนหน้า (←)</span>
                     </button>
 
                     <button
                       onClick={handleFlip}
-                      className="btn-flourish shine-sweep flex-1 py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-indigo-600/20 transition-all"
+                      className="btn-flourish shine-sweep flex-1 py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-indigo-600/20 transition-all cursor-pointer"
                     >
                       <RotateCw className="w-4 h-4" />
-                      <span>ดูเฉลย (Space)</span>
+                      <span>พลิกการ์ด (Space)</span>
                     </button>
 
                     <button
                       onClick={handleNext}
                       disabled={currentIndex === filteredVocabs.length - 1}
-                      className="btn-flourish flex-1 py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none text-slate-200 font-semibold text-xs flex items-center justify-center gap-1.5 border border-slate-700 transition-all"
+                      className="btn-flourish flex-1 py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-40 disabled:pointer-events-none text-slate-200 font-semibold text-xs flex items-center justify-center gap-1.5 border border-slate-700 transition-all cursor-pointer"
                     >
-                      <span>คำถัดไป (→)</span>
+                      <span>เลื่อนขวา / ถัดไป (→)</span>
                       <ChevronRight className="w-4 h-4" />
                     </button>
                   </div>
