@@ -4,8 +4,8 @@
   "description": "เตรียมสอบการสื่อสารภาษาอังกฤษแบบ Gamified: SRS Flashcard, Exam & Story Quest",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#020617",
-  "theme_color": "#4f46e5",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "orientation": "portrait-primary",
   "icons": [
     {
@@ -22,4 +22,3 @@
     }
   ]
 }
-
